@@ -1,0 +1,2 @@
+# Project dependencies for web scraping task distribution system
+# No external dependencies required for the core functionality 
