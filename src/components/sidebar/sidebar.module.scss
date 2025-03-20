@@ -1,4 +1,99 @@
 .sidebar {
   grid-area: 1 / 1 / 12 / 2;
-  border: 1px solid red;
+  background-color: #1e1f25;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    & img {
+      margin-right: 12px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+
+    &--title {
+      padding: 14px 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &--link {
+      padding: 14px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+      color: #dce2f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &:hover {
+        background-color: #404659;
+      }
+
+      &.active {
+        background-color: #404659;
+      }
+    }
+  }
+
+  &__menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px;
+
+    & img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    &--info {
+      flex-grow: 1;
+    }
+
+    &--name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e2e2e9;
+    }
+
+    &--email {
+      font-size: 12px;
+      font-weight: 400;
+      color: #c5c6d0;
+    }
+
+    &--icon {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    &--dropdown {
+      position: absolute;
+      bottom: 90%;
+      left: 90%;
+      background-color: #1e1f25;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
