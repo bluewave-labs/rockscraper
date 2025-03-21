@@ -3,12 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);

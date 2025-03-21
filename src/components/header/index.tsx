@@ -24,7 +24,7 @@ const Header = () => {
         <p className={style["header__left--desc"]}>{info.description}</p>
       </div>
       <div className={style.header__right}>
-        <Button asChild variant={"secondary"} style={{ padding: "10px 24px" }}>
+        <Button asChild variant={"secondary"}>
           <a
             className={style["header__right--btn"]}
             href='https://discord.com/'
@@ -32,7 +32,7 @@ const Header = () => {
             Discord
           </a>
         </Button>
-        <Button asChild style={{ padding: "10px 24px" }}>
+        <Button asChild>
           <a
             className={style["header__right--btn"]}
             href='https://github.com/bluewave-labs/rockscraper'

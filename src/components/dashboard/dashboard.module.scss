@@ -1,5 +1,14 @@
 .main {
-  
+  padding: 32px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
 }
 
 
