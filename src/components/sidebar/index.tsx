@@ -1,4 +1,4 @@
-import logo from "@components/assets/logo.svg";
+import logo from "@src/assets/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import UserBar from "./user";
