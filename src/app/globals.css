@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -15,15 +16,15 @@
   grid-template-rows: repeat(11, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  min-height: 100vh;
+  height: 100vh;
   background-color: #121318;
-  color: #E2E2E9;
+  color: #e2e2e9;
   font-family: Roboto, sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #E2E2E9;
+  color: #e2e2e9;
 }
 
 :root {

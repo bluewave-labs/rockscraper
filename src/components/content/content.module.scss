@@ -1,4 +1,18 @@
 .content {
   grid-area: 2 / 2 / 12 / 9;
-  border: 1px solid red;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2E2F37;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #1A1B20;
+  }
 }
