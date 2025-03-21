@@ -1,6 +1,6 @@
-import Content from "@components/components/content";
-import Header from "@components/components/header";
-import Sidebar from "@components/components/sidebar";
+import Content from "@src/components/content";
+import Header from "@src/components/header";
+import Sidebar from "@src/components/sidebar";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
