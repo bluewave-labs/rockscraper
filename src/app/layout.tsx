@@ -1,6 +1,7 @@
 import Content from "@src/components/content";
 import Header from "@src/components/header";
-import Sidebar from "@src/components/sidebar";
+import AppSidebar from "@src/components/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@src/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -18,14 +19,19 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  readonly children: React.ReactNode;
 }) {
   return (
     <html lang='en'>
       <body className={`${roboto.className} body`}>
-        <Sidebar />
-        <Header />
-        <Content>{children}</Content>
+        <SidebarProvider>
+          <AppSidebar />
+        </SidebarProvider>
+
+        <div className='body__right'>
+          <Header />
+          <Content>{children}</Content>
+        </div>
       </body>
     </html>
   );
