@@ -1,0 +1,1 @@
+export type RoutesType = 'dashboard' | 'playground' | 'logs-data' | 'settings';
