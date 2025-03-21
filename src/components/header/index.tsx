@@ -1,6 +1,6 @@
 "use client";
-import { RoutesType } from "@components/utils/interfaces";
-import routeDescription from "@components/utils/route-description";
+import { RoutesType } from "@src/utils/interfaces";
+import routeDescription from "@src/utils/route-description";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import style from "./header.module.scss";
@@ -12,7 +12,10 @@ const Header = () => {
     pathname = "/dashboard";
   }
 
-  const info = routeDescription[pathname.replace("/", "") as RoutesType];
+  const info = routeDescription[pathname.replace("/", "") as RoutesType] || {
+    title: "Not Found",
+    description: "This page doesn't exist",
+  };
 
   return (
     <div className={style.header}>

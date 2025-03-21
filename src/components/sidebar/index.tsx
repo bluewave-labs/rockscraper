@@ -1,9 +1,9 @@
-import logo from "@components/assets/logo.svg";
+import logo from "@src/assets/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import UserBar from "./user";
 import Nav from "./nav";
 import style from "./sidebar.module.scss";
+import UserBar from "./user";
 
 const Sidebar = () => {
   return (
