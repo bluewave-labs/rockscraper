@@ -1,9 +1,9 @@
 .sidebar {
-  grid-area: 1 / 1 / 12 / 2;
   background-color: #1e1f25;
   padding: 8px 16px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   &__logo {
     display: flex;

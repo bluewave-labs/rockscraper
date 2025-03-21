@@ -1,21 +1,20 @@
-import logo from "@src/assets/logo.svg";
-import Image from "next/image";
-import Link from "next/link";
-import Nav from "./nav";
+import { Sidebar } from "../ui/sidebar";
+import Content from "./content";
+import Footer from "./footer";
+import Header from "./header";
 import style from "./sidebar.module.scss";
 import UserBar from "./user";
 
-const Sidebar = () => {
+const AppSidebar = () => {
   return (
     <div className={style.sidebar}>
-      <Link href='/' className={style.sidebar__logo}>
-        <Image src={logo} alt='PrismCrawler' width={32} height={32} />
-        PrismCrawler
-      </Link>
-      <Nav />
-      <UserBar />
+      <Sidebar>
+        <Header />
+        <Content />
+        <Footer />
+      </Sidebar>
     </div>
   );
 };
 
-export default Sidebar;
+export default AppSidebar;

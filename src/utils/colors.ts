@@ -13,15 +13,15 @@ export const colors = {
   purple: {
     700: "#593D5A", // bg button try
   },
-  
+
   green: {
-    500: '#3CB66D' //badge
+    500: "#3CB66D", //badge
   },
-  
+
   blue: {
-    200: '#D9E2FF', // checkbox check
+    200: "#D9E2FF", // checkbox check
     300: "#B0C6FF", // bg button primary
-    500: '#2E4578', // checkbox bg
-    600: '#152E60' // btn primary text
-  }
-}
+    500: "#2E4578", // checkbox bg
+    600: "#152E60", // btn primary text
+  },
+};
