@@ -24,7 +24,7 @@
     &--title {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
 
       font-size: 16px;
       font-weight: 500;
@@ -34,6 +34,28 @@
     &--desc {
       font-size: 14px;
       color: #c5c6d0;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+
+    &--title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-size: 16px;
+      font-weight: 500;
+      color: #e2e2e9;
+    }
+
+    &--container {
+      display: flex;
+      gap: 32px;
     }
   }
 }

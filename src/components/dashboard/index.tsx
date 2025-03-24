@@ -1,7 +1,16 @@
+import marker from "@src/assets/marker.svg";
 import rocket from "@src/assets/rocket.svg";
-import { Card, CardDescription, CardTitle } from "@src/components/ui/card";
-import { DOCUMENTATION } from "@src/utils/links";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardTitle,
+} from "@src/components/ui/card";
+import { DOCUMENTATION, GET_TOKENS } from "@src/utils/links";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/button";
 import style from "./dashboard.module.scss";
 import ScrapeChart from "./scrape-chart";
@@ -38,6 +47,46 @@ const Dashboard = () => {
         <Button asChild>
           <a href={DOCUMENTATION}>Get started</a>
         </Button>
+      </div>
+      <div className={style.main__cta}>
+        <h3 className={style["main__cta--title"]}>
+          <Image src={marker} alt='Marker' width={24} height={24} />
+          <span>Next up...</span>
+        </h3>
+        <div className={style["main__cta--container"]}>
+          <Card variant='clickable' asChild>
+            <a href={GET_TOKENS}>
+              <CardTitle>Top up $UPT tokens to your account</CardTitle>
+              <CardContent>
+                <CardDescription>
+                  PrismCrawler works with $UPT tokens. Connect your wallet and
+                  start scraping web content.
+                </CardDescription>
+              </CardContent>
+              <CardFooter>
+                <Button variant='link' size='sm'>
+                  Get $UTP <ArrowUpRight />
+                </Button>
+              </CardFooter>
+            </a>
+          </Card>
+          <Card variant='clickable' asChild>
+            <Link href='/playground'>
+              <CardTitle>Start running crawlers and scrape data</CardTitle>
+              <CardContent>
+                <CardDescription>
+                  Start with a simple crawler and be amazed with how Uprock’s
+                  PrismCrawler scrapes data effectively.
+                </CardDescription>
+              </CardContent>
+              <CardFooter>
+                <Button variant='link'>
+                  Run crawler <ArrowUpRight />
+                </Button>
+              </CardFooter>
+            </Link>
+          </Card>
+        </div>
       </div>
     </div>
   );
