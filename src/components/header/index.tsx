@@ -1,5 +1,6 @@
 "use client";
 import { RoutesType } from "@src/utils/interfaces";
+import { DISCORD, DOCUMENTATION } from "@src/utils/links";
 import routeDescription from "@src/utils/route-description";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -25,18 +26,12 @@ const Header = () => {
       </div>
       <div className={style.header__right}>
         <Button asChild variant={"secondary"}>
-          <a
-            className={style["header__right--btn"]}
-            href='https://discord.com/'
-          >
+          <a className={style["header__right--btn"]} href={DISCORD}>
             Discord
           </a>
         </Button>
         <Button asChild>
-          <a
-            className={style["header__right--btn"]}
-            href='https://github.com/bluewave-labs/rockscraper'
-          >
+          <a className={style["header__right--btn"]} href={DOCUMENTATION}>
             Documentation
           </a>
         </Button>
