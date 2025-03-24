@@ -33,7 +33,7 @@ const Footer = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side='top'
-              className={`w-[--radix-popper-anchor-width] bg-[#121318] text-[${colors.zinc[200]}] border-transparent`}
+              className={`w-[--radix-popper-anchor-width] bg-[#404659] text-[${colors.zinc[200]}] border-transparent`}
             >
               <DropdownMenuItem>
                 <span>Account</span>
