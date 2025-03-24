@@ -1,7 +1,7 @@
 import Content from "@src/components/content";
 import Header from "@src/components/header";
 import AppSidebar from "@src/components/sidebar";
-import { SidebarProvider, SidebarTrigger } from "@src/components/ui/sidebar";
+import { SidebarProvider } from "@src/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";

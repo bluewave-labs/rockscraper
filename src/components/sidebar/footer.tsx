@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
 import { SidebarFooter, SidebarMenu, SidebarMenuItem } from "../ui/sidebar";
 import style from "./sidebar.module.scss";
+import { colors } from "@src/utils/colors";
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div>
+              <div className={style.sidebar__menu}>
                 <Avatar>
                   <AvatarImage src='https://placecats.com/32/32' />
                   <AvatarFallback>JD</AvatarFallback>
@@ -32,7 +33,7 @@ const Footer = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side='top'
-              className='w-[--radix-popper-anchor-width]'
+              className={`w-[--radix-popper-anchor-width] bg-[#121318] text-[${colors.zinc[200]}] border-transparent`}
             >
               <DropdownMenuItem>
                 <span>Account</span>

@@ -481,7 +481,7 @@ const sidebarMenuButtonVariants = cva(
       variant: {
         default: `hover:bg-[#404659] hover:text-[${colors.zinc[200]}]`,
         outline:
-          `shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[${colors.zinc[200]}] hover:text-[#404659]`,
+          `hover:bg-[${colors.zinc[200]}] hover:text-[#404659]`,
       },
       size: {
         default: "text-sm px-2 py-3.5",
