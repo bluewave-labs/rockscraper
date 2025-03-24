@@ -208,7 +208,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer text-sidebar-foreground hidden md:block"
+      className="group peer hidden md:block"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
@@ -338,7 +338,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn(`flex flex-col gap-2 p-2 text-[#c5c6d0] font-semibold`, className)}
       {...props}
     />
   )
@@ -475,16 +475,16 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  `peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-[${colors.zinc[400]}] hover:text-[${colors.zinc[200]}] focus-visible:ring-2 active:bg-[${colors.zinc[400]}] active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-[${colors.zinc[400]}] data-[active=true]:font-medium data-[active=true]:text-[${colors.zinc[200]}] data-[state=open]:hover:bg-[${colors.zinc[400]}] data-[state=open]:hover:text-[${colors.zinc[200]}] group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-[#404659] focus-visible:ring-2 active:bg-[#404659] active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-[#404659] data-[state=open]:hover:bg-[#404659] group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: `hover:bg-[${colors.zinc[400]}] hover:text-[${colors.zinc[200]}]`,
+        default: `hover:bg-[#404659] hover:text-[${colors.zinc[200]}]`,
         outline:
-          `bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[${colors.zinc[200]}] hover:text-[${colors.zinc[400]}] hover:shadow-[0_0_0_1px_hsl(var(--[${colors.zinc[400]}]))]`,
+          `hover:bg-[${colors.zinc[200]}] hover:text-[#404659]`,
       },
       size: {
-        default: "h-8 text-sm",
+        default: "text-sm px-2 py-3.5",
         sm: "h-7 text-xs",
         lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!",
       },

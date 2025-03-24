@@ -3,7 +3,6 @@ import Content from "./content";
 import Footer from "./footer";
 import Header from "./header";
 import style from "./sidebar.module.scss";
-import UserBar from "./user";
 
 const AppSidebar = () => {
   return (
