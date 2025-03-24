@@ -1,6 +1,7 @@
-import Content from "@components/components/content";
-import Header from "@components/components/header";
-import Sidebar from "@components/components/sidebar";
+import Content from "@src/components/content";
+import Header from "@src/components/header";
+import AppSidebar from "@src/components/sidebar";
+import { SidebarProvider } from "@src/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -23,9 +24,14 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${roboto.className} body`}>
-        <Sidebar />
-        <Header />
-        <Content>{children}</Content>
+        <SidebarProvider>
+          <AppSidebar />
+        </SidebarProvider>
+
+        <div className='body__right'>
+          <Header />
+          <Content>{children}</Content>
+        </div>
       </body>
     </html>
   );
