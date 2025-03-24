@@ -1,5 +1,6 @@
 "use client";
 import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   SidebarContent,
@@ -39,16 +40,16 @@ const Content = () => {
   return (
     <SidebarContent>
       <SidebarGroup>
-        <SidebarGroupLabel>Application</SidebarGroupLabel>
+        <SidebarGroupLabel>PLATFORM</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {items_nav.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild isActive={pathname === item.url}>
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     <item.icon />
                     <span>{item.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
