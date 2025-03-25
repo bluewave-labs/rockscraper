@@ -24,6 +24,16 @@ const Playground = () => {
             className={style.play__textarea}
             placeholder='Your AI query here'
           ></textarea>
+          <label
+            htmlFor='return_markdown'
+            className={style["play__checkbox--label"]}
+          >
+            <Checkbox id='return_markdown' />
+            <span>
+              Return Markdown data instead of HTML. You can download your data
+              by clicking on Logs.
+            </span>
+          </label>
         </div>
       </div>
       <Card className={style.play__right}></Card>
