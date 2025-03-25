@@ -65,7 +65,7 @@ const Dashboard = () => {
               </CardContent>
               <CardFooter>
                 <Button variant='link' size='sm'>
-                  Get $UTP <ArrowUpRight />
+                  Get $UPT <ArrowUpRight />
                 </Button>
               </CardFooter>
             </a>

@@ -26,12 +26,22 @@ const Header = () => {
       </div>
       <div className={style.header__right}>
         <Button asChild variant={"secondary"}>
-          <a className={style["header__right--btn"]} href={DISCORD}>
+          <a
+            className={style["header__right--btn"]}
+            href={DISCORD}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             Discord
           </a>
         </Button>
         <Button asChild>
-          <a className={style["header__right--btn"]} href={DOCUMENTATION}>
+          <a
+            className={style["header__right--btn"]}
+            href={DOCUMENTATION}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             Documentation
           </a>
         </Button>
