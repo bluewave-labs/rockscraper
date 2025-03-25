@@ -1,4 +1,30 @@
 .header {
-  border: 1px solid red;
   min-height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  border-bottom: 1px solid #44464f;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+
+    &--title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e2e2e9;
+    }
+
+    &--desc {
+      font-size: 14px;
+      color: #c5c6d0;
+    }
+  }
+
+  &__right {
+    display: flex;
+    gap: 8px;
+  }
+  
 }
