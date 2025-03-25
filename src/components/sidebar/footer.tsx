@@ -2,7 +2,6 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import { colors } from "@src/utils/colors";
 import { ChevronsUpDown } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
@@ -42,7 +41,7 @@ const Footer = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side='top'
-              className={`w-[--radix-popper-anchor-width] bg-[#404659] text-[${colors.zinc[200]}] border-transparent`}
+              className={`w-[--radix-popper-anchor-width] bg-zinc-400 text-zinc-200 border-transparent`}
             >
               <DropdownMenuItem>
                 <span>Account</span>
