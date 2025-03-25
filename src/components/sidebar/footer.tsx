@@ -41,7 +41,7 @@ const Footer = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side='top'
-              className={`w-[--radix-popper-anchor-width] bg-zinc-400 text-zinc-200 border-transparent`}
+              className={`w-[--radix-popper-anchor-width] bg-zinc-500 text-zinc-200 border-transparent`}
             >
               <DropdownMenuItem>
                 <span>Account</span>

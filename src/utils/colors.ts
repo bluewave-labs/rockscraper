@@ -3,7 +3,8 @@ export const colors = {
     100: "#E2E2E9", //text
     200: "#dce2f9", //text link
     300: "#c5c6d0", //text
-    400: "#404659", // bg btn secondary
+    400: "#8F9099",
+    500: "#404659", // bg btn secondary
     700: "#44464f", //line header
     800: "#33353A", // bg graph
     900: "#1e1f25", //bg secondary

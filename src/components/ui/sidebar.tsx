@@ -480,12 +480,12 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-zinc-400 focus-visible:ring-2 active:bg-zinc-400 active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-zinc-400 data-[state=open]:hover:bg-zinc-400 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-zinc-500 focus-visible:ring-2 active:bg-zinc-500 active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-zinc-500 data-[state=open]:hover:bg-zinc-500 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: `hover:bg-zinc-400 hover:text-[${colors.zinc[200]}]`,
-        outline: `hover:bg-[${colors.zinc[200]}] hover:text-zinc-400`,
+        default: `hover:bg-zinc-500 hover:text-[${colors.zinc[200]}]`,
+        outline: `hover:bg-[${colors.zinc[200]}] hover:text-zinc-500`,
       },
       size: {
         default: "text-sm px-2 py-3.5",

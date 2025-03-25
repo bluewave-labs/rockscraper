@@ -2,6 +2,7 @@ import { Card } from "../ui/card";
 import Checkbox from "../ui/checkbox";
 import Cookies from "./cookies";
 import Headers from "./headers";
+import Nodes from "./nodes";
 import style from "./playground.module.scss";
 
 const Playground = () => {
@@ -35,6 +36,7 @@ const Playground = () => {
             </span>
           </label>
         </div>
+        <Nodes />
       </div>
       <Card className={style.play__right}></Card>
     </div>
