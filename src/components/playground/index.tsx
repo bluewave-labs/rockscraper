@@ -11,13 +11,19 @@ const Playground = () => {
         <h2 className={style.play__title}>Fine tune your query</h2>
         <Headers />
         <Cookies />
-        <div className="mt-10">
+        <div className='mt-10'>
           <h2 className={style.play__title}>Output</h2>
-          <label htmlFor='use_ai' className={style['play__checkbox--label']}>
+          <label htmlFor='use_ai' className={style["play__checkbox--label"]}>
             <Checkbox id='use_ai' />
-            <span>Make an AI query on the data retrieved. This will be applied to all
-            pages.</span>
+            <span>
+              Make an AI query on the data retrieved. This will be applied to
+              all pages.
+            </span>
           </label>
+          <textarea
+            className={style.play__textarea}
+            placeholder='Your AI query here'
+          ></textarea>
         </div>
       </div>
       <Card className={style.play__right}></Card>
