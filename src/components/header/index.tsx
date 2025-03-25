@@ -1,5 +1,6 @@
 "use client";
 import { RoutesType } from "@src/utils/interfaces";
+import { DISCORD, DOCUMENTATION } from "@src/utils/links";
 import routeDescription from "@src/utils/route-description";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -27,7 +28,9 @@ const Header = () => {
         <Button asChild variant={"secondary"}>
           <a
             className={style["header__right--btn"]}
-            href='https://discord.com/'
+            href={DISCORD}
+            target='_blank'
+            rel='noopener noreferrer'
           >
             Discord
           </a>
@@ -35,7 +38,9 @@ const Header = () => {
         <Button asChild>
           <a
             className={style["header__right--btn"]}
-            href='https://github.com/bluewave-labs/rockscraper'
+            href={DOCUMENTATION}
+            target='_blank'
+            rel='noopener noreferrer'
           >
             Documentation
           </a>
