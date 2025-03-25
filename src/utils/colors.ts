@@ -23,5 +23,6 @@ export const colors = {
     300: "#B0C6FF", // bg button primary
     500: "#2E4578", // checkbox bg
     600: "#152E60", // btn primary text
+    900: '#282A2F'
   },
 };
