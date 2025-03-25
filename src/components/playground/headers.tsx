@@ -31,7 +31,7 @@ const Headers = () => {
 
   return (
     <div className={style.play__headers}>
-      <label htmlFor='headers' className={style["play__headers--label"]}>
+      <label htmlFor='headers' className={style["play__label"]}>
         Custom headers{" "}
         <button
           onClick={() => {
