@@ -1,16 +1,16 @@
 .play {
   display: flex;
   gap: 24px;
-  padding: 24px 0;
+  padding: 24px;
 
   &__left,
   &__right {
-    width: 570px;
-    max-width: 50%;
+    width: 50%;
+    max-width: 570px;
   }
 
   &__left {
-    padding: 14px 24px;
+    padding: 14px 0;
   }
 
   &__title {
@@ -88,4 +88,27 @@
       }
     }
   }
+
+  &__checkbox {
+    &--label {
+      margin-bottom: 16px;
+      gap: 8px;
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+
+      font-size: 14px;
+      color: var(--color-zinc-300);
+    }
+  }
+
+  @media only screen and (max-width : 992px) {
+    flex-direction: column;
+
+    &__left,
+    &__right {
+      width: 100%;
+      max-width: 100%;
+    }
+  }// @media only screen and (max-width : 992px)
 }
