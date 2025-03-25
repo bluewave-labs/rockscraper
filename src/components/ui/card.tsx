@@ -5,13 +5,13 @@ import { cn } from "@src/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const cardVariants = cva(
-  "bg-[#1e1f25] text-[#E2E2E9] flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border border-[#1e1f25]",
+  "bg-zinc-900 text-zinc-100 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border border-zinc-900",
   {
     variants: {
       variant: {
         default: "",
         clickable:
-          "cursor-pointer hover:bg-[#282A2F] hover:border hover:border-[#B0C6FF]",
+          "cursor-pointer hover:bg-blue-900 hover:border hover:border-blue-300",
       },
     },
     defaultVariants: {

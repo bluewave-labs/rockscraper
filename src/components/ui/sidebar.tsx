@@ -190,7 +190,7 @@ function Sidebar({
           data-sidebar='sidebar'
           data-slot='sidebar'
           data-mobile='true'
-          className='bg-[#1e1f25] w-(--sidebar-width) p-0 [&>button]:hidden'
+          className='bg--zinc-900 w-(--sidebar-width) p-0 [&>button]:hidden'
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -247,7 +247,7 @@ function Sidebar({
         <div
           data-sidebar='sidebar'
           data-slot='sidebar-inner'
-          className='bg-[#1e1f25] group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
+          className='bg--zinc-900 group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
         >
           {children}
         </div>
@@ -341,7 +341,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot='sidebar-header'
       data-sidebar='header'
       className={cn(
-        `flex flex-col gap-2 p-2 text-[#c5c6d0] font-semibold`,
+        `flex flex-col gap-2 p-2 text-zinc-300 font-semibold`,
         className
       )}
       {...props}
@@ -480,12 +480,12 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-[#404659] focus-visible:ring-2 active:bg-[#404659] active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-[#404659] data-[state=open]:hover:bg-[#404659] group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-zinc-400 focus-visible:ring-2 active:bg-zinc-400 active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-zinc-400 data-[state=open]:hover:bg-zinc-400 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: `hover:bg-[#404659] hover:text-[${colors.zinc[200]}]`,
-        outline: `hover:bg-[${colors.zinc[200]}] hover:text-[#404659]`,
+        default: `hover:bg-zinc-400 hover:text-[${colors.zinc[200]}]`,
+        outline: `hover:bg-[${colors.zinc[200]}] hover:text-zinc-400`,
       },
       size: {
         default: "text-sm px-2 py-3.5",
