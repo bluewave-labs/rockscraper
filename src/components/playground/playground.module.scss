@@ -1,0 +1,50 @@
+.play {
+  display: flex;
+  gap: 24px;
+  padding: 24px 0;
+
+  &__left,
+  &__right {
+    width: 570px;
+    max-width: 50%;
+  }
+
+  &__left {
+    padding: 14px 24px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    font-size: 22px;
+    color: var(--color-zinc-100);
+  }
+
+  &__headers {
+    &--label {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--color-zinc-100);
+    }
+
+    &--add {
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    &--item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
