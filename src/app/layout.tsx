@@ -30,7 +30,9 @@ export default function RootLayout({
 
         <div className='body__right'>
           <Header />
-          <Content>{children}</Content>
+          <main>
+            <Content>{children}</Content>
+          </main>
         </div>
       </body>
     </html>
