@@ -27,7 +27,10 @@ const Nodes = () => {
   return (
     <div className={style.play__nodes}>
       <h2 className={style.play__title}>Manage nodes</h2>
-      <label htmlFor='random' className={style["play__checkbox--label"]}>
+      <label
+        htmlFor='random'
+        className={`${style["play__checkbox--label"]} ${style.node}`}
+      >
         <Radio
           checked={option === "random"}
           name='node'
@@ -37,8 +40,11 @@ const Nodes = () => {
         />
         <span>Randomize IPs</span>
       </label>
-      <div>
-        <label htmlFor='continent' className={style["play__checkbox--label"]}>
+      <div className={style["play__nodes--select"]}>
+        <label
+          htmlFor='continent'
+          className={`${style["play__checkbox--label"]} ${style.node}`}
+        >
           <Radio
             checked={option === "continent"}
             name='node'
@@ -54,8 +60,11 @@ const Nodes = () => {
           onChange={(val) => setContinent(val)}
         />
       </div>
-      <div>
-        <label htmlFor='country' className={style["play__checkbox--label"]}>
+      <div className={style["play__nodes--select"]}>
+        <label
+          htmlFor='country'
+          className={`${style["play__checkbox--label"]} ${style.node}`}
+        >
           <Radio
             checked={option === "country"}
             name='node'

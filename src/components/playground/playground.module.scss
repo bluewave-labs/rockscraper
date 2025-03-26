@@ -98,6 +98,12 @@
 
       font-size: 14px;
       color: var(--color-zinc-300);
+
+      &.node {
+        margin-bottom: 0;
+        width: auto;
+        flex-grow: 1;
+      }
     }
   }
 
@@ -114,6 +120,15 @@
     font-family: monospace;
     font-size: 14px;
     color: var(--color-zinc-100);
+  }
+
+  &__nodes {
+    &--select {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      justify-content: space-between;
+    }
   }
 
   @media only screen and (max-width: 992px) {

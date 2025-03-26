@@ -44,7 +44,7 @@ const Select = ({
       </p>
       <div
         className={cn(
-          "absolute border border-zinc-700 bg-zinc-900 flex-col z-20 text-zinc-100 gap-2 w-full",
+          "absolute border border-zinc-700 bg-zinc-900 flex-col z-20 text-zinc-100 gap-0 w-full max-h-[200px] overflow-y-auto",
           isOpen ? "flex" : "hidden"
         )}
       >
@@ -55,7 +55,7 @@ const Select = ({
               onChange(item);
               setIsOpen(false);
             }}
-            className='py-2.5 px-3.5 w-full text-left hover:bg-zinc-800 cursor-pointer'
+            className='py-2 px-3 text-sm w-full text-left hover:bg-zinc-800 cursor-pointer'
           >
             {item}
           </button>
