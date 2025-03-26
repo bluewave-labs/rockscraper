@@ -20,7 +20,7 @@ const Cookies = () => {
       <label htmlFor='cookies' className={style["play__label"]}>
         Custom cookies{" "}
       </label>
-      <div className={style["play__cookies--field"]}>
+      <div className={style.play__field}>
         {cookies.map((cookie, index) => (
           <span key={index} className={style["play__cookies--item"]}>
             {cookie}
