@@ -1,8 +1,9 @@
 import { Card } from "../ui/card";
-import Checkbox from "../ui/checkbox";
+import ApiKey from "./apiKey";
 import Cookies from "./cookies";
 import Headers from "./headers";
 import Nodes from "./nodes";
+import Output from "./output";
 import style from "./playground.module.scss";
 
 const Playground = () => {
@@ -12,33 +13,21 @@ const Playground = () => {
         <h2 className={style.play__title}>Fine tune your query</h2>
         <Headers />
         <Cookies />
-        <div className='mt-10'>
-          <h2 className={style.play__title}>Output</h2>
-          <label htmlFor='use_ai' className={style["play__checkbox--label"]}>
-            <Checkbox id='use_ai' />
-            <span>
-              Make an AI query on the data retrieved. This will be applied to
-              all pages.
-            </span>
-          </label>
-          <textarea
-            className={style.play__textarea}
-            placeholder='Your AI query here'
-          ></textarea>
-          <label
-            htmlFor='return_markdown'
-            className={style["play__checkbox--label"]}
-          >
-            <Checkbox id='return_markdown' />
-            <span>
-              Return Markdown data instead of HTML. You can download your data
-              by clicking on Logs.
-            </span>
-          </label>
-        </div>
+        <Output />
         <Nodes />
       </div>
-      <Card className={style.play__right}></Card>
+      <Card className={style.play__right}>
+        <div className={style.play__container}>
+          <h2 className={`${style.play__title} ${style.right}`}>
+            Run your query
+          </h2>
+          <p className={style.play__cost}>
+            <span>Cost</span>
+            <span className={style["play__cost--flag"]}>0.002 UPT ($0.02)</span>
+          </p>
+        </div>
+        <ApiKey />
+      </Card>
     </div>
   );
 };
