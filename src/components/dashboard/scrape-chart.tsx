@@ -36,7 +36,7 @@ const ScrapeChart = () => {
 
   return (
     <Card>
-      <CardTitle>Scraped Pages</CardTitle>
+      <CardTitle>Scraped pages</CardTitle>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
