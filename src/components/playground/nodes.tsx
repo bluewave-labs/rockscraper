@@ -1,14 +1,24 @@
 "use client";
 import { useState } from "react";
 import Radio from "../ui/radio";
+import Select from "../ui/select";
 import style from "./playground.module.scss";
+
+const countries = ["USA", "Canada", "Mexico", "Brazil", "Argentina", "Chile"];
+const continents = [
+  "North America",
+  "South America",
+  "Europe",
+  "Asia",
+  "Africa",
+];
 
 const Nodes = () => {
   const [option, setOption] = useState<"random" | "continent" | "country">(
     "random"
   );
-  const [continent, setContinent] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [continent, setContinent] = useState<string>(continents[0]);
+  const [country, setCountry] = useState<string>(countries[0]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value as "random" | "continent" | "country");
@@ -38,6 +48,11 @@ const Nodes = () => {
           />
           <span>Select from a group of continents</span>
         </label>
+        <Select
+          selected={continent}
+          list={continents}
+          onChange={(val) => setContinent(val)}
+        />
       </div>
       <div>
         <label htmlFor='country' className={style["play__checkbox--label"]}>
@@ -50,6 +65,11 @@ const Nodes = () => {
           />
           <span>Select from a group of countries</span>
         </label>
+        <Select
+          selected={country}
+          list={countries}
+          onChange={(val) => setCountry(val)}
+        />
       </div>
     </div>
   );
