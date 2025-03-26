@@ -1,7 +1,8 @@
 "use client";
 import { X } from "lucide-react";
 import { useState } from "react";
-import style from "./playground.module.scss";
+import style from "./cookies.module.scss";
+import mainStyle from './playground.module.scss'
 
 const Cookies = () => {
   const [cookies, setCookies] = useState<string[]>([]);
@@ -17,10 +18,10 @@ const Cookies = () => {
 
   return (
     <div className={style.play__cookies}>
-      <label htmlFor='cookies' className={style["play__label"]}>
+      <label htmlFor='cookies' className={mainStyle["play__label"]}>
         Custom cookies{" "}
       </label>
-      <div className={style.play__field}>
+      <div className={mainStyle.play__field}>
         {cookies.map((cookie, index) => (
           <span key={index} className={style["play__cookies--item"]}>
             {cookie}

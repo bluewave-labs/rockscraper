@@ -1,0 +1,30 @@
+.play {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__cost {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+
+    & span {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-zinc-100);
+    }
+
+    &--flag {
+      background-color: var(--color-zinc-800);
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: block;
+
+      color: var(--color-zinc-300);
+    }
+  }
+}

@@ -35,25 +35,6 @@
     color: var(--color-zinc-100);
   }
 
-  &__headers {
-    margin-bottom: 24px;
-
-    &--add {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    &--item {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 16px;
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-  }
-
   &__field {
     display: flex;
     align-items: center;
@@ -71,29 +52,6 @@
     &.key {
       justify-content: space-between;
       color: var(--color-zinc-400);
-    }
-  }
-
-  &__cookies {
-    margin-bottom: 24px;
-
-    &--item {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      border: 1px solid var(--color-zinc-700);
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    &--input {
-      flex-grow: 1;
-      outline: none;
-
-      &:focus {
-        border: none;
-        outline: none;
-      }
     }
   }
 
@@ -137,35 +95,6 @@
       align-items: center;
       margin-top: 16px;
       justify-content: space-between;
-    }
-  }
-
-  &__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-
-  &__cost {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-
-    & span {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--color-zinc-100);
-    }
-
-    &--flag {
-      background-color: var(--color-zinc-800);
-      padding: 4px 8px;
-      border-radius: 8px;
-      display: block;
-
-      color: var(--color-zinc-300);
     }
   }
 

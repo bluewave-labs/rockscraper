@@ -5,6 +5,7 @@ import Headers from "./headers";
 import Nodes from "./nodes";
 import Output from "./output";
 import style from "./playground.module.scss";
+import RightTitle from "./rightTitle";
 
 const Playground = () => {
   return (
@@ -17,15 +18,7 @@ const Playground = () => {
         <Nodes />
       </div>
       <Card className={style.play__right}>
-        <div className={style.play__container}>
-          <h2 className={`${style.play__title} ${style.right}`}>
-            Run your query
-          </h2>
-          <p className={style.play__cost}>
-            <span>Cost</span>
-            <span className={style["play__cost--flag"]}>0.002 UPT ($0.02)</span>
-          </p>
-        </div>
+        <RightTitle />
         <ApiKey />
       </Card>
     </div>

@@ -1,7 +1,8 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import { Input } from "../ui/input";
-import style from "./playground.module.scss";
+import style from "./headers.module.scss";
+import mainStyle from './playground.module.scss'
 
 const Headers = () => {
   const [headers, setHeaders] = useState<
@@ -31,7 +32,7 @@ const Headers = () => {
 
   return (
     <div className={style.play__headers}>
-      <label htmlFor='headers' className={style["play__label"]}>
+      <label htmlFor='headers' className={mainStyle["play__label"]}>
         Custom headers{" "}
         <button
           onClick={() => {
