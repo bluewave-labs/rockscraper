@@ -1,8 +1,8 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import { Input } from "../ui/input";
+import { Input } from "../../ui/input";
 import style from "./headers.module.scss";
-import mainStyle from './playground.module.scss'
+import mainStyle from "../playground.module.scss";
 
 const Headers = () => {
   const [headers, setHeaders] = useState<

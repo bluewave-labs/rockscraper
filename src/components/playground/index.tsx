@@ -1,11 +1,11 @@
 import { Card } from "../ui/card";
 import ApiKey from "./apiKey";
-import Cookies from "./cookies";
-import Headers from "./headers";
+import Cookies from "./cookies/cookies";
+import Headers from "./headers/headers";
 import Nodes from "./nodes";
 import Output from "./output";
 import style from "./playground.module.scss";
-import Request from "./request";
+import Request from "./request/request";
 import RightTitle from "./rightTitle";
 
 const Playground = () => {

@@ -31,8 +31,10 @@ export default function RootLayout({
 
         <div className='body__right'>
           <Header />
-          <Content>{children}</Content>
           <Toaster />
+          <main>
+            <Content>{children}</Content>
+          </main>
         </div>
       </body>
     </html>

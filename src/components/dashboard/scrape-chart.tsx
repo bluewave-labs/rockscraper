@@ -1,4 +1,5 @@
 "use client";
+
 import { Card, CardContent, CardTitle } from "@src/components/ui/card";
 import {
   ChartConfig,
@@ -27,17 +28,12 @@ const chartData = [
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: colors.blue[300],
-  },
-  mobile: {
-    label: "Mobile",
-    color: colors.zinc[800],
-  },
+  desktop: { label: "Desktop", color: colors.blue[300] },
+  mobile: { label: "Mobile", color: colors.zinc[800] },
 } satisfies ChartConfig;
 
 const ScrapeChart = () => {
+
   return (
     <Card>
       <CardTitle>Scraped pages</CardTitle>
@@ -46,7 +42,7 @@ const ScrapeChart = () => {
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey='month'
+              dataKey="month"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -54,18 +50,9 @@ const ScrapeChart = () => {
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey='desktop'
-              stackId='a'
-              fill={colors.blue[300]}
-              radius={[4, 4, 0, 0]}
-            />
-            <Bar
-              dataKey='mobile'
-              stackId='a'
-              fill={colors.zinc[800]}
-              radius={[4, 4, 0, 0]}
-            />
+            {Object.entries(chartConfig).map(([key, { color }]) => (
+              <Bar key={key} dataKey={key} stackId="a" fill={color} radius={[4, 4, 0, 0]} />
+            ))}
           </BarChart>
         </ChartContainer>
       </CardContent>

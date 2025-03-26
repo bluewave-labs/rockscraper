@@ -2,7 +2,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import style from "./cookies.module.scss";
-import mainStyle from './playground.module.scss'
+import mainStyle from '../playground.module.scss'
 
 const Cookies = () => {
   const [cookies, setCookies] = useState<string[]>([]);
