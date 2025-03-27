@@ -2,11 +2,11 @@
 
 import { DataTable } from "../ui/data-table"
 import { columns } from './columns'
-import styles from './logs-data.module.scss'  // Import the SCSS module
+import styles from './logs-data.module.scss' 
 
 const LogsData = () => {
     return (
-        <div className={styles.container}> {/* Apply the class here */}
+        <div className={styles.container}>
             <DataTable columns={columns} data={[]}/>
         </div>
     )
