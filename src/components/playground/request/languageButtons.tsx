@@ -29,6 +29,14 @@ const LanguageButtons = ({
     });
   }, [api]);
 
+  useEffect(() => {
+    if (!api) return;
+    const index = languages.findIndex(({ language }) => language === activeLanguage);
+    if (index !== -1) {
+      api.scrollTo(index);
+    }
+  }, [activeLanguage])
+
   return (
     <Carousel
       opts={{
