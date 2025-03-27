@@ -60,7 +60,7 @@ const languages = [
     language: "Python",
     baseCode: "import requests\n\n",
     addHeaders: 'headers = {"<Header-Name>": "<Header-Value>"}',
-    addCookies: 'cookies = {"<Cookie-Name>": "<Cookie-Value>"}',
+    addCookies: 'cookies = "<Cookie-Name>": "<Cookie-Value>"',
     endCode:
       'response = requests.get("<URL>", headers=headers, cookies=cookies)\nprint(response.text)',
   },
@@ -143,7 +143,7 @@ export const buildCookies = (
         }, "")
       );
     case "Python":
-      return `cookies = {"${cookies.join('", "')}"}<br/>`;
+      return `cookies = "${cookies.join('", "')}"<br/>`;
     case "Rust":
       return cookies.reduce((acc, cookie) => {
         return (

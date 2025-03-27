@@ -39,7 +39,8 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
           dangerouslySetInnerHTML={{ __html: selectedCode.baseCode.replace('<URL>', url).replaceAll('\n', '<br/>') }}
         />
 
-        {headers.length > 0 ? (
+        {headers.filter((header) => header.key !== '' && header.value !== '').length > 0 ||
+        ['NodeJS', 'Python'].includes(selectedCode.language) ? (
           <span
             dangerouslySetInnerHTML={{
               __html: buildHeaders(
@@ -49,7 +50,7 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
             }}
           />
         ) : null}
-        {cookies.length > 0 ? (
+        {cookies.length > 0 || ['NodeJS', 'Python'].includes(selectedCode.language) ? (
           <span
             dangerouslySetInnerHTML={{
               __html: buildCookies(selectedCode, cookies),
