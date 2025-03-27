@@ -6,9 +6,15 @@ type PlaygroundContextProps = {
   headers: HeaderFieldInterface[];
   cookies: string[];
   url: string;
+  useAi: boolean;
+  returnMarkdown: boolean;
+  aiQuery: string;
   setHeaders: React.Dispatch<PlaygroundContextProps["headers"]>;
   setCookies: React.Dispatch<PlaygroundContextProps["cookies"]>;
   setUrl: React.Dispatch<PlaygroundContextProps["url"]>;
+  setUseAi: React.Dispatch<PlaygroundContextProps["useAi"]>;
+  setReturnMarkdown: React.Dispatch<PlaygroundContextProps["returnMarkdown"]>;
+  setAiQuery: React.Dispatch<PlaygroundContextProps["aiQuery"]>;
 };
 
 const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
@@ -27,17 +33,26 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
     [] as { key: string; value: string; id: string }[]
   );
   const [cookies, setCookies] = useState([] as string[]);
+  const [useAi, setUseAi] = useState(false);
+  const [returnMarkdown, setReturnMarkdown] = useState(false);
+  const [aiQuery, setAiQuery] = useState("");
 
   const value = useMemo(
     () => ({
       headers,
       cookies,
       url,
+      useAi,
+      returnMarkdown,
+      aiQuery,
       setHeaders,
       setCookies,
       setUrl,
+      setUseAi,
+      setReturnMarkdown,
+      setAiQuery,
     }),
-    [headers, cookies, url]
+    [headers, cookies, url, useAi, returnMarkdown, aiQuery]
   );
   return (
     <PlaygroundContext.Provider value={value}>

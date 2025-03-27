@@ -6,22 +6,6 @@ import Code from "./code";
 import LanguageButtons from "./languageButtons";
 
 const url = "https://api.example.com";
-// const headers = [
-//   {
-//     key: "Authorization",
-//     value: "Bearer aksdjaldkcsaklsa",
-//   },
-//   {
-//     key: "Content-Type",
-//     value: "application/json",
-//   },
-// ];
-
-// const cookies = [
-//   "cookie1=cookie1value",
-//   "cookie2=cookie2value",
-//   "cookie3=cookie3value",
-// ];
 
 const Request = () => {
   const [activeLanguage, setActiveLanguage] = useState(languages[0].language);
