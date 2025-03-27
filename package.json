@@ -41,6 +41,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "prettier": "^3.5.3",
+    "shiki": "^3.2.1",
     "typescript": "^5"
   }
 }

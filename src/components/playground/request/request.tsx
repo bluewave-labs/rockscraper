@@ -29,7 +29,6 @@ const Request = () => {
       />
       <Code
         selectedCode={selectedCode}
-        url={url}
       />
     </div>
   );

@@ -1,10 +1,22 @@
 'use client';
 import { Button } from '@src/components/ui/button';
+import codeToHtml from '@src/utils/codeToHtml';
+import dummy_data from '@src/utils/dummy_data';
+import { useEffect, useState } from 'react';
 import mainStyle from '../playground.module.scss';
 import style from './result.module.scss';
-import dummy_data from '@src/utils/dummy_data';
 
 const QueryResult = () => {
+  const [data, setData] = useState('');
+
+  const buildData = async () => {
+    const html = await codeToHtml(JSON.stringify(dummy_data, null, 2));
+    setData(html);
+  };
+
+  useEffect(() => {
+    buildData();
+  }, []);
 
   return (
     <div>
@@ -15,10 +27,8 @@ const QueryResult = () => {
           <p className={style['play__content--time']}>Data retrieved in 2.4 seconds</p>
         </div>
         <div className={style['play__content--result']}>
-          <p className={style['play__content--result-text']}>
-            {JSON.stringify(dummy_data, null, 2)}
-          </p>
-          
+          <p className={style['play__content--result-text']} dangerouslySetInnerHTML={{ __html: data }}></p>
+
           <Button className={style['play__content--copy']}>Copy to clipboard</Button>
         </div>
       </div>
