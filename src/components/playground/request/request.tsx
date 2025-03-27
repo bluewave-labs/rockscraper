@@ -45,7 +45,7 @@ const Request = () => {
       buildHeaders(selectedCode, headers) +
       buildCookies(selectedCode, cookies) +
       selectedCode.endCode.replace("<URL>", url);
-    navigator.clipboard.writeText(code.replaceAll("<br/>", "\n"));
+    navigator.clipboard.writeText(code.replaceAll("<br/>", "\n").replaceAll("&nbsp;", " "));
     toast(`Code for ${selectedCode.language} copied to clipboard`)
   };
 

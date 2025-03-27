@@ -3,7 +3,7 @@ import { RequestExample } from "./interfaces";
 const languages = [
   {
     language: "cURL",
-    baseCode: 'curl -X GET "<URL>" \u005C',
+    baseCode: 'curl -X GET "<URL>" \u005C \n',
     addHeaders: ' -H "<Header-Name>: <Header-Value>"',
     addCookies: '--cookie "<Cookie-Name>=<Cookie-Value>"',
     endCode: "",
@@ -11,7 +11,7 @@ const languages = [
   {
     language: "C#",
     baseCode:
-      "using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Threading.Tasks;\n\nclass Program {\n&nbsp;&nbsp;static async Task Main() {\n&nbsp;&nbsp;&nbsp;&nbsp;using HttpClient client = new HttpClient();",
+      "using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Threading.Tasks;\n\nclass Program {\n&nbsp;&nbsp;static async Task Main() {\n&nbsp;&nbsp;&nbsp;&nbsp;using HttpClient client = new HttpClient();\n",
     addHeaders:
       '&nbsp;&nbsp;&nbsp;&nbsp;client.DefaultRequestHeaders.Add("<Header-Name>", "<Header-Value>");',
     addCookies:
@@ -31,12 +31,12 @@ const languages = [
   {
     language: "Java",
     baseCode:
-      'import java.io.*;\nimport java.net.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    URL url = new URL("<URL>");\n    HttpURLConnection conn = (HttpURLConnection) url.openConnection();\n    conn.setRequestMethod("GET");',
-    addHeaders: 'conn.setRequestProperty("<Header-Name>", "<Header-Value>");',
+      'import java.io.*;\nimport java.net.*;\n\npublic class Main {\n&nbsp;&nbsp;public static void main(String[] args) throws Exception {\n&nbsp;&nbsp;&nbsp;&nbsp;URL url = new URL("<URL>");\n&nbsp;&nbsp;&nbsp;&nbsp;HttpURLConnection conn = (HttpURLConnection) url.openConnection();\n&nbsp;&nbsp;&nbsp;&nbsp;conn.setRequestMethod("GET");\n',
+    addHeaders: '&nbsp;&nbsp;&nbsp;&nbsp;conn.setRequestProperty("<Header-Name>", "<Header-Value>");',
     addCookies:
-      'conn.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>");',
+      '&nbsp;&nbsp;&nbsp;&nbsp;conn.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>");',
     endCode:
-      "BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));\n    String inputLine;\n    while ((inputLine = in.readLine()) != null) {\n      System.out.println(inputLine);\n    }\n    in.close();\n  }\n}",
+      "&nbsp;&nbsp;&nbsp;&nbsp;BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));\n&nbsp;&nbsp;&nbsp;&nbsp;String inputLine;\n&nbsp;&nbsp;&nbsp;&nbsp;while ((inputLine = in.readLine()) != null) {\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(inputLine);\n&nbsp;&nbsp;&nbsp;&nbsp;}\n&nbsp;&nbsp;&nbsp;&nbsp;in.close();\n&nbsp;&nbsp;}\n}",
   },
   {
     language: "NodeJS",
@@ -44,12 +44,12 @@ const languages = [
     addHeaders: 'const headers = { "<Header-Name>": "<Header-Value>" };',
     addCookies: 'const cookies = "<Cookie-Name>=<Cookie-Value>";',
     endCode:
-      'fetch(url, {\n  method: "GET",\n  headers: { ...headers, "Cookie": cookies }\n})\n  .then(response => response.text())\n  .then(data => console.log(data))\n  .catch(error => console.error("Error:", error));',
+      'fetch(url, {\n&nbsp;&nbsp;method: "GET",\n&nbsp;&nbsp;headers: { ...headers, "Cookie": cookies }\n})\n&nbsp;&nbsp;.then(response => response.text())\n&nbsp;&nbsp;.then(data => console.log(data))\n&nbsp;&nbsp;.catch(error => console.error("Error:", error));',
   },
   {
     language: "PHP",
     baseCode:
-      '$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, "<URL>");\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);',
+      '$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, "<URL>");\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);\n',
     addHeaders:
       'curl_setopt($ch, CURLOPT_HTTPHEADER, array("<Header-Name>: <Header-Value>"));',
     addCookies:
@@ -58,7 +58,7 @@ const languages = [
   },
   {
     language: "Python",
-    baseCode: "import requests",
+    baseCode: "import requests\n\n",
     addHeaders: 'headers = {"<Header-Name>": "<Header-Value>"}',
     addCookies: 'cookies = {"<Cookie-Name>": "<Cookie-Value>"}',
     endCode:
@@ -67,17 +67,17 @@ const languages = [
   {
     language: "Rust",
     baseCode:
-      "use reqwest::blocking::Client;\nuse std::collections::HashMap;\n\nfn main() {\n    let client = Client::new();\nlet mut headers = reqwest::header::HeaderMap::new();\n  let mut cookies = HashMap::new();\n",
+      "use reqwest::blocking::Client;\nuse std::collections::HashMap;\n\nfn main() {\n&nbsp;&nbsp;let client = Client::new();\n&nbsp;&nbsp;let mut headers = reqwest::header::HeaderMap::new();\n&nbsp;&nbsp;let mut cookies = HashMap::new();\n",
     addHeaders:
-      'headers.insert("<Header-Name>", "<Header-Value>".parse().unwrap());',
-    addCookies: 'cookies.insert("<Cookie-Name>", "<Cookie-Value>");',
+      '&nbsp;&nbsp;headers.insert("<Header-Name>", "<Header-Value>".parse().unwrap());',
+    addCookies: '&nbsp;&nbsp;cookies.insert("<Cookie-Name>", "<Cookie-Value>");',
     endCode:
-      'let response = client.get("<URL>")\n        .headers(headers)\n        .send()\n        .unwrap();\n    \n    println!("{}", response.text().unwrap());\n}',
+      '&nbsp;&nbsp;let response = client.get("<URL>")\n&nbsp;&nbsp;&nbsp;&nbsp;.headers(headers)\n&nbsp;&nbsp;&nbsp;&nbsp;.send()\n&nbsp;&nbsp;&nbsp;&nbsp;.unwrap();\n&nbsp;&nbsp;&nbsp;&nbsp;\n&nbsp;&nbsp;println!("{}", response.text().unwrap());\n}',
   },
   {
     language: "Swift",
     baseCode:
-      'import Foundation\n\nlet url = URL(string: "<URL>")!\nvar request = URLRequest(url: url)\nrequest.httpMethod = "GET"',
+      'import Foundation\n\nlet url = URL(string: "<URL>")!\nvar request = URLRequest(url: url)\nrequest.httpMethod = "GET"\n',
     addHeaders:
       'request.setValue("<Header-Value>", forHTTPHeaderField: "<Header-Name>")',
     addCookies:
@@ -88,7 +88,7 @@ const languages = [
   {
     language: "Ruby",
     baseCode:
-      "require 'net/http'\nrequire 'uri'\n\nuri = URI('<URL>')\nrequest = Net::HTTP::Get.new(uri)",
+      "require 'net/http'\nrequire 'uri'\n\nuri = URI('<URL>')\nrequest = Net::HTTP::Get.new(uri)\n",
     addHeaders: "request['<Header-Name>'] = '<Header-Value>'",
     addCookies: "request['Cookie'] = '<Cookie-Name>=<Cookie-Value>'",
     endCode:
@@ -97,25 +97,25 @@ const languages = [
   {
     language: "Kotlin",
     baseCode:
-      'import java.net.HttpURLConnection\nimport java.net.URL\n\nfun main() {\n    val url = URL("<URL>")\n    val connection = url.openConnection() as HttpURLConnection\n    connection.requestMethod = "GET"',
+      'import java.net.HttpURLConnection\nimport java.net.URL\n\nfun main() {\n&nbsp;&nbsp;&nbsp;&nbsp;val url = URL("<URL>")\n&nbsp;&nbsp;&nbsp;&nbsp;val connection = url.openConnection() as HttpURLConnection\n&nbsp;&nbsp;&nbsp;&nbsp;connection.requestMethod = "GET"\n',
     addHeaders:
-      'connection.setRequestProperty("<Header-Name>", "<Header-Value>")',
+      '&nbsp;&nbsp;&nbsp;&nbsp;connection.setRequestProperty("<Header-Name>", "<Header-Value>")',
     addCookies:
-      'connection.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>")',
+      '&nbsp;&nbsp;&nbsp;&nbsp;connection.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>")',
     endCode:
-      "val response = connection.inputStream.bufferedReader().use { it.readText() }\n    println(response)\n}",
+      "&nbsp;&nbsp;&nbsp;&nbsp;val response = connection.inputStream.bufferedReader().use { it.readText() }\n    println(response)\n}",
   },
   {
     language: "Perl",
     baseCode:
-      "use LWP::UserAgent;\n\nmy $ua = LWP::UserAgent->new;\nmy $req = HTTP::Request->new(GET => '<URL>');",
+      "use LWP::UserAgent;\n\nmy $ua = LWP::UserAgent->new;\nmy $req = HTTP::Request->new(GET => '<URL>');\n",
     addHeaders: "$req->header('<Header-Name>' => '<Header-Value>');",
     addCookies: "$req->header('Cookie' => '<Cookie-Name>=<Cookie-Value>');",
     endCode: "my $res = $ua->request($req);\nprint $res->decoded_content;",
   },
   {
     language: "Shell (wget)",
-    baseCode: "wget \u005C",
+    baseCode: "wget \u005C \n",
     addHeaders: '--header="<Header-Name>: <Header-Value>"',
     addCookies: '--header="Cookie: <Cookie-Name>=<Cookie-Value>"',
     endCode: '"<URL>" -O -',
@@ -129,29 +129,21 @@ export const buildCookies = (
   switch (selectedCode.language) {
     case "NodeJS":
       return `const cookies = "${cookies.join(", ")}";<br/>`;
-    case "PHP":
-    case "Ruby":
-    case "Kotlin":
-    case "Perl":
-      return selectedCode.addCookies.replace(
-        "<Cookie-Name>=<Cookie-Value>",
-        cookies.join(", ")
-      );
     case "cURL":
       return (
-        cookies.reduce((acc, cookie) => {
+        cookies.reduce((acc, cookie, i, arr) => {
           return (
             acc +
             selectedCode.addCookies.replace(
               "<Cookie-Name>=<Cookie-Value>",
               cookie
             ) +
-            " "
+            (i !== arr.length - 1 ? " \u005C <br/>" : "")
           );
         }, "")
       );
     case "Python":
-      return `cookies = {"${cookies.join('", "')}"}`;
+      return `cookies = {"${cookies.join('", "')}"}<br/>`;
     case "Rust":
       return cookies.reduce((acc, cookie) => {
         return (
@@ -162,28 +154,16 @@ export const buildCookies = (
           )}<br/>`
         );
       }, "");
-    // case "Kotlin":
-    // case "Pearl":
-    //   return selectedCode.addCookies.replace(
-    //     "<Cookie-Name>=<Cookie-Value>",
-    //     cookies.join(", ")
-    //   );
     case "Shell (wget)":
       return selectedCode.addCookies.replace(
         "<Cookie-Name>=<Cookie-Value>",
         cookies.join(",")
-      );
+      ) + " \u005C <br/>";
     default:
-      return cookies.reduce((acc, cookie) => {
-        return (
-          acc +
-          selectedCode.addCookies.replace(
-            "<Cookie-Name>=<Cookie-Value>",
-            cookie
-          ) +
-          "<br/>"
-        );
-      }, "");
+      return selectedCode.addCookies.replace(
+        "<Cookie-Name>=<Cookie-Value>",
+        cookies.join(",")
+      ) + "<br/>";
   }
 };
 
@@ -193,21 +173,22 @@ export const buildHeaders = (
 ) => {
   switch (selectedCode.language) {
     case "NodeJS":
-      return `const headers = { ${Object.entries(
-        headers.reduce((acc, { key, value }, i) => {
-          return i !== 0 ? acc + ", " + key + ": " + value : key + ": " + value;
-        }, "")
-      )} };`;
+      return `const headers = { ${headers.reduce((acc, { key, value }, i) => {
+        return i !== 0
+          ? acc + `, "${key}": "${value}"`
+          : `"${key}": "${value}"`;
+      }, "")} };<br/>`;
     case "cURL":
+    case "Shell (wget)":
       return (
         headers.reduce((acc, header) => {
           return (
             acc +
             `${selectedCode.addHeaders
               .replace("<Header-Name>", header.key)
-              .replace("<Header-Value>", header.value)} `
+              .replace("<Header-Value>", header.value)} \u005C <br/>`
           );
-        }, "") + "\u005C"
+        }, "")
       );
     case "PHP":
       return selectedCode.addHeaders.replace(
@@ -217,13 +198,13 @@ export const buildHeaders = (
             ? acc + `"${header.key}: ${header.value}", `
             : acc + `"${header.key}: ${header.value}"`;
         }, "")
-      );
+      ) + "<br/>";
     case "Python":
       return `headers = { ${headers.reduce((acc, { key, value }, i) => {
         return i !== 0
           ? acc + `, "${key}": "${value}"`
           : `"${key}": "${value}"`;
-      }, "")} };`;
+      }, "")} };<br/>`;
     default:
       return headers.reduce((acc, header) => {
         return (
