@@ -7,6 +7,7 @@ import Output from "./output";
 import style from "./playground.module.scss";
 import Request from "./request/request";
 import RightTitle from "./rightTitle";
+import Url from "./url";
 
 const Playground = () => {
   return (
@@ -21,6 +22,7 @@ const Playground = () => {
       <Card className={style.play__right}>
         <RightTitle />
         <ApiKey />
+        <Url />
         <Request />
       </Card>
     </div>

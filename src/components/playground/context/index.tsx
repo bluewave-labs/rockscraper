@@ -32,7 +32,7 @@ const usePlayground = () => {
 };
 
 const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
-  const [url, setUrl] = useState("https://api.example.com");
+  const [url, setUrl] = useState("https://");
   const [headers, setHeaders] = useState(
     [] as { key: string; value: string; id: string }[]
   );
