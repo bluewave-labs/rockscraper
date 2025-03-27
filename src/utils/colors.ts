@@ -25,4 +25,6 @@ export const colors = {
     600: "#152E60", // btn primary text
     900: '#282A2F'
   },
+
+  // lightBackground: "#FAFAFA", // your new light background color
 };
