@@ -1,5 +1,5 @@
 "use client";
-import { HeaderFieldInterface } from "@src/utils/interfaces";
+import { HeaderFieldInterface, NodesType } from "@src/utils/interfaces";
 import { createContext, useContext, useMemo, useState } from "react";
 
 type PlaygroundContextProps = {
@@ -9,12 +9,16 @@ type PlaygroundContextProps = {
   useAi: boolean;
   returnMarkdown: boolean;
   aiQuery: string;
+  nodes: NodesType;
+  region: string;
   setHeaders: React.Dispatch<PlaygroundContextProps["headers"]>;
   setCookies: React.Dispatch<PlaygroundContextProps["cookies"]>;
   setUrl: React.Dispatch<PlaygroundContextProps["url"]>;
   setUseAi: React.Dispatch<PlaygroundContextProps["useAi"]>;
   setReturnMarkdown: React.Dispatch<PlaygroundContextProps["returnMarkdown"]>;
   setAiQuery: React.Dispatch<PlaygroundContextProps["aiQuery"]>;
+  setNodes: React.Dispatch<PlaygroundContextProps["nodes"]>;
+  setRegion: React.Dispatch<PlaygroundContextProps["region"]>;
 };
 
 const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
@@ -36,6 +40,8 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
   const [useAi, setUseAi] = useState(false);
   const [returnMarkdown, setReturnMarkdown] = useState(false);
   const [aiQuery, setAiQuery] = useState("");
+  const [nodes, setNodes] = useState<NodesType>("random");
+  const [region, setRegion] = useState<string>("");
 
   const value = useMemo(
     () => ({
@@ -45,14 +51,18 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
       useAi,
       returnMarkdown,
       aiQuery,
+      nodes,
+      region,
       setHeaders,
       setCookies,
       setUrl,
       setUseAi,
       setReturnMarkdown,
       setAiQuery,
+      setNodes,
+      setRegion,
     }),
-    [headers, cookies, url, useAi, returnMarkdown, aiQuery]
+    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region]
   );
   return (
     <PlaygroundContext.Provider value={value}>
@@ -63,3 +73,4 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
 
 export { PlaygroundProvider, usePlayground };
 export type { PlaygroundContextProps };
+

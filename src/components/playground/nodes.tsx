@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Radio from "../ui/radio";
 import Select from "../ui/select";
+import { usePlayground } from "./context";
 import style from "./playground.module.scss";
 
 const countries = ["USA", "Canada", "Mexico", "Brazil", "Argentina", "Chile"];
@@ -14,15 +15,23 @@ const continents = [
 ];
 
 const Nodes = () => {
-  const [option, setOption] = useState<"random" | "continent" | "country">(
-    "random"
-  );
+  const { nodes: option, setNodes: setOption, setRegion } = usePlayground();
   const [continent, setContinent] = useState<string>(continents[0]);
   const [country, setCountry] = useState<string>(countries[0]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value as "random" | "continent" | "country");
   };
+
+  useEffect(() => {
+    if (option === "random") {
+      setRegion("");
+    } else if (option === "continent") {
+      setRegion(continent);
+    } else if (option === "country") {
+      setRegion(country);
+    }
+  }, [continent, country, option]);
 
   return (
     <div className={style.play__nodes}>

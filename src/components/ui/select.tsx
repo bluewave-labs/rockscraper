@@ -16,6 +16,22 @@ const Select = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const [showAbove, setShowAbove] = useState(false);
+
+  useEffect(() => {
+    const handlePosition = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        setShowAbove(spaceBelow < 200 && spaceAbove > spaceBelow);
+      }
+    };
+
+    if (isOpen) {
+      handlePosition();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,7 +61,8 @@ const Select = ({
       <div
         className={cn(
           "absolute border border-zinc-700 bg-zinc-900 flex-col z-20 text-zinc-100 gap-0 w-full max-h-[200px] overflow-y-auto",
-          isOpen ? "flex" : "hidden"
+          isOpen ? "flex" : "hidden",
+          showAbove ? "bottom-full rounded-t-sm" : "top-full rounded-b-sm"
         )}
       >
         {list.map((item, index) => (
@@ -55,7 +72,10 @@ const Select = ({
               onChange(item);
               setIsOpen(false);
             }}
-            className='py-2 px-3 text-sm w-full text-left hover:bg-zinc-800 cursor-pointer'
+            className={cn(
+              'py-2 px-3 text-sm w-full text-left hover:bg-zinc-800 cursor-pointer',
+              selected === item ? "bg-zinc-800" : ""
+            )}
           >
             {item}
           </button>
