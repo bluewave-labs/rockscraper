@@ -11,12 +11,12 @@ const buttonVariants = cva(
       variant: {
         default: "bg-blue-300 text-blue-600 shadow-xs hover:bg-blue-300/90",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-purple-700 text-purple-200 shadow-xs cursor-pointer hover:bg-purple-800 focus-visible:ring-purple-700/20 dark:focus-visible:ring-purple-800 dark:bg-purple-800",
         outline:
           "border border-zinc-400 text-zinc-300 shadow-xs cursor-pointer hover:bg-zinc-100 hover:border-zinc-100 hover:text-zinc-800 dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         outline_active:
           "border border-zinc-100 bg-zinc-100 text-zinc-800 shadow-xs",
-        secondary: "bg-zinc-500 text-zinc-200 shadow-xs hover:bg-zinc-500/80",
+        secondary: "bg-zinc-500 text-zinc-200 shadow-xs cursor-pointer hover:bg-zinc-600",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-blue-300 underline-offset-4 hover:underline",

@@ -1,7 +1,9 @@
 "use client";
+import { Button } from "@src/components/ui/button";
 import { RequestExample } from "@src/utils/interfaces";
 import languages, { buildCookies, buildHeaders } from "@src/utils/requests";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import LanguageButtons from "./languageButtons";
 import style from "./request.module.scss";
 
@@ -37,14 +39,24 @@ const Request = () => {
     );
   }, [activeLanguage]);
 
+  const handleCopy = () => {
+    const code = selectedCode.baseCode
+      .replace("<URL>", url) +
+      buildHeaders(selectedCode, headers) +
+      buildCookies(selectedCode, cookies) +
+      selectedCode.endCode.replace("<URL>", url);
+    navigator.clipboard.writeText(code.replaceAll("<br/>", "\n"));
+    toast(`Code for ${selectedCode.language} copied to clipboard`)
+  };
+
   return (
     <div>
       <LanguageButtons
         activeLanguage={activeLanguage}
         setActiveLanguage={setActiveLanguage}
       />
-      <div className={style['play__code--container']}>
-        <code className={style.play__code}>
+      <div className={style.play__code}>
+        <code className={style['play__code--container']}>
           <span
             dangerouslySetInnerHTML={{
               __html: selectedCode.baseCode
@@ -64,12 +76,16 @@ const Request = () => {
           />
           <span
             dangerouslySetInnerHTML={{
-              __html: selectedCode.finalCode
+              __html: selectedCode.endCode
                 .replace("<URL>", url)
                 .replaceAll("\n", "<br/>"),
             }}
           />
         </code>
+        <div className={style['play__code--buttons']}>
+          <Button variant="destructive">Try it</Button>
+          <Button variant="secondary" onClick={handleCopy}>Copy to clipboard</Button>
+        </div>
       </div>
     </div>
   );

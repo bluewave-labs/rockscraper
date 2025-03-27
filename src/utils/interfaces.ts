@@ -5,5 +5,5 @@ export interface RequestExample {
   baseCode: string;
   addHeaders: string;
   addCookies: string;
-  finalCode: string;
+  endCode: string;
 }

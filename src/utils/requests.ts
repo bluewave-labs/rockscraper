@@ -6,7 +6,7 @@ const languages = [
     baseCode: 'curl -X GET "<URL>" \u005C',
     addHeaders: ' -H "<Header-Name>: <Header-Value>"',
     addCookies: '--cookie "<Cookie-Name>=<Cookie-Value>"',
-    finalCode: "",
+    endCode: "",
   },
   {
     language: "C#",
@@ -16,7 +16,7 @@ const languages = [
       '&nbsp;&nbsp;&nbsp;&nbsp;client.DefaultRequestHeaders.Add("<Header-Name>", "<Header-Value>");',
     addCookies:
       '&nbsp;&nbsp;&nbsp;&nbsp;client.DefaultRequestHeaders.Add("Cookie", "<Cookie-Name>=<Cookie-Value>");',
-    finalCode:
+    endCode:
       '&nbsp;&nbsp;&nbsp;&nbsp;HttpResponseMessage response = await client.GetAsync("<URL>");\n&nbsp;&nbsp;&nbsp;&nbsp;string result = await response.Content.ReadAsStringAsync();\n&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(result);\n&nbsp;&nbsp;}\n}',
   },
   {
@@ -25,7 +25,7 @@ const languages = [
       'package main\n\nimport (\n&nbsp;&nbsp;"fmt"\n&nbsp;&nbsp;"io/ioutil"\n&nbsp;&nbsp;"net/http"\n)\n\nfunc main() {\n&nbsp;&nbsp;client := &http.Client{}\n&nbsp;&nbsp;req, _ := http.NewRequest("GET", "<URL>", nil)',
     addHeaders: '&nbsp;&nbsp;req.Header.Add("<Header-Name>", "<Header-Value>")',
     addCookies: '&nbsp;&nbsp;req.Header.Add("Cookie", "<Cookie-Name>=<Cookie-Value>")',
-    finalCode:
+    endCode:
       "&nbsp;&nbsp;resp, err := client.Do(req)\n&nbsp;&nbsp;if err != nil {\n&nbsp;&nbsp;&nbsp;&nbsp;fmt.Println(err)\n&nbsp;&nbsp;&nbsp;&nbsp;return\n &nbsp;&nbsp;}\n&nbsp;&nbsp;defer resp.Body.Close()\n&nbsp;&nbsp;body, _ := ioutil.ReadAll(resp.Body)\n&nbsp;&nbsp;fmt.Println(string(body))\n}",
   },
   {
@@ -35,7 +35,7 @@ const languages = [
     addHeaders: 'conn.setRequestProperty("<Header-Name>", "<Header-Value>");',
     addCookies:
       'conn.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>");',
-    finalCode:
+    endCode:
       "BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));\n    String inputLine;\n    while ((inputLine = in.readLine()) != null) {\n      System.out.println(inputLine);\n    }\n    in.close();\n  }\n}",
   },
   {
@@ -43,7 +43,7 @@ const languages = [
     baseCode: 'const url = "<URL>";\n\n',
     addHeaders: 'const headers = { "<Header-Name>": "<Header-Value>" };',
     addCookies: 'const cookies = "<Cookie-Name>=<Cookie-Value>";',
-    finalCode:
+    endCode:
       'fetch(url, {\n  method: "GET",\n  headers: { ...headers, "Cookie": cookies }\n})\n  .then(response => response.text())\n  .then(data => console.log(data))\n  .catch(error => console.error("Error:", error));',
   },
   {
@@ -54,14 +54,14 @@ const languages = [
       'curl_setopt($ch, CURLOPT_HTTPHEADER, array("<Header-Name>: <Header-Value>"));',
     addCookies:
       'curl_setopt($ch, CURLOPT_COOKIE, "<Cookie-Name>=<Cookie-Value>");',
-    finalCode: "$output = curl_exec($ch);\ncurl_close($ch);\necho $output;\n",
+    endCode: "$output = curl_exec($ch);\ncurl_close($ch);\necho $output;\n",
   },
   {
     language: "Python",
     baseCode: "import requests",
     addHeaders: 'headers = {"<Header-Name>": "<Header-Value>"}',
     addCookies: 'cookies = {"<Cookie-Name>": "<Cookie-Value>"}',
-    finalCode:
+    endCode:
       'response = requests.get("<URL>", headers=headers, cookies=cookies)\nprint(response.text)',
   },
   {
@@ -71,7 +71,7 @@ const languages = [
     addHeaders:
       'headers.insert("<Header-Name>", "<Header-Value>".parse().unwrap());',
     addCookies: 'cookies.insert("<Cookie-Name>", "<Cookie-Value>");',
-    finalCode:
+    endCode:
       'let response = client.get("<URL>")\n        .headers(headers)\n        .send()\n        .unwrap();\n    \n    println!("{}", response.text().unwrap());\n}',
   },
   {
@@ -82,7 +82,7 @@ const languages = [
       'request.setValue("<Header-Value>", forHTTPHeaderField: "<Header-Name>")',
     addCookies:
       'request.setValue("<Cookie-Name>=<Cookie-Value>", forHTTPHeaderField: "Cookie")',
-    finalCode:
+    endCode:
       "let task = URLSession.shared.dataTask(with: request) { data, response, error in\n    if let data = data {\n        print(String(data: data, encoding: .utf8)!)\n    }\n}\ntask.resume()",
   },
   {
@@ -91,7 +91,7 @@ const languages = [
       "require 'net/http'\nrequire 'uri'\n\nuri = URI('<URL>')\nrequest = Net::HTTP::Get.new(uri)",
     addHeaders: "request['<Header-Name>'] = '<Header-Value>'",
     addCookies: "request['Cookie'] = '<Cookie-Name>=<Cookie-Value>'",
-    finalCode:
+    endCode:
       "response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|\n  http.request(request)\nend\n\nputs response.body",
   },
   {
@@ -102,7 +102,7 @@ const languages = [
       'connection.setRequestProperty("<Header-Name>", "<Header-Value>")',
     addCookies:
       'connection.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>")',
-    finalCode:
+    endCode:
       "val response = connection.inputStream.bufferedReader().use { it.readText() }\n    println(response)\n}",
   },
   {
@@ -111,14 +111,14 @@ const languages = [
       "use LWP::UserAgent;\n\nmy $ua = LWP::UserAgent->new;\nmy $req = HTTP::Request->new(GET => '<URL>');",
     addHeaders: "$req->header('<Header-Name>' => '<Header-Value>');",
     addCookies: "$req->header('Cookie' => '<Cookie-Name>=<Cookie-Value>');",
-    finalCode: "my $res = $ua->request($req);\nprint $res->decoded_content;",
+    endCode: "my $res = $ua->request($req);\nprint $res->decoded_content;",
   },
   {
     language: "Shell (wget)",
     baseCode: "wget \u005C",
     addHeaders: '--header="<Header-Name>: <Header-Value>"',
     addCookies: '--header="Cookie: <Cookie-Name>=<Cookie-Value>"',
-    finalCode: '"<URL>" -O -',
+    endCode: '"<URL>" -O -',
   },
 ];
 
