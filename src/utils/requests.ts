@@ -1,4 +1,4 @@
-import { RequestExample } from "./interfaces";
+import { HeaderFieldInterface, RequestExample } from "./interfaces";
 
 const languages = [
   {
@@ -169,7 +169,7 @@ export const buildCookies = (
 
 export const buildHeaders = (
   selectedCode: RequestExample,
-  headers: Record<string, string>[]
+  headers: HeaderFieldInterface[]
 ) => {
   switch (selectedCode.language) {
     case "NodeJS":

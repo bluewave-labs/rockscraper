@@ -1,4 +1,4 @@
-export type RoutesType = 'dashboard' | 'playground' | 'logs-data' | 'settings';
+export type RoutesType = "dashboard" | "playground" | "logs-data" | "settings";
 
 export interface RequestExample {
   language: string;
@@ -6,4 +6,10 @@ export interface RequestExample {
   addHeaders: string;
   addCookies: string;
   endCode: string;
+}
+
+export interface HeaderFieldInterface {
+  key: string;
+  value: string;
+  id: string;
 }
