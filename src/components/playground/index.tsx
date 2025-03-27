@@ -6,6 +6,7 @@ import Nodes from "./nodes";
 import Output from "./output";
 import style from "./playground.module.scss";
 import Request from "./request/request";
+import QueryResult from "./result";
 import RightTitle from "./rightTitle";
 import Url from "./url";
 
@@ -24,6 +25,7 @@ const Playground = () => {
         <ApiKey />
         <Url />
         <Request />
+        <QueryResult />
       </Card>
     </div>
   );
