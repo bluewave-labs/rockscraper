@@ -2,19 +2,17 @@ import { Button } from "@src/components/ui/button";
 import { RequestExample } from "@src/utils/interfaces";
 import { buildCookies, buildHeaders } from "@src/utils/requests";
 import { toast } from "sonner";
-import style from "./request.module.scss";
 import { usePlayground } from "../context";
+import style from "./request.module.scss";
 
 const Code = ({
   selectedCode,
-  cookies,
   url,
 }: {
   selectedCode: RequestExample;
-  cookies: string[];
   url: string;
 }) => {
-  const { headers } = usePlayground();
+  const { headers, cookies } = usePlayground();
   const handleCopy = () => {
     const code =
       selectedCode.baseCode.replace("<URL>", url) +
@@ -37,16 +35,20 @@ const Code = ({
               .replaceAll("\n", "<br/>"),
           }}
         />
-        <span
-          dangerouslySetInnerHTML={{
-            __html: buildHeaders(selectedCode, headers),
-          }}
-        />
-        <span
-          dangerouslySetInnerHTML={{
-            __html: buildCookies(selectedCode, cookies),
-          }}
-        />
+        {headers.length > 0 ? (
+          <span
+            dangerouslySetInnerHTML={{
+              __html: buildHeaders(selectedCode, headers.filter((header) => header.key !== "" && header.value !== "")),
+            }}
+          />
+        ) : null}
+        {cookies.length > 0 ? (
+          <span
+            dangerouslySetInnerHTML={{
+              __html: buildCookies(selectedCode, cookies),
+            }}
+          />
+        ) : null}
         <span
           dangerouslySetInnerHTML={{
             __html: selectedCode.endCode

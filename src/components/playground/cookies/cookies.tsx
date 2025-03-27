@@ -1,18 +1,23 @@
 "use client";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { usePlayground } from "../context";
+import mainStyle from "../playground.module.scss";
 import style from "./cookies.module.scss";
-import mainStyle from '../playground.module.scss'
 
 const Cookies = () => {
-  const [cookies, setCookies] = useState<string[]>([]);
+  const { cookies, setCookies } = usePlayground();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "," || e.key === "Enter") {
+    if (e.key === "," || e.key === " ") {
       e.preventDefault();
       if (!e.currentTarget.value.trim()) return;
       setCookies([...cookies, ...e.currentTarget.value.split(",")]);
       e.currentTarget.value = "";
+    }
+    if (e.key === "Backspace") {
+      if (e.currentTarget.value === "") {
+        setCookies(cookies.slice(0, -1));
+      }
     }
   };
 

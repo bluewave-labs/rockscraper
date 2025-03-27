@@ -17,11 +17,11 @@ const url = "https://api.example.com";
 //   },
 // ];
 
-const cookies = [
-  "cookie1=cookie1value",
-  "cookie2=cookie2value",
-  "cookie3=cookie3value",
-];
+// const cookies = [
+//   "cookie1=cookie1value",
+//   "cookie2=cookie2value",
+//   "cookie3=cookie3value",
+// ];
 
 const Request = () => {
   const [activeLanguage, setActiveLanguage] = useState(languages[0].language);
@@ -45,7 +45,6 @@ const Request = () => {
       />
       <Code
         selectedCode={selectedCode}
-        cookies={cookies}
         url={url}
       />
     </div>
