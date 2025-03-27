@@ -39,7 +39,7 @@ const LanguageButtons = ({
       setApi={setApi}
     >
       {api?.canScrollPrev() && <CarouselPrevious />}
-      <CarouselContent>
+      <CarouselContent className="py-2">
         {languages.map(({ language }) => (
           <CarouselItem key={language} className='w-auto'>
             <Button

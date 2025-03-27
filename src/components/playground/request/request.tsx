@@ -43,33 +43,33 @@ const Request = () => {
         activeLanguage={activeLanguage}
         setActiveLanguage={setActiveLanguage}
       />
-      <div className={style.play__code}>
-        <div>
-          <p
+      <div className={style['play__code--container']}>
+        <code className={style.play__code}>
+          <span
             dangerouslySetInnerHTML={{
               __html: selectedCode.baseCode
                 .replace("<URL>", url)
                 .replaceAll("\n", "<br/>"),
             }}
           />
-          <p
+          <span
             dangerouslySetInnerHTML={{
               __html: buildHeaders(selectedCode, headers),
             }}
           />
-          <p
+          <span
             dangerouslySetInnerHTML={{
               __html: buildCookies(selectedCode, cookies),
             }}
           />
-          <p
+          <span
             dangerouslySetInnerHTML={{
               __html: selectedCode.finalCode
                 .replace("<URL>", url)
                 .replaceAll("\n", "<br/>"),
             }}
           />
-        </div>
+        </code>
       </div>
     </div>
   );

@@ -11,22 +11,22 @@ const languages = [
   {
     language: "C#",
     baseCode:
-      "using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Threading.Tasks;\n\nclass Program {\n  static async Task Main() {\n    using HttpClient client = new HttpClient();",
+      "using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Threading.Tasks;\n\nclass Program {\n&nbsp;&nbsp;static async Task Main() {\n&nbsp;&nbsp;&nbsp;&nbsp;using HttpClient client = new HttpClient();",
     addHeaders:
-      'client.DefaultRequestHeaders.Add("<Header-Name>", "<Header-Value>");',
+      '&nbsp;&nbsp;&nbsp;&nbsp;client.DefaultRequestHeaders.Add("<Header-Name>", "<Header-Value>");',
     addCookies:
-      'client.DefaultRequestHeaders.Add("Cookie", "<Cookie-Name>=<Cookie-Value>");',
+      '&nbsp;&nbsp;&nbsp;&nbsp;client.DefaultRequestHeaders.Add("Cookie", "<Cookie-Name>=<Cookie-Value>");',
     finalCode:
-      'HttpResponseMessage response = await client.GetAsync("<URL>");\n    string result = await response.Content.ReadAsStringAsync();\n    Console.WriteLine(result);\n  }\n}',
+      '&nbsp;&nbsp;&nbsp;&nbsp;HttpResponseMessage response = await client.GetAsync("<URL>");\n&nbsp;&nbsp;&nbsp;&nbsp;string result = await response.Content.ReadAsStringAsync();\n&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(result);\n&nbsp;&nbsp;}\n}',
   },
   {
     language: "Go",
     baseCode:
-      'package main\n\nimport (\n  "fmt"\n  "io/ioutil"\n  "net/http"\n)\n\nfunc main() {\n  client := &http.Client{}\n  req, _ := http.NewRequest("GET", "<URL>", nil)',
-    addHeaders: 'req.Header.Add("<Header-Name>", "<Header-Value>")',
-    addCookies: 'req.Header.Add("Cookie", "<Cookie-Name>=<Cookie-Value>")',
+      'package main\n\nimport (\n&nbsp;&nbsp;"fmt"\n&nbsp;&nbsp;"io/ioutil"\n&nbsp;&nbsp;"net/http"\n)\n\nfunc main() {\n&nbsp;&nbsp;client := &http.Client{}\n&nbsp;&nbsp;req, _ := http.NewRequest("GET", "<URL>", nil)',
+    addHeaders: '&nbsp;&nbsp;req.Header.Add("<Header-Name>", "<Header-Value>")',
+    addCookies: '&nbsp;&nbsp;req.Header.Add("Cookie", "<Cookie-Name>=<Cookie-Value>")',
     finalCode:
-      "resp, err := client.Do(req)\n  if err != nil {\n    fmt.Println(err)\n    return\n  }\n  defer resp.Body.Close()\n  body, _ := ioutil.ReadAll(resp.Body)\n  fmt.Println(string(body))\n}",
+      "&nbsp;&nbsp;resp, err := client.Do(req)\n&nbsp;&nbsp;if err != nil {\n&nbsp;&nbsp;&nbsp;&nbsp;fmt.Println(err)\n&nbsp;&nbsp;&nbsp;&nbsp;return\n &nbsp;&nbsp;}\n&nbsp;&nbsp;defer resp.Body.Close()\n&nbsp;&nbsp;body, _ := ioutil.ReadAll(resp.Body)\n&nbsp;&nbsp;fmt.Println(string(body))\n}",
   },
   {
     language: "Java",
@@ -122,27 +122,34 @@ const languages = [
   },
 ];
 
-export const buildCookies = (selectedCode: RequestExample, cookies: string[]) => {
+export const buildCookies = (
+  selectedCode: RequestExample,
+  cookies: string[]
+) => {
   switch (selectedCode.language) {
     case "NodeJS":
       return `const cookies = "${cookies.join(", ")}";<br/>`;
     case "PHP":
     case "Ruby":
+    case "Kotlin":
+    case "Perl":
       return selectedCode.addCookies.replace(
         "<Cookie-Name>=<Cookie-Value>",
         cookies.join(", ")
       );
     case "cURL":
-      return cookies.reduce((acc, cookie) => {
-        return (
-          acc +
-          selectedCode.addCookies.replace(
-            "<Cookie-Name>=<Cookie-Value>",
-            cookie
-          ) +
-          " "
-        );
-      }, "") + "\u005C"; 
+      return (
+        cookies.reduce((acc, cookie) => {
+          return (
+            acc +
+            selectedCode.addCookies.replace(
+              "<Cookie-Name>=<Cookie-Value>",
+              cookie
+            ) +
+            " "
+          );
+        }, "")
+      );
     case "Python":
       return `cookies = {"${cookies.join('", "')}"}`;
     case "Rust":
@@ -155,12 +162,17 @@ export const buildCookies = (selectedCode: RequestExample, cookies: string[]) =>
           )}<br/>`
         );
       }, "");
-    case "Kotlin":
-    case "Pearl":
+    // case "Kotlin":
+    // case "Pearl":
+    //   return selectedCode.addCookies.replace(
+    //     "<Cookie-Name>=<Cookie-Value>",
+    //     cookies.join(", ")
+    //   );
+    case "Shell (wget)":
       return selectedCode.addCookies.replace(
         "<Cookie-Name>=<Cookie-Value>",
-        cookies.join(", ")
-      )
+        cookies.join(",")
+      );
     default:
       return cookies.reduce((acc, cookie) => {
         return (
@@ -175,32 +187,35 @@ export const buildCookies = (selectedCode: RequestExample, cookies: string[]) =>
   }
 };
 
-export const buildHeaders = (selectedCode: RequestExample, headers: Record<string,string>[]) => {
+export const buildHeaders = (
+  selectedCode: RequestExample,
+  headers: Record<string, string>[]
+) => {
   switch (selectedCode.language) {
     case "NodeJS":
       return `const headers = { ${Object.entries(
         headers.reduce((acc, { key, value }, i) => {
-          return i !== 0
-            ? acc + ", " + key + ": " + value
-            : key + ": " + value;
+          return i !== 0 ? acc + ", " + key + ": " + value : key + ": " + value;
         }, "")
       )} };`;
     case "cURL":
-      return headers.reduce((acc, header) => {
-        return (
-          acc +
-          `${selectedCode.addHeaders
-            .replace("<Header-Name>", header.key)
-            .replace("<Header-Value>", header.value)} `
-        );
-      }, "") + "\u005C";
+      return (
+        headers.reduce((acc, header) => {
+          return (
+            acc +
+            `${selectedCode.addHeaders
+              .replace("<Header-Name>", header.key)
+              .replace("<Header-Value>", header.value)} `
+          );
+        }, "") + "\u005C"
+      );
     case "PHP":
       return selectedCode.addHeaders.replace(
-        "<Header-Name>: <Header-Value>",
+        '"<Header-Name>: <Header-Value>"',
         headers.reduce((acc, header, i, arr) => {
           return i !== arr.length - 1
-            ? acc + `${header.key}: ${header.value}, `
-            : acc + `${header.key}: ${header.value}`;
+            ? acc + `"${header.key}: ${header.value}", `
+            : acc + `"${header.key}: ${header.value}"`;
         }, "")
       );
     case "Python":
