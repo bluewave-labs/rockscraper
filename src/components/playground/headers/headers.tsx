@@ -1,34 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { ChangeEvent, useState } from "react";
-import { Input } from "../../ui/input";
-import style from "./headers.module.scss";
+import { useEffect } from "react";
+import { usePlayground } from "../context";
 import mainStyle from "../playground.module.scss";
+import HeaderField from "./headerField";
+import style from "./headers.module.scss";
 
 const Headers = () => {
-  const [headers, setHeaders] = useState<
-    { key: string; value: string; id: string }[]
-  >([{ key: "", value: "", id: Date.now().toString() }]);
+  const { headers, setHeaders } = usePlayground();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    const { name, value } = e.target;
-    const newHeaders = [...headers];
-    if (name === "key") {
-      newHeaders[index] = {
-        id: newHeaders[index].id,
-        key: value,
-        value: newHeaders[index].value,
-      };
-      setHeaders(newHeaders);
-      return;
+  useEffect(() => {
+    if (headers.length === 0) {
+      setHeaders([{ key: "", value: "", id: Date.now().toString() }]);
     }
-    newHeaders[index] = {
-      id: newHeaders[index].id,
-      key: newHeaders[index].key,
-      value,
-    };
-    console.log(newHeaders);
-    setHeaders(newHeaders);
-  };
+  }, []);
 
   return (
     <div className={style.play__headers}>
@@ -36,6 +21,7 @@ const Headers = () => {
         Custom headers{" "}
         <button
           onClick={() => {
+            console.log("headers", headers);
             setHeaders([
               ...headers,
               { key: "", value: "", id: Date.now().toString() },
@@ -48,36 +34,17 @@ const Headers = () => {
       </label>
       {headers.length > 0 ? (
         <>
-          {headers.map(({ key, value, id }, index) => (
-            <div key={id} className={style["play__headers--item"]}>
-              <Input
-                placeholder='Header name'
-                id={`key-${index}`}
-                value={key}
-                name='key'
-                onChange={(e) => handleChange(e, index)}
-              />
-              <Input
-                placeholder='Header value'
-                id={`value-${index}`}
-                value={value}
-                name='value'
-                onChange={(e) => handleChange(e, index)}
-              />
-            </div>
+          {headers.map(({ key, value, id }) => (
+            <HeaderField key={id} id={id} headerKey={key} value={value} />
           ))}
         </>
       ) : (
-        <div className={style["play__headers--item"]}>
-          <Input
-            placeholder='Header name'
-            onChange={(e) => handleChange(e, 0)}
-          />
-          <Input
-            placeholder='Header value'
-            onChange={(e) => handleChange(e, 0)}
-          />
-        </div>
+        <HeaderField
+          key={headers[0]?.id}
+          id={headers[0]?.id}
+          headerKey=''
+          value=''
+        />
       )}
     </div>
   );
