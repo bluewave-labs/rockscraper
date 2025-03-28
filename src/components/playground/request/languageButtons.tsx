@@ -1,7 +1,8 @@
-"use client";
-import languages from "@src/utils/requests";
-import { useEffect, useState } from "react";
-import { Button } from "../../ui/button";
+'use client';
+import { RequestExample } from '@src/utils/interfaces';
+import languages from '@src/utils/requests';
+import { useEffect, useState } from 'react';
+import { Button } from '../../ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -9,23 +10,26 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "../../ui/carousel";
+} from '../../ui/carousel';
 
 const LanguageButtons = ({
   activeLanguage,
   setActiveLanguage,
+  setSelectedCode,
 }: {
   activeLanguage: string;
   setActiveLanguage: (language: string) => void;
+  setSelectedCode: (val: RequestExample) => void;
 }) => {
   const [api, setApi] = useState<CarouselApi | null>(null);
 
   useEffect(() => {
     if (!api) return;
 
-    api.on("select", () => {
+    api.on('select', () => {
       const index = api.selectedScrollSnap();
       setActiveLanguage(languages[index].language);
+      setSelectedCode(languages[index]);
     });
   }, [api]);
 
@@ -35,12 +39,12 @@ const LanguageButtons = ({
     if (index !== -1) {
       api.scrollTo(index);
     }
-  }, [activeLanguage])
+  }, [activeLanguage]);
 
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: 'start',
         loop: false,
         slidesToScroll: 1,
       }}
@@ -48,14 +52,15 @@ const LanguageButtons = ({
     >
       {api?.canScrollPrev() && <CarouselPrevious />}
       <CarouselContent className="py-2">
-        {languages.map(({ language }) => (
-          <CarouselItem key={language} className='w-auto'>
+        {languages.map(({ language }, i) => (
+          <CarouselItem key={language} className="w-auto">
             <Button
-              variant={
-                activeLanguage === language ? "outline_active" : "outline"
-              }
-              size='sm'
-              onClick={() => setActiveLanguage(language)}
+              variant={activeLanguage === language ? 'outline_active' : 'outline'}
+              size="sm"
+              onClick={() => {
+                setActiveLanguage(language);
+                setSelectedCode(languages[i]);
+              }}
             >
               {language}
             </Button>
