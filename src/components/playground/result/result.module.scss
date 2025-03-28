@@ -25,8 +25,8 @@
       }
 
       &.fail {
-        background-color: var(--color-red-500);
-        border: 1px solid var(--color-red-600);
+        background-color: #fb2c36;
+        border: 1px solid #e7000b;
       }
     }
 
@@ -49,6 +49,7 @@
       &-text {
         flex-grow: 1;
         font-family: monospace;
+        font-size: 12px;
       }
     }
 

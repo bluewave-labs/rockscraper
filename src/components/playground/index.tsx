@@ -6,7 +6,7 @@ import Nodes from "./nodes";
 import Output from "./output";
 import style from "./playground.module.scss";
 import Request from "./request/request";
-import QueryResult from "./result";
+import QueryResult from "./result/result";
 import RightTitle from "./rightTitle";
 import Url from "./url";
 
