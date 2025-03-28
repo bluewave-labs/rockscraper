@@ -1,6 +1,6 @@
 "use client";
 import { HeaderFieldInterface, NodesType } from "@src/utils/interfaces";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type PlaygroundContextProps = {
   headers: HeaderFieldInterface[];
@@ -11,6 +11,7 @@ type PlaygroundContextProps = {
   aiQuery: string;
   nodes: NodesType;
   region: string;
+  apiKey: string;
   setHeaders: React.Dispatch<PlaygroundContextProps["headers"]>;
   setCookies: React.Dispatch<PlaygroundContextProps["cookies"]>;
   setUrl: React.Dispatch<PlaygroundContextProps["url"]>;
@@ -42,6 +43,17 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
   const [aiQuery, setAiQuery] = useState("");
   const [nodes, setNodes] = useState<NodesType>("random");
   const [region, setRegion] = useState<string>("");
+  const [apiKey, setApiKey] = useState("");
+  
+  useEffect(() => {
+    const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    setApiKey(key);
+    setHeaders(prev => [...prev, {
+      key: "Authorization",
+      value: `Bearer ${key}`,
+      id: Date.now().toString(),
+    }])
+  },[])
 
   const value = useMemo(
     () => ({
@@ -53,6 +65,7 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
       aiQuery,
       nodes,
       region,
+      apiKey,
       setHeaders,
       setCookies,
       setUrl,
@@ -62,7 +75,7 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
       setNodes,
       setRegion,
     }),
-    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region]
+    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey]
   );
   return (
     <PlaygroundContext.Provider value={value}>

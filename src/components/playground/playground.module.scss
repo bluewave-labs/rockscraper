@@ -52,6 +52,12 @@
     &.key {
       justify-content: space-between;
       color: var(--color-zinc-400);
+
+      & span {
+        flex-grow: 1;
+        max-width: 90%;
+        overflow-x: auto;
+      }
     }
   }
 
