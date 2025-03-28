@@ -5,6 +5,7 @@ import { SidebarProvider } from "@src/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@src/components/ui/sonner";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
 
         <div className='body__right'>
           <Header />
+          <Toaster />
           <main>
             <Content>{children}</Content>
           </main>
