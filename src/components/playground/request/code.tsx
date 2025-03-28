@@ -1,15 +1,14 @@
 import { Button } from '@src/components/ui/button';
 import codeToHtml from '@src/utils/codeToHtml';
-import { RequestExample } from '@src/utils/interfaces';
-import { buildCookies, buildHeaders } from '@src/utils/requests';
+import { CodeByLanguage } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { toast } from 'sonner';
 import { usePlayground } from '../context';
 import style from './request.module.scss';
 
-const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
-  const { headers, cookies, url } = usePlayground();
+const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
+  const { headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey } = usePlayground();
   const [code, setCode] = useState('');
 
   const handleCopy = () => {
@@ -18,22 +17,45 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
   };
 
   const codeString = () => {
+    let finalCode = selectedCode.code;
+    finalCode = finalCode.replace('<your-auth-token>', apiKey);
+    finalCode = finalCode.replace('<URL>', url);
+    finalCode = finalCode.replace('<Nodes>', nodes);
+    finalCode = finalCode.replace('<UseAi>', `${useAi}`);
+    finalCode = finalCode.replace('<ReturnMarkdown>', `${returnMarkdown}`);
+    if (useAi) {
+      finalCode = finalCode.replace('<AiQuery>', aiQuery);
+    } else {
+      finalCode = finalCode.replace('<AiQuery>', `${undefined}`);
+    }
+    if (nodes !== 'random') {
+      finalCode = finalCode.replace('<Region>', region);
+    } else {
+      finalCode = finalCode.replace('<Region>', `${undefined}`);
+    }
     const hasHeaders = headers.some((header) => header.key !== '' && header.value !== '');
     const hasCookies = cookies.some((cookie) => cookie !== '');
-    const code = selectedCode.baseCode.replace('<URL>', url);
-    const headersCode = buildHeaders(
-      selectedCode,
-      headers.filter((header) => header.key !== '' && header.value !== '')
-    );
-    const cookiesCode = buildCookies(
-      selectedCode,
-      cookies.filter((cookie) => cookie !== '')
-    );
-    const endCode = selectedCode.endCode.replace('<URL>', url);
-    let finalCode = code;
-    finalCode += hasHeaders || ['Python', 'NodeJS'].includes(selectedCode.language) ? headersCode : '';
-    finalCode += hasCookies || ['Python', 'NodeJS'].includes(selectedCode.language) ? cookiesCode : '';
-    finalCode += endCode;
+    if (hasHeaders) {
+      const formattedHeaders = headers
+        .filter((header) => header.key !== '' && header.value !== '')
+        .reduce(
+          (acc, { key, value }) => ({
+            ...acc,
+            [key]: value,
+          }),
+          {}
+        );
+      finalCode = finalCode.replace('<Headers>', JSON.stringify(formattedHeaders));
+    } else {
+      finalCode = finalCode.replace('<Headers>', `${undefined}`);
+    }
+    if (hasCookies) {
+      const formattedCookies = cookies.filter((cookie) => cookie !== '').join(',');
+      finalCode = finalCode.replace('<Cookies>', JSON.stringify(formattedCookies));
+    } else {
+      finalCode = finalCode.replace('<Cookies>', `${undefined}`);
+    }
+
     return finalCode;
   };
 
@@ -44,7 +66,7 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
 
   useEffect(() => {
     buildCode();
-  }, [headers, cookies, url, selectedCode]);
+  }, [headers, cookies, url, selectedCode, useAi, returnMarkdown, aiQuery, nodes, region, apiKey]);
 
   return (
     <div className={style.play__code}>

@@ -2,12 +2,9 @@ export type RoutesType = 'dashboard' | 'playground' | 'logs-data' | 'settings';
 
 export type NodesType = 'random' | 'continent' | 'country';
 
-export interface RequestExample {
+export interface CodeByLanguage {
   language: string;
-  baseCode: string;
-  addHeaders: string;
-  addCookies: string;
-  endCode: string;
+  code: string;
 }
 
 export interface HeaderFieldInterface {

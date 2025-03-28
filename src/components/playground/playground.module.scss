@@ -135,11 +135,11 @@
 
   @media only screen and (max-width: 992px) {
     flex-direction: column;
+    max-width: 100vw;
 
     &__left,
     &__right {
       width: 100%;
-      max-width: 100%;
     }
   } // @media only screen and (max-width : 992px)
 }

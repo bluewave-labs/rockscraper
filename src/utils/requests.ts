@@ -1,220 +1,58 @@
-import { HeaderFieldInterface, RequestExample } from "./interfaces";
+import { CodeByLanguage, HeaderFieldInterface } from './interfaces';
 
 const languages = [
   {
-    language: "cURL",
-    baseCode: 'curl -X GET "<URL>" \u005C \n',
-    addHeaders: ' -H "<Header-Name>: <Header-Value>"',
-    addCookies: '--cookie "<Cookie-Name>=<Cookie-Value>"',
-    endCode: "",
+    language: 'cURL',
+    code: 'curl -X POST "https://rockscraper.api.com" \\\n-H "Authentication: <your-auth-token>" \\\n-H "Content-Type: application/json" \\\n-d \'{\n  "url": "<URL>",\n  "headers": "<Headers>",\n  "cookies": "<Cookies>",\n  "useAi": "<UseAi>",\n  "aiQuery": "<AiQuery>",\n  "returnMarkdown": "<ReturnMarkdown>",\n  "nodes": "<Nodes>",\n  "region": "<Region>"\n}\'',
   },
   {
-    language: "C#",
-    baseCode:
-      "using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Threading.Tasks;\n\nclass Program {\n  static async Task Main() {\n    using HttpClient client = new HttpClient();\n",
-    addHeaders:
-      '    client.DefaultRequestHeaders.Add("<Header-Name>", "<Header-Value>");',
-    addCookies:
-      '    client.DefaultRequestHeaders.Add("Cookie", "<Cookie-Name>=<Cookie-Value>");',
-    endCode:
-      '    HttpResponseMessage response = await client.GetAsync("<URL>");\n    string result = await response.Content.ReadAsStringAsync();\n    Console.WriteLine(result);\n  }\n}',
+    language: 'C#',
+    code: 'using System;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program {\n    static async Task Main() {\n        using HttpClient client = new HttpClient();\n        client.DefaultRequestHeaders.Add("Authentication", "<your-auth-token>");\n        \n        var payload = new {\n            url = "<URL>",\n            headers = "<Headers>",\n            cookies = "<Cookies>",\n            useAi = "<UseAi>",\n            aiQuery = "<AiQuery>",\n            returnMarkdown = "<ReturnMarkdown>",\n            nodes = "<Nodes>",\n            region = "<Region>"\n        };\n        \n        var content = new StringContent(\n            System.Text.Json.JsonSerializer.Serialize(payload),\n            Encoding.UTF8,\n            "application/json");\n\n        HttpResponseMessage response = await client.PostAsync("https://rockscraper.api.com", content);\n        string result = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(result);\n    }\n}',
   },
   {
-    language: "Go",
-    baseCode:
-      'package main\n\nimport (\n  "fmt"\n  "io/ioutil"\n  "net/http"\n)\n\nfunc main() {\n  client := &http.Client{}\n  req, _ := http.NewRequest("GET", "<URL>", nil)',
-    addHeaders: '  req.Header.Add("<Header-Name>", "<Header-Value>")',
-    addCookies: '  req.Header.Add("Cookie", "<Cookie-Name>=<Cookie-Value>")',
-    endCode:
-      "  resp, err := client.Do(req)\n  if err != nil {\n    fmt.Println(err)\n    return\n   }\n  defer resp.Body.Close()\n  body, _ := ioutil.ReadAll(resp.Body)\n  fmt.Println(string(body))\n}",
+    language: 'Go',
+    code: 'package main\n\nimport (\n    "bytes"\n    "encoding/json"\n    "fmt"\n    "io/ioutil"\n    "net/http"\n)\n\nfunc main() {\n    payload := map[string]string{\n        "url":           "<URL>",\n        "headers":       "<Headers>",\n        "cookies":       "<Cookies>",\n        "useAi":        "<UseAi>",\n        "aiQuery":      "<AiQuery>",\n        "returnMarkdown": "<ReturnMarkdown>",\n        "nodes":        "<Nodes>",\n        "region":       "<Region>",\n    }\n    \n    jsonData, _ := json.Marshal(payload)\n    \n    client := &http.Client{}\n    req, _ := http.NewRequest("POST", "https://rockscraper.api.com", bytes.NewBuffer(jsonData))\n    \n    req.Header.Add("Authentication", "<your-auth-token>")\n    req.Header.Add("Content-Type", "application/json")\n    \n    resp, err := client.Do(req)\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer resp.Body.Close()\n    \n    body, _ := ioutil.ReadAll(resp.Body)\n    fmt.Println(string(body))\n}',
   },
   {
-    language: "Java",
-    baseCode:
-      'import java.io.*;\nimport java.net.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    URL url = new URL("<URL>");\n    HttpURLConnection conn = (HttpURLConnection) url.openConnection();\n    conn.setRequestMethod("GET");\n',
-    addHeaders: '    conn.setRequestProperty("<Header-Name>", "<Header-Value>");',
-    addCookies:
-      '    conn.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>");',
-    endCode:
-      "    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));\n    String inputLine;\n    while ((inputLine = in.readLine()) != null) {\n      System.out.println(inputLine);\n    }\n    in.close();\n  }\n}",
+    language: 'Java',
+    code: 'import java.io.*;\nimport java.net.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        URL url = new URL("https://rockscraper.api.com");\n        HttpURLConnection conn = (HttpURLConnection) url.openConnection();\n        conn.setRequestMethod("POST");\n        conn.setRequestProperty("Authentication", "<your-auth-token>");\n        conn.setRequestProperty("Content-Type", "application/json");\n        conn.setDoOutput(true);\n\n        String jsonInputString = "{"\n            + "\\"url\\": \\"<URL>\\","\n            + "\\"headers\\": \\"<Headers>\\","\n            + "\\"cookies\\": \\"<Cookies>\\","\n            + "\\"useAi\\": \\"<UseAi>\\","\n            + "\\"aiQuery\\": \\"<AiQuery>\\","\n            + "\\"returnMarkdown\\": \\"<ReturnMarkdown>\\","\n            + "\\"nodes\\": \\"<Nodes>\\","\n            + "\\"region\\": \\"<Region>\\""\n            + "}";\n\n        try(OutputStream os = conn.getOutputStream()) {\n            byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);\n            os.write(input, 0, input.length);\n        }\n\n        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));\n        String inputLine;\n        while ((inputLine = in.readLine()) != null) {\n            System.out.println(inputLine);\n        }\n        in.close();\n    }\n}',
   },
   {
-    language: "NodeJS",
-    baseCode: 'const url = "<URL>";\n\n',
-    addHeaders: 'const headers = { "<Header-Name>": "<Header-Value>" };',
-    addCookies: 'const cookies = "<Cookie-Name>=<Cookie-Value>";',
-    endCode:
-      'fetch(url, {\n  method: "GET",\n  headers: { ...headers, "Cookie": cookies }\n})\n  .then(response => response.text())\n  .then(data => console.log(data))\n  .catch(error => console.error("Error:", error));',
+    language: 'NodeJS',
+    code: 'const payload = {\n  url: "<URL>",\n  headers: "<Headers>",\n  cookies: "<Cookies>",\n  useAi: "<UseAi>",\n  aiQuery: "<AiQuery>",\n  returnMarkdown: "<ReturnMarkdown>",\n  nodes: "<Nodes>",\n  region: "<Region>"\n};\n\nfetch("https://rockscraper.api.com", {\n  method: "POST",\n  headers: {\n    "Authentication": "<your-auth-token>",\n    "Content-Type": "application/json"\n  },\n  body: JSON.stringify(payload)\n})\n  .then(response => response.text())\n  .then(data => console.log(data))\n  .catch(error => console.error("Error:", error));',
   },
   {
-    language: "PHP",
-    baseCode:
-      '$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, "<URL>");\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);\n',
-    addHeaders:
-      'curl_setopt($ch, CURLOPT_HTTPHEADER, array("<Header-Name>: <Header-Value>"));',
-    addCookies:
-      'curl_setopt($ch, CURLOPT_COOKIE, "<Cookie-Name>=<Cookie-Value>");',
-    endCode: "$output = curl_exec($ch);\ncurl_close($ch);\necho $output;\n",
+    language: 'PHP',
+    code: '<?php\n$ch = curl_init();\n$payload = array(\n    "url" => "<URL>",\n    "headers" => "<Headers>",\n    "cookies" => "<Cookies>",\n    "useAi" => "<UseAi>",\n    "aiQuery" => "<AiQuery>",\n    "returnMarkdown" => "<ReturnMarkdown>",\n    "nodes" => "<Nodes>",\n    "region" => "<Region>"\n);\n\ncurl_setopt($ch, CURLOPT_URL, "https://rockscraper.api.com");\ncurl_setopt($ch, CURLOPT_POST, 1);\ncurl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, true);\ncurl_setopt($ch, CURLOPT_HTTPHEADER, array(\n    "Authentication: <your-auth-token>",\n    "Content-Type: application/json"\n));\n\n$output = curl_exec($ch);\ncurl_close($ch);\necho $output;\n?>',
   },
   {
-    language: "Python",
-    baseCode: "import requests\n\n",
-    addHeaders: 'headers = {"<Header-Name>": "<Header-Value>"}',
-    addCookies: 'cookies = "<Cookie-Name>": "<Cookie-Value>"',
-    endCode:
-      'response = requests.get("<URL>", headers=headers, cookies=cookies)\nprint(response.text)',
+    language: 'Python',
+    code: 'import requests\nimport json\n\npayload = {\n    "url": "<URL>",\n    "headers": "<Headers>",\n    "cookies": "<Cookies>",\n    "useAi": "<UseAi>",\n    "aiQuery": "<AiQuery>",\n    "returnMarkdown": "<ReturnMarkdown>",\n    "nodes": "<Nodes>",\n    "region": "<Region>"\n}\n\nheaders = {\n    "Authentication": "<your-auth-token>",\n    "Content-Type": "application/json"\n}\n\nresponse = requests.post("https://rockscraper.api.com", headers=headers, json=payload)\nprint(response.text)',
   },
   {
-    language: "Rust",
-    baseCode:
-      "use reqwest::blocking::Client;\nuse std::collections::HashMap;\n\nfn main() {\n  let client = Client::new();\n  let mut headers = reqwest::header::HeaderMap::new();\n  let mut cookies = HashMap::new();\n",
-    addHeaders:
-      '  headers.insert("<Header-Name>", "<Header-Value>".parse().unwrap());',
-    addCookies: '  cookies.insert("<Cookie-Name>", "<Cookie-Value>");',
-    endCode:
-      '  let response = client.get("<URL>")\n    .headers(headers)\n    .send()\n    .unwrap();\n    \n  println!("{}", response.text().unwrap());\n}',
+    language: 'Rust',
+    code: 'use reqwest::blocking::Client;\nuse serde_json::json;\n\nfn main() {\n    let client = Client::new();\n    let mut headers = reqwest::header::HeaderMap::new();\n    \n    headers.insert("Authentication", "<your-auth-token>".parse().unwrap());\n    headers.insert("Content-Type", "application/json".parse().unwrap());\n\n    let payload = json!({\n        "url": "<URL>",\n        "headers": "<Headers>",\n        "cookies": "<Cookies>",\n        "useAi": "<UseAi>",\n        "aiQuery": "<AiQuery>",\n        "returnMarkdown": "<ReturnMarkdown>",\n        "nodes": "<Nodes>",\n        "region": "<Region>"\n    });\n\n    let response = client.post("https://rockscraper.api.com")\n        .headers(headers)\n        .json(&payload)\n        .send()\n        .unwrap();\n    \n    println!("{}", response.text().unwrap());\n}',
   },
   {
-    language: "Swift",
-    baseCode:
-      'import Foundation\n\nlet url = URL(string: "<URL>")!\nvar request = URLRequest(url: url)\nrequest.httpMethod = "GET"\n',
-    addHeaders:
-      'request.setValue("<Header-Value>", forHTTPHeaderField: "<Header-Name>")',
-    addCookies:
-      'request.setValue("<Cookie-Name>=<Cookie-Value>", forHTTPHeaderField: "Cookie")',
-    endCode:
-      "let task = URLSession.shared.dataTask(with: request) { data, response, error in\n    if let data = data {\n        print(String(data: data, encoding: .utf8)!)\n    }\n}\ntask.resume()",
+    language: 'Swift',
+    code: 'import Foundation\n\nlet url = URL(string: "https://rockscraper.api.com")!\nvar request = URLRequest(url: url)\nrequest.httpMethod = "POST"\n\nrequest.setValue("<your-auth-token>", forHTTPHeaderField: "Authentication")\nrequest.setValue("application/json", forHTTPHeaderField: "Content-Type")\n\nlet payload: [String: Any] = [\n    "url": "<URL>",\n    "headers": "<Headers>",\n    "cookies": "<Cookies>",\n    "useAi": "<UseAi>",\n    "aiQuery": "<AiQuery>",\n    "returnMarkdown": "<ReturnMarkdown>",\n    "nodes": "<Nodes>",\n    "region": "<Region>"\n]\n\nrequest.httpBody = try? JSONSerialization.data(withJSONObject: payload)\n\nlet task = URLSession.shared.dataTask(with: request) { data, response, error in\n    if let data = data {\n        print(String(data: data, encoding: .utf8)!)\n    }\n}\ntask.resume()',
   },
   {
-    language: "Ruby",
-    baseCode:
-      "require 'net/http'\nrequire 'uri'\n\nuri = URI('<URL>')\nrequest = Net::HTTP::Get.new(uri)\n",
-    addHeaders: "request['<Header-Name>'] = '<Header-Value>'",
-    addCookies: "request['Cookie'] = '<Cookie-Name>=<Cookie-Value>'",
-    endCode:
-      "response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|\n  http.request(request)\nend\n\nputs response.body",
+    language: 'Ruby',
+    code: "require 'net/http'\nrequire 'uri'\nrequire 'json'\n\nuri = URI('https://rockscraper.api.com')\nrequest = Net::HTTP::Post.new(uri)\n\nrequest['Authentication'] = '<your-auth-token>'\nrequest['Content-Type'] = 'application/json'\n\nrequest.body = {\n  url: '<URL>',\n  headers: '<Headers>',\n  cookies: '<Cookies>',\n  useAi: '<UseAi>',\n  aiQuery: '<AiQuery>',\n  returnMarkdown: '<ReturnMarkdown>',\n  nodes: '<Nodes>',\n  region: '<Region>'\n}.to_json\n\nresponse = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|\n  http.request(request)\nend\n\nputs response.body",
   },
   {
-    language: "Kotlin",
-    baseCode:
-      'import java.net.HttpURLConnection\nimport java.net.URL\n\nfun main() {\n    val url = URL("<URL>")\n    val connection = url.openConnection() as HttpURLConnection\n    connection.requestMethod = "GET"\n',
-    addHeaders:
-      '    connection.setRequestProperty("<Header-Name>", "<Header-Value>")',
-    addCookies:
-      '    connection.setRequestProperty("Cookie", "<Cookie-Name>=<Cookie-Value>")',
-    endCode:
-      "    val response = connection.inputStream.bufferedReader().use { it.readText() }\n    println(response)\n}",
+    language: 'Kotlin',
+    code: 'import java.net.HttpURLConnection\nimport java.net.URL\n\nfun main() {\n    val url = URL("https://rockscraper.api.com")\n    val connection = url.openConnection() as HttpURLConnection\n    connection.requestMethod = "POST"\n    \n    connection.setRequestProperty("Authentication", "<your-auth-token>")\n    connection.setRequestProperty("Content-Type", "application/json")\n    connection.doOutput = true\n\n    val jsonInputString = """\n        {\n            "url": "<URL>",\n            "headers": "<Headers>",\n            "cookies": "<Cookies>",\n            "useAi": "<UseAi>",\n            "aiQuery": "<AiQuery>",\n            "returnMarkdown": "<ReturnMarkdown>",\n            "nodes": "<Nodes>",\n            "region": "<Region>"\n        }\n    """.trimIndent()\n\n    connection.outputStream.use { os ->\n        val input = jsonInputString.toByteArray(charset("utf-8"))\n        os.write(input, 0, input.length)\n    }\n\n    val response = connection.inputStream.bufferedReader().use { it.readText() }\n    println(response)\n}',
   },
   {
-    language: "Perl",
-    baseCode:
-      "use LWP::UserAgent;\n\nmy $ua = LWP::UserAgent->new;\nmy $req = HTTP::Request->new(GET => '<URL>');\n",
-    addHeaders: "$req->header('<Header-Name>' => '<Header-Value>');",
-    addCookies: "$req->header('Cookie' => '<Cookie-Name>=<Cookie-Value>');",
-    endCode: "my $res = $ua->request($req);\nprint $res->decoded_content;",
+    language: 'Perl',
+    code: "use LWP::UserAgent;\nuse JSON;\n\nmy $ua = LWP::UserAgent->new;\nmy $req = HTTP::Request->new(POST => 'https://rockscraper.api.com');\n\n$req->header('Authentication' => '<your-auth-token>');\n$req->header('Content-Type' => 'application/json');\n\nmy $payload = {\n    url => '<URL>',\n    headers => '<Headers>',\n    cookies => '<Cookies>',\n    useAi => '<UseAi>',\n    aiQuery => '<AiQuery>',\n    returnMarkdown => '<ReturnMarkdown>',\n    nodes => '<Nodes>',\n    region => '<Region>'\n};\n\n$req->content(encode_json($payload));\n\nmy $res = $ua->request($req);\nprint $res->decoded_content;"
   },
   {
-    language: "Shell (wget)",
-    baseCode: "wget \u005C \n",
-    addHeaders: '--header="<Header-Name>: <Header-Value>"',
-    addCookies: '--header="Cookie: <Cookie-Name>=<Cookie-Value>"',
-    endCode: '"<URL>" -O -',
+    language: 'Shell (wget)',
+    code: 'wget --header="Authentication: <your-auth-token>" \\\n--header="Content-Type: application/json" \\\n--post-data=\'{\n  "url": "<URL>",\n  "headers": "<Headers>",\n  "cookies": "<Cookies>",\n  "useAi": "<UseAi>",\n  "aiQuery": "<AiQuery>",\n  "returnMarkdown": "<ReturnMarkdown>",\n  "nodes": "<Nodes>",\n  "region": "<Region>"\n}\' \\\n"https://rockscraper.api.com" -O -',
   },
 ];
-
-export const buildCookies = (
-  selectedCode: RequestExample,
-  cookies: string[]
-) => {
-  switch (selectedCode.language) {
-    case "NodeJS":
-      return `const cookies = "${cookies.join(", ")}";\n`;
-    case "cURL":
-      return (
-        cookies.reduce((acc, cookie, i, arr) => {
-          return (
-            acc +
-            selectedCode.addCookies.replace(
-              "<Cookie-Name>=<Cookie-Value>",
-              cookie
-            ) +
-            (i !== arr.length - 1 ? " \u005C \n" : "")
-          );
-        }, "")
-      );
-    case "Python":
-      return `cookies = "${cookies.join('", "')}"\n`;
-    case "Rust":
-      return cookies.reduce((acc, cookie) => {
-        return (
-          acc +
-          `${selectedCode.addCookies.replace(
-            '"<Cookie-Name>", "<Cookie-Value>"',
-            `"${cookie}"`
-          )}\n`
-        );
-      }, "");
-    case "Shell (wget)":
-      return selectedCode.addCookies.replace(
-        "<Cookie-Name>=<Cookie-Value>",
-        cookies.join(",")
-      ) + " \u005C \n";
-    default:
-      return selectedCode.addCookies.replace(
-        "<Cookie-Name>=<Cookie-Value>",
-        cookies.join(",")
-      ) + "\n";
-  }
-};
-
-export const buildHeaders = (
-  selectedCode: RequestExample,
-  headers: HeaderFieldInterface[]
-) => {
-  switch (selectedCode.language) {
-    case "NodeJS":
-      return `const headers = {\n${headers.reduce((acc, { key, value }, i) => {
-        return i !== 0
-          ? acc + `,\n  "${key}": "${value}"`
-          : `  "${key}": "${value}"`;
-      }, "")}\n};\n`;
-    case "cURL":
-    case "Shell (wget)":
-      return (
-        headers.reduce((acc, header) => {
-          return (
-            acc +
-            `${selectedCode.addHeaders
-              .replace("<Header-Name>", header.key)
-              .replace("<Header-Value>", header.value)} \u005C \n`
-          );
-        }, "")
-      );
-    case "PHP":
-      return selectedCode.addHeaders.replace(
-        '"<Header-Name>: <Header-Value>"',
-        headers.reduce((acc, header, i, arr) => {
-          return i !== arr.length - 1
-            ? acc + `"${header.key}: ${header.value}", `
-            : acc + `"${header.key}: ${header.value}"`;
-        }, "")
-      ) + "\n";
-    case "Python":
-      return `headers = {\n${headers.reduce((acc, { key, value }, i) => {
-        return i !== 0
-          ? acc + `,\n  "${key}": "${value}"`
-          : `  "${key}": "${value}"`;
-      }, "")}\n};\n`;
-    default:
-      return headers.reduce((acc, header) => {
-        return (
-          acc +
-          `${selectedCode.addHeaders
-            .replace("<Header-Name>", header.key)
-            .replace("<Header-Value>", header.value)}\n`
-        );
-      }, "");
-  }
-};
 
 export default languages;

@@ -1,5 +1,5 @@
 'use client';
-import { RequestExample } from '@src/utils/interfaces';
+import { CodeByLanguage } from '@src/utils/interfaces';
 import languages from '@src/utils/requests';
 import { useEffect, useState } from 'react';
 import { Button } from '../../ui/button';
@@ -19,7 +19,7 @@ const LanguageButtons = ({
 }: {
   activeLanguage: string;
   setActiveLanguage: (language: string) => void;
-  setSelectedCode: (val: RequestExample) => void;
+  setSelectedCode: (val: CodeByLanguage) => void;
 }) => {
   const [api, setApi] = useState<CarouselApi | null>(null);
 
