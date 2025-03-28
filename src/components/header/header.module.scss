@@ -26,5 +26,21 @@
     display: flex;
     gap: 8px;
   }
-  
+
+  @media only screen and (max-width: 768px) {
+    padding: 10px 16px;
+    max-width: 100vw;
+
+    &__left {
+      max-width: 40%;
+
+      &--title {
+        font-size: 14px;
+      }
+
+      &--desc {
+        font-size: 12px;
+      }
+    }
+  } // @media only screen and (max-width : 768px)
 }

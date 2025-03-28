@@ -141,5 +141,21 @@
     &__right {
       width: 100%;
     }
+
+    &__checkbox {
+      &--label {
+        & span {
+          max-width: calc(100% - 28px);
+        }
+      }
+    }
+
+    &__cost {
+      gap: 8px;
+
+      & span {
+        font-size: 14px;
+      }
+    }
   } // @media only screen and (max-width : 992px)
 }
