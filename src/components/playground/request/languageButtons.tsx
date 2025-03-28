@@ -26,11 +26,12 @@ const LanguageButtons = ({
   useEffect(() => {
     if (!api) return;
 
-    api.on('select', () => {
+    const handleSelect = () => {
       const index = api.selectedScrollSnap();
       setActiveLanguage(languages[index].language);
       setSelectedCode(languages[index]);
-    });
+    };
+    api.on('select', handleSelect);
   }, [api]);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import codeToHtml from '@src/utils/codeToHtml';
 import { RequestExample } from '@src/utils/interfaces';
 import { buildCookies, buildHeaders } from '@src/utils/requests';
 import { useEffect, useState } from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { toast } from 'sonner';
 import { usePlayground } from '../context';
 import style from './request.module.scss';
@@ -15,13 +16,6 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
     navigator.clipboard.writeText(codeString());
     toast(`Code for ${selectedCode.language} copied to clipboard`);
   };
-
-  useEffect(() => {
-    const urlInput = document.getElementById('url-input') as HTMLInputElement;
-    if (urlInput) {
-      urlInput.textContent = url;
-    }
-  }, [url]);
 
   const codeString = () => {
     const hasHeaders = headers.some((header) => header.key !== '' && header.value !== '');
@@ -54,9 +48,16 @@ const Code = ({ selectedCode }: { selectedCode: RequestExample }) => {
 
   return (
     <div className={style.play__code}>
-      <p className={style['play__code--container']} dangerouslySetInnerHTML={{ __html: code }}></p>
+      <p className={style['play__code--container']} dangerouslySetInnerHTML={{ __html: sanitizeHtml(code) }}></p>
       <div className={style['play__code--buttons']}>
-        <Button variant="destructive">Try it</Button>
+        <Button
+          variant="destructive"
+          onClick={() => {
+            toast('This feature is not available yet');
+          }}
+        >
+          Try it
+        </Button>
         <Button variant="secondary" onClick={handleCopy}>
           Copy to clipboard
         </Button>

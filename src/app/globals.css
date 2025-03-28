@@ -14,7 +14,7 @@
 }
 
 *::-webkit-scrollbar-corner {
-  background-color: none;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
