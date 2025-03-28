@@ -5,7 +5,8 @@ export const colors = {
     300: "#c5c6d0", //text
     400: "#8F9099",
     500: "#404659", // bg btn secondary
-    700: "#44464f", //line header
+    600: "#44464f", //line header
+    700: "#38393F",
     800: "#33353A", // bg graph
     900: "#1e1f25", //bg secondary
     950: "#121318", //gb primary
@@ -19,6 +20,7 @@ export const colors = {
 
   green: {
     500: "#3CB66D", //badge
+    600: "#1DA253"
   },
 
   blue: {

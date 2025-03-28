@@ -54,13 +54,13 @@ const Select = ({
       }}
       className='relative w-[204px]'
     >
-      <p className='flex items-center justify-between border border-zinc-700 bg-zinc-900 py-2.5 px-3.5 rounded-md cursor-pointer'>
+      <p className='flex items-center justify-between border border-zinc-600 bg-zinc-900 py-2.5 px-3.5 rounded-md cursor-pointer'>
         {selected}
         {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
       </p>
       <div
         className={cn(
-          "absolute border border-zinc-700 bg-zinc-900 flex-col z-20 text-zinc-100 gap-0 w-full max-h-[200px] overflow-y-auto",
+          "absolute border border-zinc-600 bg-zinc-900 flex-col z-20 text-zinc-100 gap-0 w-full max-h-[200px] overflow-y-auto",
           isOpen ? "flex" : "hidden",
           showAbove ? "bottom-full rounded-t-sm" : "top-full rounded-b-sm"
         )}

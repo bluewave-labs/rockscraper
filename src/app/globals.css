@@ -1,10 +1,10 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 * {
-  font-family: Roboto, sans-serif;
+  
 }
 
 *::-webkit-scrollbar {
@@ -26,6 +26,7 @@
   background-color: #121318;
   color: #e2e2e9;
   display: flex;
+  font-family: Roboto, sans-serif;
 }
 
 .body__right {
@@ -151,7 +152,8 @@ a {
   --color-zinc-300: #c5c6d0;
   --color-zinc-400: #8f9099;
   --color-zinc-500: #404659;
-  --color-zinc-700: #44464f;
+  --color-zinc-600: #44464f;
+  --color-zinc-700: #38393F;
   --color-zinc-800: #33353a;
   --color-zinc-900: #1e1f25;
   --color-zinc-950: #121318;
@@ -161,6 +163,7 @@ a {
   --color-purple-800: #592c4f;
 
   --color-green-500: #3cb66d;
+  --color-green-600: #1da253;
 
   --color-blue-200: #d9e2ff;
   --color-blue-300: #b0c6ff;

@@ -1,12 +1,7 @@
-import { createHighlighter, ThemeRegistrationResolved } from 'shiki';
-import rockScraperTheme from './codeTheme.json'
+import { codeToHtml as shikiCodeToHtml } from 'shiki';
 
 const codeToHtml = async (code: string) => {
-  const highlighter = await createHighlighter({
-    themes: [rockScraperTheme as unknown as ThemeRegistrationResolved],
-    langs: [],
-  });
-  const html = highlighter.codeToHtml(code, {
+  const html = await shikiCodeToHtml(code, {
     lang: 'javascript',
     theme: 'none',
   });
