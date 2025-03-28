@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-* {
-  
-}
-
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -167,6 +163,7 @@ a {
 
   --color-blue-200: #d9e2ff;
   --color-blue-300: #b0c6ff;
+  --color-blue-400: #a0bfff;
   --color-blue-500: #2e4578;
   --color-blue-600: #152e60;
   --color-blue-900: #282a2f;
