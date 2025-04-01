@@ -1,0 +1,161 @@
+.play {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+
+  &__left,
+  &__right {
+    width: 50%;
+    max-width: 570px;
+  }
+
+  &__left {
+    padding: 14px 0;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    font-size: 22px;
+    color: var(--color-zinc-100);
+
+    &.right {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-zinc-100);
+  }
+
+  &__field {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 16px;
+    min-height: 50px;
+    border: 1px solid var(--color-zinc-600);
+    border-radius: 4px;
+    gap: 8px 4px;
+
+    font-size: 14px;
+    color: var(--color-zinc-100);
+
+    &.key {
+      justify-content: space-between;
+      color: var(--color-zinc-400);
+
+      & span {
+        flex-grow: 1;
+        max-width: 90%;
+        overflow-x: auto;
+      }
+    }
+  }
+
+  &__checkbox {
+    &--label {
+      margin-bottom: 16px;
+      gap: 8px;
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+
+      font-size: 14px;
+      color: var(--color-zinc-300);
+
+      &.node {
+        margin-bottom: 0;
+        width: auto;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    border: 1px solid var(--color-zinc-600);
+    border-radius: 4px;
+    padding: 16px;
+    outline: none;
+    resize: none;
+    min-height: 230px;
+    margin-bottom: 16px;
+
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--color-zinc-100);
+  }
+
+  &__nodes {
+    &--select {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      justify-content: space-between;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__cost {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+
+    & span {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-zinc-100);
+    }
+
+    &--flag {
+      background-color: var(--color-zinc-800);
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: block;
+
+      color: var(--color-zinc-300);
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    flex-direction: column;
+    max-width: 100vw;
+
+    &__left,
+    &__right {
+      width: 100%;
+    }
+
+    &__checkbox {
+      &--label {
+        & span {
+          max-width: calc(100% - 28px);
+        }
+      }
+    }
+
+    &__cost {
+      gap: 8px;
+
+      & span {
+        font-size: 14px;
+      }
+    }
+  } // @media only screen and (max-width : 992px)
+}

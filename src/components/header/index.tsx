@@ -5,8 +5,10 @@ import routeDescription from "@src/utils/route-description";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import style from "./header.module.scss";
+import { useIsMobile } from "@src/hooks/use-mobile";
 
 const Header = () => {
+  const isMobile = useIsMobile();
   let pathname = usePathname();
 
   if (pathname === "/") {
@@ -25,7 +27,7 @@ const Header = () => {
         <p className={style["header__left--desc"]}>{info.description}</p>
       </div>
       <div className={style.header__right}>
-        <Button asChild variant={"secondary"}>
+        <Button asChild variant={"secondary"} size={isMobile ? "xs" : "default"}>
           <a
             className={style["header__right--btn"]}
             href={DISCORD}
@@ -35,7 +37,7 @@ const Header = () => {
             Discord
           </a>
         </Button>
-        <Button asChild>
+        <Button asChild size={isMobile ? "xs" : "default"}>
           <a
             className={style["header__right--btn"]}
             href={DOCUMENTATION}
