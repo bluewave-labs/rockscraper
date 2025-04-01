@@ -1,51 +1,39 @@
-"use client";
-import Checkbox from "../ui/checkbox";
-import { usePlayground } from "./context";
-import style from "./playground.module.scss";
+'use client';
+import Checkbox from '../ui/checkbox';
+import { usePlayground } from './context';
+import style from './playground.module.scss';
 
 const Output = () => {
-  const {
-    aiQuery,
-    useAi,
-    returnMarkdown,
-    setUseAi,
-    setAiQuery,
-    setReturnMarkdown,
-  } = usePlayground();
+  const { aiQuery, useAi, returnMarkdown, setUseAi, setAiQuery, setReturnMarkdown } = usePlayground();
   return (
-    <div className='mt-10'>
+    <div className="mt-10">
       <h2 className={style.play__title}>Output</h2>
-      <label htmlFor='use_ai' className={style["play__checkbox--label"]}>
-        <Checkbox
-          id='use_ai'
-          checked={useAi}
-          onChange={(e) => setUseAi(e.target.checked)}
-        />
-        <span>
-          Make an AI query on the data retrieved. This will be applied to all
-          pages.
-        </span>
+      <label htmlFor="use_ai" className={style['play__checkbox--label']}>
+        <Checkbox id="use_ai" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} />
+        <span>Make an AI query on the data retrieved. This will be applied to all pages.</span>
       </label>
+      {/* width: 100%;
+    border: 1px solid var(--color-zinc-600);
+    border-radius: 4px;
+    padding: 16px;
+    outline: none;
+    resize: none;
+    min-height: 230px;
+    margin-bottom: 16px;
+
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--color-zinc-100); */}
       <textarea
-        className={style.play__textarea}
-        placeholder='Your AI query here'
+        className="textfield w-full h-[230px] resize-none mb-4 font-mono text-sm text-gray-0"
+        placeholder="Your AI query here"
         value={aiQuery}
         onChange={(e) => setAiQuery(e.target.value)}
         disabled={!useAi}
       ></textarea>
-      <label
-        htmlFor='return_markdown'
-        className={style["play__checkbox--label"]}
-      >
-        <Checkbox
-          id='return_markdown'
-          checked={returnMarkdown}
-          onChange={(e) => setReturnMarkdown(e.target.checked)}
-        />
-        <span>
-          Return Markdown data instead of HTML. You can download your data by
-          clicking on Logs.
-        </span>
+      <label htmlFor="return_markdown" className={style['play__checkbox--label']}>
+        <Checkbox id="return_markdown" checked={returnMarkdown} onChange={(e) => setReturnMarkdown(e.target.checked)} />
+        <span>Return Markdown data instead of HTML. You can download your data by clicking on Logs.</span>
       </label>
     </div>
   );

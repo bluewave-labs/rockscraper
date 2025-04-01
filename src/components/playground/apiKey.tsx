@@ -13,8 +13,8 @@ const ApiKey = () => {
   return (
     <div className={style.play__key}>
       <h3 className={style.play__label}>Your API key</h3>
-      <p className={`${style.play__field} ${style.key}`}>
-        <span>{apiKey}</span>
+      <p className="textfield flex gap-2 opacity-50">
+        <span className="overflow-x-auto max-w-[90%]">{apiKey}</span>
         <button className="cursor-pointer" onClick={handleClick} aria-label="Copy API key to clipboard">
           <Copy size={24} />
         </button>
