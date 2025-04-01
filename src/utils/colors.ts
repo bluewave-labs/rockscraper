@@ -26,5 +26,5 @@ export const colors = {
     900: '#282A2F'
   },
 
-  // lightBackground: "#FAFAFA", // your new light background color
+  // iron-300: "#FAFAFA", // your new light background color
 };
