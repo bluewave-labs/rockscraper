@@ -200,7 +200,7 @@ function ChartTooltipContent({
                       <span className="text-gray-60">{itemConfig?.label || item.name}</span>
                     </div>
                     {item.value && (
-                      <span className="text-foreground font-mono font-medium tabular-nums">
+                      <span className="text-gray-10 font-mono font-medium tabular-nums">
                         {item.value.toLocaleString()}
                       </span>
                     )}
