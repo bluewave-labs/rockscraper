@@ -21,7 +21,7 @@
 }
 
 .sidebar-inner {
-  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm;
+  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20;
 }
 
 .card {

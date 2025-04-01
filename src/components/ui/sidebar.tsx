@@ -165,7 +165,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          `bg-[${colors.zinc[900]}] text-[${colors.zinc[100]}] flex h-full w-(--sidebar-width) flex-col`,
+          `bg-linear-[180deg] from-gray-0/12 to-gray-0/6 text-gray-10 flex h-full w-(--sidebar-width) flex-col`,
           className
         )}
         {...props}
@@ -314,7 +314,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
   );
 }
 
-function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
+function  SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
   const { toggleSidebar } = useSidebar();
 
   return (

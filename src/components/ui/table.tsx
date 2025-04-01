@@ -12,49 +12,35 @@ function Table({ className, ...props }: React.ComponentProps<'table'>) {
   );
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("[&_tr]:border-b border-[var(--color-mako-800)] bg-[var(--color-bunker-950)] text-[var(--color-mountain-mist-600)]", className)}
+      className={cn('[&_tr]:border-b border-gray-0/20 text-gray-30 bg-linear-[180deg] from-gray-0/12 to-gray-0/6', className)}
       {...props}
     />
-  )
+  );
 }
 
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
   return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0 bg-[var(--color-bunker-900)]", className)}
-      {...props}
-    />
-  )
+    <tbody data-slot="table-body" className={cn('[&_tr:last-child]:border-0', className)} {...props} />
+  );
 }
 
 function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   return (
     <tfoot
       data-slot="table-footer"
-      className={cn(
-        "bg-[var(--color-bunker-900)] border-t border-[var(--color-mako-800)] font-medium [&>tr]:last:border-b-0",
-        className
-      )}
+      className={cn('bg-gray-0/8 border-t border-gray-0/20 font-medium [&>tr]:last:border-b-0', className)}
       {...props}
     />
-  )
+  );
 }
 
-function TableHeaderRow({ className, ...props }: React.ComponentProps<"tr">) {
+function TableHeaderRow({ className, ...props }: React.ComponentProps<'tr'>) {
   return (
-    <tr
-      data-slot="table-header-row"
-      className={cn(
-        "h-[2.75rem] border-b border-[var(--color-mako-800)]",
-        className
-      )}
-      {...props}
-    />
+    <tr data-slot="table-header-row" className={cn('h-[2.75rem] border-b border-gray-0/20 ', className)} {...props} />
   );
 }
 
@@ -63,7 +49,7 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
     <tr
       data-slot="table-row"
       className={cn(
-        "hover:bg-[var(--color-bunker-950)] data-[state=selected]:bg-[var(--color-bunker-950)] border-b border-[var(--color-mako-800)] transition-colors h-[3.5rem]",
+        'hover:bg-gray-0/6 data-[state=selected]:bg-gray-60/20 border-b border-gray-0/20 transition-colors h-[3.5rem]',
         className
       )}
       {...props}
@@ -76,7 +62,7 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
     <th
       data-slot="table-head"
       className={cn(
-        "text-[var(--color-mountain-mist-600)] h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        'text-gray-30 h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
         className
       )}
       {...props}
@@ -101,14 +87,4 @@ function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) 
   return <caption data-slot="table-caption" className={cn('text-gray-60 mt-4 text-sm', className)} {...props} />;
 }
 
-export {
-  Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableHead,
-  TableRow,
-  TableHeaderRow,
-  TableCell,
-  TableCaption,
-}
+export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableHeaderRow, TableRow };
