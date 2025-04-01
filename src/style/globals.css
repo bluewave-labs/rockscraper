@@ -1,50 +1,21 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './theme.css';
+@import './custom.css';
 
 @custom-variant dark (&:is(.dark *));
-
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 4px;
-}
-
-*::-webkit-scrollbar-track {
-  background-color: var(--color-gray-100);
-  border-radius: 4px;
-}
-
-*::-webkit-scrollbar-corner {
-  background-color: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-80);
-  border-radius: 4px;
-}
-
-.body {
-  height: 100vh;
-  background-color: var(--color-gray-100);
-  color: #e2e2e9;
-  display: flex;
-  font-family: Roboto, sans-serif;
-  width: 100vw;
-}
-
-.body__right {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-a {
-  text-decoration: none;
-}
 
 :root {
   --page-padding: 2rem;
   --radius: 0.625rem;
+}
+
+.glassy-background-strong {
+  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6;
+}
+
+.glassy-background-light {
+  @apply bg-linear-[180deg] from-gray-0/8 to-gray-0/2;
 }
 
 .sidebar-inner {
