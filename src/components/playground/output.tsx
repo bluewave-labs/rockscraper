@@ -12,18 +12,6 @@ const Output = () => {
         <Checkbox id="use_ai" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} />
         <span>Make an AI query on the data retrieved. This will be applied to all pages.</span>
       </label>
-      {/* width: 100%;
-    border: 1px solid var(--color-zinc-600);
-    border-radius: 4px;
-    padding: 16px;
-    outline: none;
-    resize: none;
-    min-height: 230px;
-    margin-bottom: 16px;
-
-    font-family: monospace;
-    font-size: 14px;
-    color: var(--color-zinc-100); */}
       <textarea
         className="textfield w-full h-[230px] resize-none mb-4 font-mono text-sm text-gray-0"
         placeholder="Your AI query here"
