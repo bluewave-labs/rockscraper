@@ -76,6 +76,10 @@
         width: auto;
         flex-grow: 1;
       }
+
+      & span {
+        max-width: calc(100% - 28px);
+      }
     }
   }
 
