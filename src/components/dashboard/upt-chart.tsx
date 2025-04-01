@@ -1,5 +1,5 @@
-"use client";
-import { Card, CardContent, CardTitle } from "@src/components/ui/card";
+'use client';
+import { Card, CardContent, CardTitle } from '@src/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
@@ -7,32 +7,32 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@src/components/ui/chart";
-import { colors } from "@src/utils/colors";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+} from '@src/components/ui/chart';
+import { colors } from '@src/style/colors';
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-  { month: "July", desktop: 160, mobile: 100 },
-  { month: "August", desktop: 200, mobile: 150 },
-  { month: "September", desktop: 180, mobile: 110 },
-  { month: "October", desktop: 150, mobile: 90 },
-  { month: "November", desktop: 250, mobile: 160 },
-  { month: "December", desktop: 300, mobile: 180 },
+  { month: 'January', desktop: 186, mobile: 80 },
+  { month: 'February', desktop: 305, mobile: 200 },
+  { month: 'March', desktop: 237, mobile: 120 },
+  { month: 'April', desktop: 73, mobile: 190 },
+  { month: 'May', desktop: 209, mobile: 130 },
+  { month: 'June', desktop: 214, mobile: 140 },
+  { month: 'July', desktop: 160, mobile: 100 },
+  { month: 'August', desktop: 200, mobile: 150 },
+  { month: 'September', desktop: 180, mobile: 110 },
+  { month: 'October', desktop: 150, mobile: 90 },
+  { month: 'November', desktop: 250, mobile: 160 },
+  { month: 'December', desktop: 300, mobile: 180 },
 ];
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: 'Desktop',
     color: colors.blue[300],
   },
   mobile: {
-    label: "Mobile",
+    label: 'Mobile',
     color: colors.zinc[800],
   },
 } satisfies ChartConfig;
