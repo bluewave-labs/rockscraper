@@ -14,6 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableHeaderRow,
 } from "./table"
 
 interface DataTableProps<TData, TValue> {
@@ -32,14 +33,14 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="rounded-md border overflow-hidden">
+    <div className="rounded-xl overflow-hidden border border-[var(--color-mako-800)]">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableHeaderRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead className="bg-lightBackground" key={header.id}>
+                  <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -49,7 +50,7 @@ export function DataTable<TData, TValue>({
                   </TableHead>
                 )
               })}
-            </TableRow>
+            </TableHeaderRow>
           ))}
         </TableHeader>
         <TableBody>

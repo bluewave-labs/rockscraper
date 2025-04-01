@@ -12,3 +12,11 @@ export interface HeaderFieldInterface {
   value: string;
   id: string;
 }
+
+export type QueryData = {
+  domain: string;
+  lastQuery: string;
+  duration: number;
+  cost: number;
+  action: string;
+};
