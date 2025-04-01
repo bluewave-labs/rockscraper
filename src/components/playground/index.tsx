@@ -14,7 +14,7 @@ const Playground = () => {
   return (
     <div className={style.play}>
       <div className={style.play__left}>
-        <h2 className={style.play__title}>Fine tune your query</h2>
+        <h2 className="text-xl text-gray-20 mb-6">Fine tune your query</h2>
         <Headers />
         <Cookies />
         <Output />
