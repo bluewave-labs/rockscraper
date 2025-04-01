@@ -174,7 +174,7 @@ function CarouselPrevious({
       className={cn(
         'absolute size-12 cursor-pointer z-10 text-zinc-300',
         orientation === 'horizontal'
-          ? 'top-1/2 -left-6 -translate-y-1/2 text-3xl bg-gradient-to-l from-transparent to-zinc-900 to-60%'
+          ? 'top-1/2 -left-9 -translate-y-1/2 text-2xl'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
@@ -182,7 +182,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronLeft />
+      <ChevronLeft size={24} />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -206,7 +206,7 @@ function CarouselNext({
       className={cn(
         'absolute size-12 cursor-pointer text-zinc-300',
         orientation === 'horizontal'
-          ? 'top-1/2 -right-3 -translate-y-1/2 text-3xl bg-gradient-to-r from-transparent to-zinc-900 to-40%'
+          ? 'top-1/2 -right-9 -translate-y-1/2 text-2xl'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
