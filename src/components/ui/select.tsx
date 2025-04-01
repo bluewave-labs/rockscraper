@@ -52,15 +52,15 @@ const Select = ({
         }
         setIsOpen(!isOpen);
       }}
-      className='relative w-[204px]'
+      className='select'
     >
-      <p className='flex items-center justify-between border border-zinc-600 bg-zinc-900 py-2.5 px-3.5 rounded-md cursor-pointer'>
+      <p className='select-selected'>
         {selected}
         {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
       </p>
       <div
         className={cn(
-          "absolute border border-zinc-600 bg-zinc-900 flex-col z-20 text-zinc-100 gap-0 w-full max-h-[200px] overflow-y-auto",
+          "select-container",
           isOpen ? "flex" : "hidden",
           showAbove ? "bottom-full rounded-t-sm" : "top-full rounded-b-sm"
         )}
@@ -73,8 +73,8 @@ const Select = ({
               setIsOpen(false);
             }}
             className={cn(
-              'py-2 px-3 text-sm w-full text-left hover:bg-zinc-800 cursor-pointer',
-              selected === item ? "bg-zinc-800" : ""
+              'select-option',
+              selected === item ? "bg-gray-0/12" : ""
             )}
           >
             {item}

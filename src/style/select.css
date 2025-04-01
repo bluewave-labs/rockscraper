@@ -1,0 +1,15 @@
+.select {
+  @apply relative w-[204px];
+}
+
+.select-selected {
+  @apply flex items-center justify-between border-[0.5px] bg-gray-40/12 border-gray-0/20 py-2.5 px-3.5 rounded-md cursor-pointer;
+}
+
+.select-container {
+  @apply absolute border bg-gray-80 border-gray-0/20 flex-col z-20 text-gray-10 gap-0 w-full max-h-[200px] overflow-y-auto;
+}
+
+.select-option {
+  @apply py-2 px-3 text-sm w-full text-left hover:bg-gray-0/12 cursor-pointer;
+}

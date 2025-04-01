@@ -3,6 +3,7 @@
 @import './theme.css';
 @import './custom.css';
 @import './button.css';
+@import './select.css';
 
 @custom-variant dark (&:is(.dark *));
 
