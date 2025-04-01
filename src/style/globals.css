@@ -155,7 +155,7 @@ a {
   --color-zinc-400: #8f9099;
   --color-zinc-500: #404659;
   --color-zinc-600: #44464f;
-  --color-zinc-700: #38393F;
+  --color-zinc-700: #38393f;
   --color-zinc-800: #33353a;
   --color-zinc-900: #1e1f25;
   --color-zinc-950: #121318;
@@ -175,5 +175,19 @@ a {
   --color-blue-900: #282a2f;
 
   /* This can be for dark mode and fafafa for light mode. But I couldn't make this work */
-  --color-lightBackground: #D1D1D1; 
+  --color-lightBackground: #d1d1d1;
+
+  --color-gray-100: '#010314';
+  --color-gray-95: '#0B0D1C';
+  --color-gray-90: '#171825';
+  --color-gray-85: '#212230';
+  --color-gray-80: '#2A2B3A';
+  --color-gray-70: '#383A4D';
+  --color-gray-60: '#5E6077';
+  --color-gray-50: '#9FA2B9';
+  --color-gray-40: '#BABCD2';
+  --color-gray-30: '#DFE1F4';
+  --color-gray-20: '#ECECFB';
+  --color-gray-10: '#F4F4FF';
+  --color-gray-0: '#FFFFFF';
 }
