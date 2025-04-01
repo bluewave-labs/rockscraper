@@ -25,6 +25,7 @@ a {
 }
 
 :root {
+  --page-padding: 2rem;
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -150,4 +151,15 @@ a {
   --color-blue-500: #2e4578;
   --color-blue-600: #152e60;
   --color-blue-900: #282A2F;
+
+  /* website to generate tailwind css colors: https://uicolors.app/generate */
+
+  /* Table Header text color */
+  --color-mountain-mist-600: #8F9099;
+  /* Table Border color */
+  --color-mako-800: #44464F;
+/* Table Header Background color */
+  --color-bunker-950: #121318;
+    /* Table Body Background */
+    --color-bunker-900: #1A1B20;
 }
