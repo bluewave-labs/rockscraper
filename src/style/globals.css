@@ -10,7 +10,7 @@
 }
 
 *::-webkit-scrollbar-track {
-  background-color: var(--color-zinc-950);
+  background-color: var(--color-gray-100);
   border-radius: 4px;
 }
 
@@ -19,13 +19,13 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--color-zinc-900);
+  background-color: var(--color-gray-80);
   border-radius: 4px;
 }
 
 .body {
   height: 100vh;
-  background-color: #121318;
+  background-color: var(--color-gray-100);
   color: #e2e2e9;
   display: flex;
   font-family: Roboto, sans-serif;
@@ -45,4 +45,8 @@ a {
 :root {
   --page-padding: 2rem;
   --radius: 0.625rem;
+}
+
+.sidebar-inner {
+  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm;
 }

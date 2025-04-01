@@ -27,17 +27,20 @@
   /* This can be for dark mode and fafafa for light mode. But I couldn't make this work */
   --color-lightBackground: #d1d1d1;
 
-  --color-gray-100: '#010314';
-  --color-gray-95: '#0B0D1C';
-  --color-gray-90: '#171825';
-  --color-gray-85: '#212230';
-  --color-gray-80: '#2A2B3A';
-  --color-gray-70: '#383A4D';
-  --color-gray-60: '#5E6077';
-  --color-gray-50: '#9FA2B9';
-  --color-gray-40: '#BABCD2';
-  --color-gray-30: '#DFE1F4';
-  --color-gray-20: '#ECECFB';
-  --color-gray-10: '#F4F4FF';
-  --color-gray-0: '#FFFFFF';
+  --color-gray-100: #010314;
+  --color-gray-95: #0B0D1C;
+  --color-gray-90: #171825;
+  --color-gray-85: #212230;
+  --color-gray-80: #2A2B3A;
+  --color-gray-70: #383A4D;
+  --color-gray-60: #5E6077;
+  --color-gray-50: #9FA2B9;
+  --color-gray-40: #BABCD2;
+  --color-gray-30: #DFE1F4;
+  --color-gray-20: #ECECFB;
+  --color-gray-10: #F4F4FF;
+  --color-gray-0: #FFFFFF;
+
+  --color-glass-0: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+  --color-glass-10: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
