@@ -14,7 +14,6 @@ const AppSidebar = () => {
         <Content />
         <Footer />
       </Sidebar>
-      {isMobile ? <SidebarTrigger /> : null}
     </div>
   );
 };

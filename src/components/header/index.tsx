@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import style from "./header.module.scss";
 import { useIsMobile } from "@src/hooks/use-mobile";
+import { SidebarTrigger } from "../ui/sidebar";
 
 const Header = () => {
   const isMobile = useIsMobile();

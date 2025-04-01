@@ -29,6 +29,7 @@
   color: #e2e2e9;
   display: flex;
   font-family: Roboto, sans-serif;
+  width: 100vw;
 }
 
 .body__right {

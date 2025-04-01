@@ -1,20 +1,12 @@
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
-import { ChevronsUpDown } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
-import {
-  SidebarFooter,
-  SidebarMenu,
-  SidebarMenuItem,
-  useSidebar,
-} from "../ui/sidebar";
-import style from "./sidebar.module.scss";
+import { DropdownMenu, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+import { ChevronsUpDown } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { DropdownMenuContent, DropdownMenuItem } from '../ui/dropdown-menu';
+import { SidebarFooter, SidebarMenu, SidebarMenuItem, useSidebar } from '../ui/sidebar';
+import style from './sidebar.module.scss';
 
 const Footer = () => {
-  const { open } = useSidebar();
+  const { open, isMobile, openMobile } = useSidebar();
   return (
     <SidebarFooter>
       <SidebarMenu>
@@ -23,16 +15,14 @@ const Footer = () => {
             <DropdownMenuTrigger asChild>
               <div className={style.sidebar__menu}>
                 <Avatar>
-                  <AvatarImage src='https://placecats.com/32/32' />
+                  <AvatarImage src="https://placecats.com/32/32" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                {open ? (
+                {open || (isMobile && openMobile) ? (
                   <>
-                    <div className={style["sidebar__menu--info"]}>
-                      <h3 className={style["sidebar__menu--name"]}>John Doe</h3>
-                      <p className={style["sidebar__menu--email"]}>
-                        john.doe@email.com
-                      </p>
+                    <div className={style['sidebar__menu--info']}>
+                      <h3 className={style['sidebar__menu--name']}>John Doe</h3>
+                      <p className={style['sidebar__menu--email']}>john.doe@email.com</p>
                     </div>
                     <ChevronsUpDown size={16} />
                   </>
@@ -40,7 +30,7 @@ const Footer = () => {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              side='top'
+              side="top"
               className={`w-[--radix-popper-anchor-width] bg-zinc-500 text-zinc-200 border-transparent`}
             >
               <DropdownMenuItem>
