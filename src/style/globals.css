@@ -21,3 +21,13 @@
 .sidebar-inner {
   @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm;
 }
+
+.card {
+  backdrop-filter: blur(24px);
+  @apply bg-gray-0/8 text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20;
+}
+
+.card-clickable {
+  backdrop-filter: blur(24px);
+  @apply bg-gray-0/8 text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20 cursor-pointer hover:bg-linear-[180deg] hover:from-gray-0/12 hover:to-gray-0/6 hover:bg-transparent hover:border-gray-0/30;
+}
