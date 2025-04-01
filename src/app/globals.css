@@ -41,6 +41,7 @@ a {
 }
 
 :root {
+  --page-padding: 2rem;
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -172,4 +173,7 @@ a {
   --color-blue-500: #2e4578;
   --color-blue-600: #152e60;
   --color-blue-900: #282a2f;
+
+  /* This can be for dark mode and fafafa for light mode. But I couldn't make this work */
+  --color-lightBackground: #D1D1D1; 
 }
