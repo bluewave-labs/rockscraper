@@ -2,7 +2,7 @@
 
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
+import { Menu, PanelLeftIcon } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '@src/components/ui/button';
@@ -212,11 +212,7 @@ function Sidebar({
           )}
           {...props}
         >
-          <div
-            data-sidebar="sidebar"
-            data-slot="sidebar-inner"
-            className="sidebar-inner"
-          >
+          <div data-sidebar="sidebar" data-slot="sidebar-inner" className="sidebar-inner">
             {children}
             <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
               <SheetContent
@@ -280,11 +276,7 @@ function Sidebar({
         )}
         {...props}
       >
-        <div
-          data-sidebar="sidebar"
-          data-slot="sidebar-inner"
-          className="sidebar-inner"
-        >
+        <div data-sidebar="sidebar" data-slot="sidebar-inner" className="sidebar-inner">
           {children}
         </div>
       </div>
@@ -293,7 +285,7 @@ function Sidebar({
 }
 
 function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
 
   return (
     <Button
@@ -308,13 +300,13 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      {isMobile ? <Menu /> : <PanelLeftIcon />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
 }
 
-function  SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
+function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -369,7 +361,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn(`flex items-center justify-between gap-2 p-2 text-zinc-300 font-semibold`, className)}
+      className={cn(`flex items-center justify-between gap-2 p-2 text-gray-30 font-semibold`, className)}
       {...props}
     />
   );
@@ -434,7 +426,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        `text-[${colors.zinc[100]}] ring-gray-60 flex h-8 shrink-0 items-center rounded-md px-2 text-sm font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0`,
+        `text-[${colors.gray[10]}] ring-gray-60 flex h-8 shrink-0 items-center rounded-md px-2 text-sm font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0`,
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}
@@ -500,12 +492,12 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  `text-[${colors.zinc[200]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-gray-60 transition-[width,height,padding] hover:bg-zinc-500 focus-visible:ring-2 active:bg-zinc-500 active:text-[${colors.zinc[200]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-zinc-500 data-[state=open]:hover:bg-zinc-500 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  `text-[${colors.gray[20]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-gray-60 transition-[width,height,padding] hover:bg-gray-50 focus-visible:ring-2 active:bg-gray-50 active:text-[${colors.gray[20]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-50ata-[state=open]:hover:bg-gray-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: `hover:bg-zinc-500 hover:text-[${colors.zinc[200]}]`,
-        outline: `hover:bg-[${colors.zinc[200]}] hover:text-zinc-500`,
+        default: `hover:bg-gray-50 hover:text-[${colors.gray[20]}]`,
+        outline: `hover:bg-[${colors.gray[20]}] hover:text-gray-50`,
       },
       size: {
         default: 'text-sm px-2 py-3.5',
