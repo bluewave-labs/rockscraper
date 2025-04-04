@@ -7,7 +7,7 @@ const Output = () => {
   const { aiQuery, useAi, returnMarkdown, setUseAi, setAiQuery, setReturnMarkdown } = usePlayground();
   return (
     <div className="mt-10">
-      <h2  className="text-xl text-gray-20 mb-6">Output</h2>
+      <h2 className="text-xl text-gray-20 mb-6">Output</h2>
       <label htmlFor="use_ai" className={style['play__checkbox--label']}>
         <Checkbox id="use_ai" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} />
         <span>Make an AI query on the data retrieved. This will be applied to all pages.</span>

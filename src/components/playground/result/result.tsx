@@ -24,7 +24,7 @@ const QueryResult = () => {
 
   return (
     <div>
-      <h2 className={mainStyle.play__title}>Your query result</h2>
+      <h2 className="text-xl text-gray-20 mb-6">Your query result</h2>
       <div className={style.play__content}>
         <div className={style['play__content--info']}>
           <p className={`${style['play__content--flag']} ${style.success}`}>200 (success)</p>

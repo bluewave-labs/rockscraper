@@ -172,7 +172,7 @@ function CarouselPrevious({
       size={size}
       rounded={rounded}
       className={cn(
-        'absolute size-12 cursor-pointer z-10 text-zinc-300',
+        'absolute size-12 cursor-pointer z-10 text-gray-30',
         orientation === 'horizontal'
           ? 'top-1/2 -left-9 -translate-y-1/2 text-2xl'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -204,7 +204,7 @@ function CarouselNext({
       size={size}
       rounded={rounded}
       className={cn(
-        'absolute size-12 cursor-pointer text-zinc-300',
+        'absolute size-12 cursor-pointer text-gray-30',
         orientation === 'horizontal'
           ? 'top-1/2 -right-9 -translate-y-1/2 text-2xl'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
