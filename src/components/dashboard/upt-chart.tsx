@@ -33,7 +33,7 @@ const chartConfig = {
   },
   mobile: {
     label: 'Mobile',
-    color: colors.zinc[800],
+    color: colors.gray[70],
   },
 } satisfies ChartConfig;
 

@@ -29,7 +29,7 @@ const chartData = [
 
 const chartConfig = {
   desktop: { label: 'Desktop', color: colors.blue[300] },
-  mobile: { label: 'Mobile', color: colors.zinc[800] },
+  mobile: { label: 'Mobile', color: colors.gray[70] },
 } satisfies ChartConfig;
 
 const ScrapeChart = () => {
