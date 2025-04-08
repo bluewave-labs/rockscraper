@@ -20,5 +20,9 @@
         outline: none;
       }
     }
+
+    &--delete {
+      cursor: pointer;
+    }
   }
 }
