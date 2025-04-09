@@ -45,14 +45,24 @@ const Nodes = () => {
           />
           <span>Select from a group of continents</span>
         </label>
-        <Select selected={continent} list={continents} onChange={(val) => setContinent(val)} />
+        <Select
+          selected={continent}
+          list={continents}
+          onChange={(val) => setContinent(val)}
+          disabled={option === 'continent'}
+        />
       </div>
       <div className={style['play__nodes--select']}>
         <label htmlFor="country" className={`${style['play__checkbox--label']} ${style.node}`}>
           <Radio checked={option === 'country'} name="node" value="country" id="country" onChange={handleChange} />
           <span>Select from a group of countries</span>
         </label>
-        <Select selected={country} list={countries} onChange={(val) => setCountry(val)} />
+        <Select
+          selected={country}
+          list={countries}
+          onChange={(val) => setCountry(val)}
+          disabled={option === 'country'}
+        />
       </div>
     </div>
   );
