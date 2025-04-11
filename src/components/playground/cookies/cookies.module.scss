@@ -1,0 +1,28 @@
+.play {
+  &__cookies {
+    margin-bottom: 24px;
+
+    &--item {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      border: 1px solid var(--color-zinc-600);
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    &--input {
+      flex-grow: 1;
+      outline: none;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    &--delete {
+      cursor: pointer;
+    }
+  }
+}
