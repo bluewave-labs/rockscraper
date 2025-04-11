@@ -20,6 +20,11 @@
 .body {
   height: 100vh;
   background-color: var(--color-gray-100);
+  background-image: url('../assets/blur.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   color: #e2e2e9;
   display: flex;
   font-family: Roboto, sans-serif;
