@@ -73,7 +73,6 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
       <p className={style['play__code--container']} dangerouslySetInnerHTML={{ __html: sanitizeHtml(code) }}></p>
       <div className={style['play__code--buttons']}>
         <Button
-          variant="action"
           onClick={() => {
             toast('This feature is not available yet');
           }}

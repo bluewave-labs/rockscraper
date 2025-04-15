@@ -1,14 +1,14 @@
-import { Card } from "../ui/card";
-import ApiKey from "./apiKey";
-import Cookies from "./cookies/cookies";
-import Headers from "./headers/headers";
-import Nodes from "./nodes";
-import Output from "./output";
-import style from "./playground.module.scss";
-import Request from "./request/request";
-import QueryResult from "./result/result";
-import RightTitle from "./rightTitle";
-import Url from "./url";
+import { Card } from '@bluewavelabs/prism-ui';
+import ApiKey from './apiKey';
+import Cookies from './cookies/cookies';
+import Headers from './headers/headers';
+import Nodes from './nodes';
+import Output from './output';
+import style from './playground.module.scss';
+import Request from './request/request';
+import QueryResult from './result/result';
+import RightTitle from './rightTitle';
+import Url from './url';
 
 const Playground = () => {
   return (
