@@ -4,7 +4,7 @@ import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-reac
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as React from 'react';
 
-import { Button } from '@src/components/ui/button';
+import { Button } from '@bluewavelabs/prism-ui';
 import { cn } from '@src/lib/utils';
 
 type CarouselApi = UseEmblaCarouselType[1];

@@ -1,3 +1,4 @@
+'use client'
 import { Card } from '@bluewavelabs/prism-ui';
 import ApiKey from './apiKey';
 import Cookies from './cookies/cookies';

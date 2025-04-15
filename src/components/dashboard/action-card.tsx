@@ -1,7 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@bluewavelabs/prism-ui';
-import { Button } from '../ui/button';
+import { Button, Card, CardContent, CardDescription, CardFooter, CardTitle } from '@bluewavelabs/prism-ui';
 
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
