@@ -2,7 +2,7 @@
 import { CodeByLanguage } from '@src/utils/interfaces';
 import languages from '@src/utils/requests';
 import { useEffect, useState } from 'react';
-import { Button } from '../../ui/button';
+import { Button } from '@bluewavelabs/prism-ui';
 import {
   Carousel,
   CarouselContent,

@@ -1,4 +1,4 @@
-import { Button } from '@src/components/ui/button';
+import { Button } from '@bluewavelabs/prism-ui';
 import codeToHtml from '@src/utils/codeToHtml';
 import { CodeByLanguage } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
