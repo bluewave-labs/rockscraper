@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@src/components/ui/button';
+import { Button } from '@bluewavelabs/prism-ui';
 import codeToHtml from '@src/utils/codeToHtml';
 import dummy_data from '@src/utils/dummy_data';
 import { useEffect, useState } from 'react';
