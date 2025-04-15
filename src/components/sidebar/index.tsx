@@ -1,19 +1,43 @@
 'use client';
-import { Sidebar, SidebarRail } from '../ui/sidebar';
-import Content from './content';
-import Footer from './footer';
-import Header from './header';
-import style from './sidebar.module.scss';
+import { AppSidebar as Sidebar, SidebarProvider } from '@bluewavelabs/prism-ui';
+import { BookOpen, Bot, Settings2, SquareTerminal } from 'lucide-react';
+
+const items_nav = [
+  {
+    title: 'Dashboard',
+    url: '/',
+    icon: <SquareTerminal />,
+  },
+  {
+    title: 'Playground',
+    url: '/playground',
+    icon: <Bot />,
+  },
+  {
+    title: 'Logs & data',
+    url: '/logs-data',
+    icon: <BookOpen />,
+  },
+  {
+    title: 'Settings',
+    url: '/settings',
+    icon: <Settings2 />,
+  },
+];
 
 const AppSidebar = () => {
   return (
-    <div className={style.sidebar}>
-      <Sidebar collapsible="icon">
-        <Header />
-        <Content />
-        <Footer />
-      </Sidebar>
-    </div>
+    <SidebarProvider>
+      <Sidebar
+        product="RockScraper"
+        nav={[
+          {
+            label: 'Platform',
+            items: items_nav,
+          },
+        ]}
+      />
+    </SidebarProvider>
   );
 };
 
