@@ -28,7 +28,7 @@ const chartData = [
 ];
 
 const chartConfig = {
-  desktop: { label: 'Desktop', color: colors.blue[300] },
+  desktop: { label: 'Desktop', color: colors.blue[30] },
   mobile: { label: 'Mobile', color: colors.gray[70] },
 } satisfies ChartConfig;
 
