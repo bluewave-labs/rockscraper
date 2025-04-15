@@ -1,9 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import './theme.css';
+@import '@bluewavelabs/prism-ui/theme.css';
 @import './custom.css';
-@import './button.css';
-@import './select.css';
+@import './theme.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -20,26 +19,6 @@
   @apply bg-linear-[180deg] from-gray-0/8 to-gray-0/2;
 }
 
-.sidebar-inner {
-  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20;
-}
-
-.card {
-  @apply bg-gray-0/8 text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20 backdrop-filter backdrop-blur-xl;
-}
-
-.card-clickable {
-  @apply bg-gray-0/8 text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20 cursor-pointer backdrop-filter backdrop-blur-xl hover:bg-linear-[180deg] hover:from-gray-0/12 hover:to-gray-0/6 hover:bg-transparent hover:border-gray-0/30;
-}
-
 .textfield {
   @apply file:text-gray-10 placeholder:text-gray-20 selection:bg-gray-20 selection:text-gray-10 bg-gray-40/12 border-gray-0/20 flex w-full min-w-0 rounded-lg border-[0.5px] px-4 py-3 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 focus-visible:border-gray-60 focus-visible:ring-gray-60/50 focus-visible:ring-[3px] aria-invalid:ring-red-800/20 dark:aria-invalid:ring-red-800/40 aria-invalid:border-red-800 min-h-[50px];
-}
-
-.checkbox {
-  @apply w-5 h-5 relative appearance-none rounded-sm after:w-full after:h-full after:absolute after:top-0 after:left-0 checked:after:bg-blue-500 checked:after:border-blue-500 after:border after:border-gray-85 after:bg-gray-85 after:rounded-sm after:cursor-pointer before:w-2 before:h-3.5 before:absolute before:top-[1px] before:left-[6px] checked:before:border-r-2 checked:before:border-b-2 before:border-blue-200 before:z-10 before:rotate-45;
-}
-
-.radio {
-  @apply w-5 h-5 relative appearance-none rounded-full after:rounded-full after:w-5 after:h-5 after:absolute after:top-0 after:left-0 checked:after:bg-blue-500 checked:after:border-blue-500 after:border after:border-gray-70 after:cursor-pointer before:w-2 before:h-2 before:absolute before:top-1/2 before:left-1/2 before:transform before:-translate-x-1/2 before:-translate-y-1/2 checked:before:bg-blue-200 before:z-10 before:rounded-full;
 }
