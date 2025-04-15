@@ -37,7 +37,7 @@ const LogsData = () => {
 
   return (
     <div className={styles.container}>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} className='text-left' />
     </div>
   );
 };
