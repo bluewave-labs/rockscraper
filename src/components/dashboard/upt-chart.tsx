@@ -1,5 +1,5 @@
 'use client';
-import { Card, CardContent, CardTitle } from '@src/components/ui/card';
+import { Card, CardContent, CardTitle } from '@bluewavelabs/prism-ui';
 import {
   ChartConfig,
   ChartContainer,

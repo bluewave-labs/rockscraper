@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
-import {
-    Card,
-    CardDescription,
-    CardTitle,
-  } from "@src/components/ui/card";
+import { Card, CardDescription, CardTitle } from '@bluewavelabs/prism-ui';
 
 const InfoCard = ({ title, description }: { title: string; description: string }) => (
-    <Card>
-      <CardTitle>{title}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-    </Card>
-  );
+  <Card>
+    <CardTitle>{title}</CardTitle>
+    <CardDescription>{description}</CardDescription>
+  </Card>
+);
 
-  export default InfoCard
+export default InfoCard;
