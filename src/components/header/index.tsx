@@ -1,10 +1,10 @@
 'use client';
+import { Button } from '@bluewavelabs/prism-ui';
 import { useIsMobile } from '@src/hooks/use-mobile';
 import { RoutesType } from '@src/utils/interfaces';
 import { DISCORD, DOCUMENTATION } from '@src/utils/links';
 import routeDescription from '@src/utils/route-description';
 import { usePathname } from 'next/navigation';
-import { Button } from '../ui/button';
 import style from './header.module.scss';
 
 const Header = () => {
