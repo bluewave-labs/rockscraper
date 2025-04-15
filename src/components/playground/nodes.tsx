@@ -1,7 +1,6 @@
 'use client';
+import { Radio, Select } from '@bluewavelabs/prism-ui';
 import { useEffect, useState } from 'react';
-import Radio from '../ui/radio';
-import Select from '../ui/select';
 import { usePlayground } from './context';
 import style from './playground.module.scss';
 
@@ -47,9 +46,9 @@ const Nodes = () => {
         </label>
         <Select
           selected={continent}
-          list={continents}
-          onChange={(val) => setContinent(val)}
-          disabled={option === 'continent'}
+          options={continents}
+          onSelect={(val) => setContinent(val)}
+          disabled={option !== 'continent'}
         />
       </div>
       <div className={style['play__nodes--select']}>
@@ -59,9 +58,9 @@ const Nodes = () => {
         </label>
         <Select
           selected={country}
-          list={countries}
-          onChange={(val) => setCountry(val)}
-          disabled={option === 'country'}
+          options={countries}
+          onSelect={(val) => setCountry(val)}
+          disabled={option !== 'country'}
         />
       </div>
     </div>
