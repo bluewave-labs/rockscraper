@@ -1,40 +1,5 @@
 .play {
   &__content {
-    display: flex;
-    flex-direction: column;
-    &--info {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 16px;
-      align-items: center;
-    }
-
-    &--flag {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 8px;
-      border-radius: 4px;
-
-      font-size: 12px;
-      font-weight: 500;
-
-      &.success {
-        background-color: #3cb66d;
-        border: 1px solid #1da253;
-      }
-
-      &.fail {
-        background-color: #fb2c36;
-        border: 1px solid #e7000b;
-      }
-    }
-
-    &--time {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--color-gray-300);
-    }
 
     &--result {
       background-color: #38393f;

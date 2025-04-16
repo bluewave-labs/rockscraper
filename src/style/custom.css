@@ -31,6 +31,13 @@
   width: 100vw;
 }
 
+@media screen and (max-width: 768px) {
+  .body {
+    position: relative;
+    flex-direction: column;
+  }
+}
+
 .body__right {
   flex-grow: 1;
   display: flex;

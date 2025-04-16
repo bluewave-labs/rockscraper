@@ -28,7 +28,7 @@ const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; 
   };
 
   return (
-    <div key={id} className={style['play__headers--item']}>
+    <div key={id} className="flex gap-4 mb-4 flex-col md:flex-row">
       <Input
         placeholder="Header name"
         id={`key-${id}`}

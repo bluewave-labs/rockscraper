@@ -2,9 +2,7 @@
 'use client';
 import { useEffect } from 'react';
 import { usePlayground } from '../context';
-import mainStyle from '../playground.module.scss';
 import HeaderField from './headerField';
-import style from './headers.module.scss';
 
 const Headers = () => {
   const { headers, setHeaders } = usePlayground();
@@ -16,23 +14,21 @@ const Headers = () => {
   }, []);
 
   return (
-    <div className={style.play__headers}>
-      <label htmlFor="headers" className={mainStyle['play__label']}>
+    <div className="mb-6 min-h-[96px]">
+      <label htmlFor="headers" className="mb-2 flex items-center justify-between w-full font-medium text-gray-10">
         Custom headers{' '}
         <button
           onClick={() => {
             console.log('headers', headers);
             setHeaders([...headers, { key: '', value: '', id: Date.now().toString() }]);
           }}
-          className={style['play__headers--add']}
+          className="text-xl cursor-pointer"
         >
           +
         </button>
       </label>
 
-      {headers?.map(({ key, value, id }) => (
-        <HeaderField key={id} id={id} headerKey={key} value={value} />
-      ))}
+      {headers?.map(({ key, value, id }) => <HeaderField key={id} id={id} headerKey={key} value={value} />)}
     </div>
   );
 };

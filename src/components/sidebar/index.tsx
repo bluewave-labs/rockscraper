@@ -36,6 +36,9 @@ const AppSidebar = () => {
             items: items_nav,
           },
         ]}
+        logOut={() => {
+          console.log('logOut');
+        }}
       />
     </SidebarProvider>
   );

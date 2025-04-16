@@ -1,4 +1,4 @@
-import { Button } from '@bluewavelabs/prism-ui';
+import { Button, useIsMobile } from '@bluewavelabs/prism-ui';
 import codeToHtml from '@src/utils/codeToHtml';
 import { CodeByLanguage } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import style from './request.module.scss';
 
 const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
   const { headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey } = usePlayground();
+  const isMobile = useIsMobile();
   const [code, setCode] = useState('');
 
   const handleCopy = () => {
@@ -71,15 +72,16 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
   return (
     <div className={style.play__code}>
       <p className={style['play__code--container']} dangerouslySetInnerHTML={{ __html: sanitizeHtml(code) }}></p>
-      <div className={style['play__code--buttons']}>
+      <div className="flex gap-1 md:gap-2 justify-end sticky bottom-0 right-0 -mr-3.5 md:mr-0 -mb-3.5 md:mb-0">
         <Button
           onClick={() => {
             toast('This feature is not available yet');
           }}
+          size={isMobile ? 'xs' : 'default'}
         >
           Try it
         </Button>
-        <Button variant="secondary" onClick={handleCopy}>
+        <Button variant="secondary" onClick={handleCopy} size={isMobile ? 'xs' : 'default'}>
           Copy to clipboard
         </Button>
       </div>

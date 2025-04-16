@@ -7,4 +7,8 @@ export const colors = {
     700: '#593D5A', // bg button try
     800: '#592c4f', // bg button primary
   },
+  green: {
+    500: '#3cb66d',
+    600: '#1da253',
+  },
 };

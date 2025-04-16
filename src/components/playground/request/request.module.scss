@@ -24,14 +24,5 @@
       font-family: monospace;
       padding-bottom: 16px;
     }
-
-    &--buttons {
-      display: flex;
-      gap: 8px;
-      position: sticky;
-      bottom: 0;
-      right: 0;
-      justify-content: flex-end;
-    }
   }
 }

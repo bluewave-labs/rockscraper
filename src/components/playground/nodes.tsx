@@ -2,7 +2,6 @@
 import { Radio, Select } from '@bluewavelabs/prism-ui';
 import { useEffect, useState } from 'react';
 import { usePlayground } from './context';
-import style from './playground.module.scss';
 
 const countries = ['USA', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'Chile'];
 const continents = ['North America', 'South America', 'Europe', 'Asia', 'Africa'];
@@ -27,14 +26,14 @@ const Nodes = () => {
   }, [continent, country, option]);
 
   return (
-    <div className={style.play__nodes}>
+    <div>
       <h2 className="text-xl text-gray-20 mb-6">Manage nodes</h2>
-      <label htmlFor="random" className={`${style['play__checkbox--label']} ${style.node}`}>
+      <label htmlFor="random" className="mb-4 gap-2 flex items-start grow text-sm text-gray-30">
         <Radio checked={option === 'random'} name="node" value="random" id="random" onChange={handleChange} />
         <span>Randomize IPs</span>
       </label>
-      <div className={style['play__nodes--select']}>
-        <label htmlFor="continent" className={`${style['play__checkbox--label']} ${style.node}`}>
+      <div className="flex md:items-center justify-between flex-col md:flex-row">
+        <label htmlFor="continent" className="gap-2 flex items-start grow text-sm text-gray-30 mb-4 md:mb-0">
           <Radio
             checked={option === 'continent'}
             name="node"
@@ -42,7 +41,7 @@ const Nodes = () => {
             id="continent"
             onChange={handleChange}
           />
-          <span>Select from a group of continents</span>
+          <span className="max-w-[calc(100%-28px)]">Select from a group of continents</span>
         </label>
         <Select
           selected={continent}
@@ -51,10 +50,10 @@ const Nodes = () => {
           disabled={option !== 'continent'}
         />
       </div>
-      <div className={style['play__nodes--select']}>
-        <label htmlFor="country" className={`${style['play__checkbox--label']} ${style.node}`}>
+      <div className="flex md:items-center mt-4 justify-between flex-col md:flex-row">
+        <label htmlFor="country" className="gap-2 flex items-start grow text-sm text-gray-30 mb-4 md:mb-0">
           <Radio checked={option === 'country'} name="node" value="country" id="country" onChange={handleChange} />
-          <span>Select from a group of countries</span>
+          <span className="max-w-[calc(100%-28px)]">Select from a group of countries</span>
         </label>
         <Select
           selected={country}
