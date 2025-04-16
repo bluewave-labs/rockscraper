@@ -20,3 +20,45 @@ export type QueryData = {
   cost: number;
   action: string;
 };
+
+export interface Request {
+  headers: HeaderFieldInterface[];
+  cookies: string[];
+  url: string;
+  useAi: boolean;
+  returnMarkdown: boolean;
+  aiQuery: string;
+  nodes: NodesType;
+  region: string;
+  apiKey: string;
+  llmMarkdown: boolean;
+  llmQuery: string;
+  maxPages: number;
+  maxDepth: number;
+  ignoreImages: boolean;
+  ignoreLinks: boolean;
+  extractionSchema: {
+    type: string;
+    properties: {
+      [key: string]: { type: string };
+    };
+  };
+}
+
+export interface Result {
+  data: {
+    date: string;
+    extracted_content: {
+      content: string;
+      error: boolean;
+      index: number;
+      tags: string[];
+    }[];
+    html: string;
+    id: number;
+    markdown: string;
+    url: string;
+    user_id: 3876036;
+  }[];
+  success: true;
+}
