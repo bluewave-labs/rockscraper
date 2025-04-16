@@ -2,26 +2,28 @@
 import { Radio, Select } from '@bluewavelabs/prism-ui';
 import { useEffect, useState } from 'react';
 import { usePlayground } from './context';
+import { Request } from '@src/utils/interfaces';
 
 const countries = ['USA', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'Chile'];
 const continents = ['North America', 'South America', 'Europe', 'Asia', 'Africa'];
 
 const Nodes = () => {
-  const { nodes: option, setNodes: setOption, setRegion } = usePlayground();
+  const { requestState, setRequestState } = usePlayground();
+  const { nodes: option } = requestState;
   const [continent, setContinent] = useState<string>(continents[0]);
   const [country, setCountry] = useState<string>(countries[0]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOption(e.target.value as 'random' | 'continent' | 'country');
+    setRequestState((prev: Request) => ({ ...prev, nodes: e.target.value as 'random' | 'continent' | 'country' }));
   };
 
   useEffect(() => {
     if (option === 'random') {
-      setRegion('');
+      setRequestState((prev: Request) => ({ ...prev, region: '' }));
     } else if (option === 'continent') {
-      setRegion(continent);
+      setRequestState((prev: Request) => ({ ...prev, region: continent }));
     } else if (option === 'country') {
-      setRegion(country);
+      setRequestState((prev: Request) => ({ ...prev, region: country }));
     }
   }, [continent, country, option]);
 
@@ -51,7 +53,7 @@ const Nodes = () => {
         />
       </div>
       <div className="flex md:items-center mt-4 justify-between flex-col md:flex-row">
-        <label htmlFor="country" className="gap-2 flex items-start grow text-sm text-gray-30 mb-4 md:mb-0">
+        <label htmlFor="country" className="gap-2 flex items-start grow text-sm text-gray-30 md:mb-0">
           <Radio checked={option === 'country'} name="node" value="country" id="country" onChange={handleChange} />
           <span className="max-w-[calc(100%-28px)]">Select from a group of countries</span>
         </label>
