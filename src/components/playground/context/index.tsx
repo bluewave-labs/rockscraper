@@ -1,29 +1,17 @@
 'use client';
-import { HeaderFieldInterface, NodesType } from '@src/utils/interfaces';
+import { Request, Result } from '@src/utils/interfaces';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { toast } from 'sonner';
+import { mockResult } from '../result/mock';
 
 type PlaygroundContextProps = {
-  headers: HeaderFieldInterface[];
-  cookies: string[];
-  url: string;
-  useAi: boolean;
-  returnMarkdown: boolean;
-  aiQuery: string;
-  nodes: NodesType;
-  region: string;
-  apiKey: string;
-  llmMarkdown: boolean;
-  llmQuery: string;
-  setHeaders: React.Dispatch<PlaygroundContextProps['headers']>;
-  setCookies: React.Dispatch<PlaygroundContextProps['cookies']>;
-  setUrl: React.Dispatch<PlaygroundContextProps['url']>;
-  setUseAi: React.Dispatch<PlaygroundContextProps['useAi']>;
-  setReturnMarkdown: React.Dispatch<PlaygroundContextProps['returnMarkdown']>;
-  setAiQuery: React.Dispatch<PlaygroundContextProps['aiQuery']>;
-  setNodes: React.Dispatch<PlaygroundContextProps['nodes']>;
-  setRegion: React.Dispatch<PlaygroundContextProps['region']>;
-  setLlmMarkdown: React.Dispatch<PlaygroundContextProps['llmMarkdown']>;
-  setLlmQuery: React.Dispatch<PlaygroundContextProps['llmQuery']>;
+  requestState: Request;
+  result: Result | null;
+  time: number;
+  start: Date | null;
+  end: Date | null;
+  setRequestState: React.Dispatch<React.SetStateAction<Request>>;
+  startCrawl: () => void;
 };
 
 const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
@@ -37,49 +25,57 @@ const usePlayground = () => {
 };
 
 const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
-  const [url, setUrl] = useState('https://');
-  const [headers, setHeaders] = useState([] as { key: string; value: string; id: string }[]);
-  const [cookies, setCookies] = useState([] as string[]);
-  const [useAi, setUseAi] = useState(false);
-  const [returnMarkdown, setReturnMarkdown] = useState(false);
-  const [aiQuery, setAiQuery] = useState('');
-  const [nodes, setNodes] = useState<NodesType>('random');
-  const [region, setRegion] = useState<string>('');
-  const [apiKey, setApiKey] = useState('');
-  const [llmMarkdown, setLlmMarkdown] = useState(false);
-  const [llmQuery, setLlmQuery] = useState('');
+  const [requestState, setRequestState] = useState<Request>({
+    url: 'https://',
+    headers: [],
+    cookies: [],
+    useAi: false,
+    returnMarkdown: false,
+    aiQuery: '',
+    nodes: 'random',
+    region: '',
+    apiKey: '',
+    llmMarkdown: false,
+    llmQuery: '',
+    maxPages: 1,
+    maxDepth: 1,
+    ignoreImages: false,
+    ignoreLinks: false,
+    extractionSchema: {
+      type: 'object',
+      properties: {},
+    },
+  });
+  const [result, setResult] = useState<Result | null>(null);
+  const [start, setStart] = useState<Date | null>(null);
+  const [end, setEnd] = useState<Date | null>(null);
 
   useEffect(() => {
     const key =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-    setApiKey(key);
+    setRequestState((prev) => ({ ...prev, apiKey: key }));
   }, []);
+
+  const startCrawl = async () => {
+    setStart(new Date());
+    toast('This is a mock result');
+    setTimeout(() => {
+      setResult(mockResult as Result);
+      setEnd(new Date());
+    }, 15000);
+  };
 
   const value = useMemo(
     () => ({
-      headers,
-      cookies,
-      url,
-      useAi,
-      returnMarkdown,
-      aiQuery,
-      nodes,
-      region,
-      apiKey,
-      llmMarkdown,
-      llmQuery,
-      setHeaders,
-      setCookies,
-      setUrl,
-      setUseAi,
-      setReturnMarkdown,
-      setAiQuery,
-      setNodes,
-      setRegion,
-      setLlmMarkdown,
-      setLlmQuery,
+      requestState,
+      result,
+      setRequestState,
+      startCrawl,
+      start,
+      end,
+      time: end && start ? (end.getTime() - start.getTime()) / 1000 : 0,
     }),
-    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey, llmMarkdown, llmQuery]
+    [requestState, result, start, end]
   );
   return <PlaygroundContext.Provider value={value}>{children}</PlaygroundContext.Provider>;
 };
