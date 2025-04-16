@@ -1,5 +1,3 @@
-import style from "./playground.module.scss";
-
 const RightTitle = () => {
   return (
     <div className="flex gap-2 md:gap-0 flex-col md:flex-row justify-between md:items-center md:mb-6">
