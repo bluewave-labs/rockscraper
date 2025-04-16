@@ -8,7 +8,24 @@ import { usePlayground } from '../context';
 import style from './request.module.scss';
 
 const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
-  const { headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey } = usePlayground();
+  const { requestState, startCrawl } = usePlayground();
+  const {
+    headers,
+    cookies,
+    url,
+    useAi,
+    returnMarkdown,
+    aiQuery,
+    nodes,
+    region,
+    apiKey,
+    llmMarkdown,
+    llmQuery,
+    maxPages,
+    maxDepth,
+    ignoreImages,
+    ignoreLinks,
+  } = requestState;
   const isMobile = useIsMobile();
   const [code, setCode] = useState('');
 
@@ -19,15 +36,26 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
 
   const codeString = () => {
     let finalCode = selectedCode.code;
-    finalCode = finalCode.replace('<your-auth-token>', apiKey);
-    finalCode = finalCode.replace('<URL>', url);
-    finalCode = finalCode.replace('<Nodes>', nodes);
-    finalCode = finalCode.replace('<UseAi>', `${useAi}`);
-    finalCode = finalCode.replace('<ReturnMarkdown>', `${returnMarkdown}`);
+    finalCode = finalCode
+      .replace('<your-auth-token>', apiKey)
+      .replace('<URL>', url)
+      .replace('<Nodes>', nodes)
+      .replace('<UseAi>', `${useAi}`)
+      .replace('<ReturnMarkdown>', `${returnMarkdown}`)
+      .replace('<IS_LLM_MARKDOWN>', `${llmMarkdown}`)
+      .replace('<MAX_PAGES>', `${maxPages}`)
+      .replace('<MAX_DEPTH>', `${maxDepth}`)
+      .replace('<IGNORE_IMAGES>', `${ignoreImages}`)
+      .replace('<IGNORE_LINKS>', `${ignoreLinks}`);
     if (useAi) {
-      finalCode = finalCode.replace('<AiQuery>', aiQuery);
+      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${aiQuery}`);
     } else {
-      finalCode = finalCode.replace('<AiQuery>', `${undefined}`);
+      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${undefined}`);
+    }
+    if (llmQuery) {
+      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${llmQuery}`);
+    } else {
+      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${undefined}`);
     }
     if (nodes !== 'random') {
       finalCode = finalCode.replace('<Region>', region);
@@ -67,7 +95,7 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
 
   useEffect(() => {
     buildCode();
-  }, [headers, cookies, url, selectedCode, useAi, returnMarkdown, aiQuery, nodes, region, apiKey]);
+  }, [selectedCode, requestState]);
 
   return (
     <div className={style.play__code}>
@@ -75,7 +103,7 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
       <div className="flex gap-1 md:gap-2 justify-end sticky bottom-0 right-0 -mr-3.5 md:mr-0 -mb-3.5 md:mb-0">
         <Button
           onClick={() => {
-            toast('This feature is not available yet');
+            startCrawl();
           }}
           size={isMobile ? 'xs' : 'default'}
         >
