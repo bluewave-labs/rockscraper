@@ -5,11 +5,12 @@ import { usePlayground } from '../context';
 import HeaderField from './headerField';
 
 const Headers = () => {
-  const { headers, setHeaders } = usePlayground();
+  const { requestState, setRequestState } = usePlayground();
+  const { headers } = requestState;
 
   useEffect(() => {
     if (headers.length === 0) {
-      setHeaders([{ key: '', value: '', id: Date.now().toString() }]);
+      setRequestState((prev) => ({ ...prev, headers: [{ key: '', value: '', id: Date.now().toString() }] }));
     }
   }, []);
 
@@ -19,8 +20,10 @@ const Headers = () => {
         Custom headers{' '}
         <button
           onClick={() => {
-            console.log('headers', headers);
-            setHeaders([...headers, { key: '', value: '', id: Date.now().toString() }]);
+            setRequestState((prev) => ({
+              ...prev,
+              headers: [...headers, { key: '', value: '', id: Date.now().toString() }],
+            }));
           }}
           className="text-xl cursor-pointer"
         >

@@ -1,10 +1,10 @@
 import { Input } from '@bluewavelabs/prism-ui';
 import { ChangeEvent } from 'react';
 import { usePlayground } from '../context';
-import style from './headers.module.scss';
 
 const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; value: string }) => {
-  const { headers, setHeaders } = usePlayground();
+  const { requestState, setRequestState } = usePlayground();
+  const { headers } = requestState;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;
@@ -24,7 +24,7 @@ const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; 
     }
     const newHeaders = [...headers];
     newHeaders[index] = newHeader;
-    setHeaders(newHeaders);
+    setRequestState((prev) => ({ ...prev, headers: newHeaders }));
   };
 
   return (
