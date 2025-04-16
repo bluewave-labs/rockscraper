@@ -1,6 +1,6 @@
-"use client";
-import { HeaderFieldInterface, NodesType } from "@src/utils/interfaces";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+'use client';
+import { HeaderFieldInterface, NodesType } from '@src/utils/interfaces';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 type PlaygroundContextProps = {
   headers: HeaderFieldInterface[];
@@ -12,14 +12,18 @@ type PlaygroundContextProps = {
   nodes: NodesType;
   region: string;
   apiKey: string;
-  setHeaders: React.Dispatch<PlaygroundContextProps["headers"]>;
-  setCookies: React.Dispatch<PlaygroundContextProps["cookies"]>;
-  setUrl: React.Dispatch<PlaygroundContextProps["url"]>;
-  setUseAi: React.Dispatch<PlaygroundContextProps["useAi"]>;
-  setReturnMarkdown: React.Dispatch<PlaygroundContextProps["returnMarkdown"]>;
-  setAiQuery: React.Dispatch<PlaygroundContextProps["aiQuery"]>;
-  setNodes: React.Dispatch<PlaygroundContextProps["nodes"]>;
-  setRegion: React.Dispatch<PlaygroundContextProps["region"]>;
+  llmMarkdown: boolean;
+  llmQuery: string;
+  setHeaders: React.Dispatch<PlaygroundContextProps['headers']>;
+  setCookies: React.Dispatch<PlaygroundContextProps['cookies']>;
+  setUrl: React.Dispatch<PlaygroundContextProps['url']>;
+  setUseAi: React.Dispatch<PlaygroundContextProps['useAi']>;
+  setReturnMarkdown: React.Dispatch<PlaygroundContextProps['returnMarkdown']>;
+  setAiQuery: React.Dispatch<PlaygroundContextProps['aiQuery']>;
+  setNodes: React.Dispatch<PlaygroundContextProps['nodes']>;
+  setRegion: React.Dispatch<PlaygroundContextProps['region']>;
+  setLlmMarkdown: React.Dispatch<PlaygroundContextProps['llmMarkdown']>;
+  setLlmQuery: React.Dispatch<PlaygroundContextProps['llmQuery']>;
 };
 
 const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
@@ -27,28 +31,29 @@ const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
 const usePlayground = () => {
   const context = useContext(PlaygroundContext);
   if (!context) {
-    throw new Error("usePlayground must be used within a PlaygroundProvider");
+    throw new Error('usePlayground must be used within a PlaygroundProvider');
   }
   return context;
 };
 
 const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
-  const [url, setUrl] = useState("https://");
-  const [headers, setHeaders] = useState(
-    [] as { key: string; value: string; id: string }[]
-  );
+  const [url, setUrl] = useState('https://');
+  const [headers, setHeaders] = useState([] as { key: string; value: string; id: string }[]);
   const [cookies, setCookies] = useState([] as string[]);
   const [useAi, setUseAi] = useState(false);
   const [returnMarkdown, setReturnMarkdown] = useState(false);
-  const [aiQuery, setAiQuery] = useState("");
-  const [nodes, setNodes] = useState<NodesType>("random");
-  const [region, setRegion] = useState<string>("");
-  const [apiKey, setApiKey] = useState("");
-  
+  const [aiQuery, setAiQuery] = useState('');
+  const [nodes, setNodes] = useState<NodesType>('random');
+  const [region, setRegion] = useState<string>('');
+  const [apiKey, setApiKey] = useState('');
+  const [llmMarkdown, setLlmMarkdown] = useState(false);
+  const [llmQuery, setLlmQuery] = useState('');
+
   useEffect(() => {
-    const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    const key =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
     setApiKey(key);
-  },[])
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -61,6 +66,8 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
       nodes,
       region,
       apiKey,
+      llmMarkdown,
+      llmQuery,
       setHeaders,
       setCookies,
       setUrl,
@@ -69,16 +76,13 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
       setAiQuery,
       setNodes,
       setRegion,
+      setLlmMarkdown,
+      setLlmQuery,
     }),
-    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey]
+    [headers, cookies, url, useAi, returnMarkdown, aiQuery, nodes, region, apiKey, llmMarkdown, llmQuery]
   );
-  return (
-    <PlaygroundContext.Provider value={value}>
-      {children}
-    </PlaygroundContext.Provider>
-  );
+  return <PlaygroundContext.Provider value={value}>{children}</PlaygroundContext.Provider>;
 };
 
 export { PlaygroundProvider, usePlayground };
 export type { PlaygroundContextProps };
-
