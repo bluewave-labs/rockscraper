@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bluewavelabs/prism-ui": "^0.3.2",
+    "@bluewavelabs/prism-ui": "^0.4.1",
     "@tailwindcss/postcss": "^4.0.15",
     "@tanstack/react-table": "^8.21.2",
     "class-variance-authority": "^0.7.1",
