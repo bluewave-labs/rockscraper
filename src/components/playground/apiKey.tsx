@@ -6,7 +6,9 @@ import { usePlayground } from './context';
 import style from './playground.module.scss';
 
 const ApiKey = () => {
-  const { apiKey } = usePlayground();
+  const {
+    requestState: { apiKey },
+  } = usePlayground();
   const handleClick = () => {
     navigator.clipboard.writeText(apiKey);
     toast('API key copied to clipboard');
