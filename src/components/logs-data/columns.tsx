@@ -18,6 +18,6 @@ export const columns: ColumnDef<QueryData>[] = [
   {
     accessorKey: 'action',
     header: 'Action',
-    cell: ({ row }) => <Button>See logs</Button>,
+    cell: ({ row }) => <Button size='sm'>See logs</Button>,
   },
 ];
