@@ -1,9 +1,9 @@
 import { Input } from '@bluewavelabs/prism-ui';
 import { ChangeEvent } from 'react';
-import { usePlayground } from '../../context';
+import { useScraper } from '../../../../utils/context';
 
 const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; value: string }) => {
-  const { requestState, setRequestState } = usePlayground();
+  const { requestState, setRequestState } = useScraper();
   const { headers } = requestState;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {

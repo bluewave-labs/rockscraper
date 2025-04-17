@@ -1,7 +1,7 @@
 import { Button, Input } from '@bluewavelabs/prism-ui';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
-import { usePlayground } from '../context';
+import { useScraper } from '../../../utils/context';
 import Cookies from './cookies/cookies';
 import Headers from './headers/headers';
 
@@ -9,7 +9,7 @@ const FineTune = () => {
   const {
     requestState: { maxDepth, maxPages },
     setRequestState,
-  } = usePlayground();
+  } = useScraper();
   const [openFinetune, setOpenFinetune] = useState(false);
   return (
     <>

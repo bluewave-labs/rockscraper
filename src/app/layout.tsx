@@ -3,6 +3,7 @@ import Content from '@src/components/content';
 import Header from '@src/components/header';
 import AppSidebar from '@src/components/sidebar';
 import { Toaster } from '@src/components/ui/sonner';
+import { ScraperProvider } from '@src/utils/context';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../style/globals.css';
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
           <Header />
           <Toaster />
           <main>
-            <Content>{children}</Content>
+            <ScraperProvider>
+              <Content>{children}</Content>
+            </ScraperProvider>
           </main>
         </div>
       </body>

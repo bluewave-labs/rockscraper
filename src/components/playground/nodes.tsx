@@ -1,14 +1,14 @@
 'use client';
 import { Radio, Select } from '@bluewavelabs/prism-ui';
-import { useEffect, useState } from 'react';
-import { usePlayground } from './context';
 import { Request } from '@src/utils/interfaces';
+import { useEffect, useState } from 'react';
+import { useScraper } from '../../utils/context';
 
 const countries = ['USA', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'Chile'];
 const continents = ['North America', 'South America', 'Europe', 'Asia', 'Africa'];
 
 const Nodes = () => {
-  const { requestState, setRequestState } = usePlayground();
+  const { requestState, setRequestState } = useScraper();
   const { nodes: option } = requestState;
   const [continent, setContinent] = useState<string>(continents[0]);
   const [country, setCountry] = useState<string>(countries[0]);

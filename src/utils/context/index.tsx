@@ -2,9 +2,9 @@
 import { Request, Result } from '@src/utils/interfaces';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { toast } from 'sonner';
-import { mockResult } from '../result/mock';
+import { mockResult } from '../../components/playground/result/mock';
 
-type PlaygroundContextProps = {
+type ScraperContextProps = {
   requestState: Request;
   result: Result | null;
   time: number;
@@ -14,17 +14,17 @@ type PlaygroundContextProps = {
   startCrawl: () => void;
 };
 
-const PlaygroundContext = createContext<PlaygroundContextProps | null>(null);
+const ScraperContext = createContext<ScraperContextProps | null>(null);
 
-const usePlayground = () => {
-  const context = useContext(PlaygroundContext);
+const useScraper = () => {
+  const context = useContext(ScraperContext);
   if (!context) {
-    throw new Error('usePlayground must be used within a PlaygroundProvider');
+    throw new Error('useScraper must be used within a ScraperProvider');
   }
   return context;
 };
 
-const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
+const ScraperProvider = ({ children }: { children: React.ReactNode }) => {
   const [requestState, setRequestState] = useState<Request>({
     url: 'https://',
     headers: [],
@@ -77,8 +77,8 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
     }),
     [requestState, result, start, end]
   );
-  return <PlaygroundContext.Provider value={value}>{children}</PlaygroundContext.Provider>;
+  return <ScraperContext.Provider value={value}>{children}</ScraperContext.Provider>;
 };
 
-export { PlaygroundProvider, usePlayground };
-export type { PlaygroundContextProps };
+export { ScraperProvider, useScraper };
+export type { ScraperContextProps };

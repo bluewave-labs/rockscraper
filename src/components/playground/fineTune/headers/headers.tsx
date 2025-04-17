@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { useEffect } from 'react';
-import { usePlayground } from '../../context';
+import { useScraper } from '../../../../utils/context';
 import HeaderField from './headerField';
 
 const Headers = () => {
-  const { requestState, setRequestState } = usePlayground();
+  const { requestState, setRequestState } = useScraper();
   const { headers } = requestState;
 
   useEffect(() => {

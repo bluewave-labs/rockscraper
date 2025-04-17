@@ -1,10 +1,7 @@
-import Playground from "@src/components/playground";
-import { PlaygroundProvider } from "@src/components/playground/context";
+import Playground from '@src/components/playground';
 
 export default function Home() {
   return (
-    <PlaygroundProvider>
       <Playground />
-    </PlaygroundProvider>
   );
 }

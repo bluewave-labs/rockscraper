@@ -4,11 +4,11 @@ import { CodeByLanguage } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { toast } from 'sonner';
-import { usePlayground } from '../context';
+import { useScraper } from '../../../utils/context';
 import style from './request.module.scss';
 
 const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
-  const { requestState, startCrawl } = usePlayground();
+  const { requestState, startCrawl } = useScraper();
   const {
     headers,
     cookies,

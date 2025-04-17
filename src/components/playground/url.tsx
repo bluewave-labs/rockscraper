@@ -1,12 +1,12 @@
 'use client';
 import { Input } from '@bluewavelabs/prism-ui';
-import { usePlayground } from './context';
+import { useScraper } from '../../utils/context';
 
 const Url = () => {
   const {
     requestState: { url },
     setRequestState,
-  } = usePlayground();
+  } = useScraper();
   return (
     <Input
       id="url"

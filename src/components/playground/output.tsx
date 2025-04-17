@@ -1,13 +1,13 @@
 'use client';
 import { Switch } from '@bluewavelabs/prism-ui';
 import { cn } from '@src/lib/utils';
-import { usePlayground } from './context';
+import { useScraper } from '../../utils/context';
 
 const Output = () => {
   const {
     requestState: { aiQuery, useAi, returnMarkdown, llmMarkdown, llmQuery },
     setRequestState,
-  } = usePlayground();
+  } = useScraper();
 
   return (
     <div className="mb-6">

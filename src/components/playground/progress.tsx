@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useScraper } from '../../utils/context';
 import { Progress } from '../ui/progress';
-import { usePlayground } from './context';
 
 const ProgressBar = () => {
-  const { start, end } = usePlayground();
+  const { start, end } = useScraper();
   const [progress, setProgress] = useState(0);
   const EXPECTED_DURATION = 15000;
 

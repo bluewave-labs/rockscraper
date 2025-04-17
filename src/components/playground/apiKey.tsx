@@ -2,13 +2,13 @@
 import { Input } from '@bluewavelabs/prism-ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import { usePlayground } from './context';
+import { useScraper } from '../../utils/context';
 import style from './playground.module.scss';
 
 const ApiKey = () => {
   const {
     requestState: { apiKey },
-  } = usePlayground();
+  } = useScraper();
   const handleClick = () => {
     navigator.clipboard.writeText(apiKey);
     toast('API key copied to clipboard');

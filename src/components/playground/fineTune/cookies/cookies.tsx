@@ -1,12 +1,12 @@
 'use client';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
-import { usePlayground } from '../../context';
+import { useScraper } from '../../../../utils/context';
 import mainStyle from '../../playground.module.scss';
 import style from './cookies.module.scss';
 
 const Cookies = () => {
-  const { requestState, setRequestState } = usePlayground();
+  const { requestState, setRequestState } = useScraper();
   const { cookies } = requestState;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

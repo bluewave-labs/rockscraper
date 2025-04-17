@@ -3,11 +3,11 @@ import { Button } from '@bluewavelabs/prism-ui';
 import { cn } from '@src/lib/utils';
 import Link from 'next/link';
 import { useState } from 'react';
-import { usePlayground } from '../context';
+import { useScraper } from '../../../utils/context';
 import ProgressBar from '../progress';
 
 const QueryResult = () => {
-  const { result, time, start, end } = usePlayground();
+  const { result, time, start, end } = useScraper();
   const [progress, setProgress] = useState(50);
 
   const renderStatus = () => {
