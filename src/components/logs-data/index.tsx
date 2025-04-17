@@ -1,43 +1,52 @@
 'use client';
 
-import { Table } from '@bluewavelabs/prism-ui';
+import { Button, Table } from '@bluewavelabs/prism-ui';
 import { columns } from './columns';
 import styles from './logs-data.module.scss';
 
+import { QueryData } from '@src/utils/interfaces';
 import { useState } from 'react';
+import { Drawer } from '../ui/drawer';
+import { mockLogs } from './mock';
 
 const LogsData = () => {
-  const [data, setData] = useState([
-    {
-      domain: 'example.com',
-      lastQuery: '2024-03-20 14:30:00',
-      duration: 245,
-      cost: 0.12,
-      action: 'Scrape',
-    },
-    {
-      domain: 'test-site.org',
-      lastQuery: '2024-03-20 14:25:00',
-      duration: 189,
-      cost: 0.08,
-      action: 'Analyze',
-    },
-    {
-      domain: 'data-source.net',
-      lastQuery: '2024-03-20 14:20:00',
-      duration: 312,
-      cost: 0.15,
-      action: 'Extract',
-    },
-  ]);
+  const [data, setData] = useState(mockLogs[0].data.items);
+  const [selectedLog, setSelectedLog] = useState<QueryData | null>(null);
 
-  // useEffect(() => {
-
-  // }, [])
+  const selectedLogErrors = selectedLog?.extracted_content.filter((it) => it.error);
 
   return (
     <div className={styles.container}>
-      <Table columns={columns} data={data} className='text-left' />
+      <Table
+        columns={columns}
+        data={data}
+        className="text-left"
+        onRowClick={(row) => {
+          const logs = data.find((it) => it.id === row.id);
+          if (!logs) return;
+          setSelectedLog(logs);
+        }}
+      />
+      <Drawer open={!!selectedLog} onOpenChange={(val) => setSelectedLog(val ? selectedLog : null)}>
+        <div>
+          <p>{selectedLog?.url}</p>
+          <p>{selectedLog?.date}</p>
+          {selectedLogErrors?.map((it) => (
+            <div key={it.index}>
+              {it.error ? (
+                <>
+                  <p className="text-red-500">Error</p>
+                  <p>{it.content}</p>
+                </>
+              ) : null}
+            </div>
+          ))}
+          <div>
+            <Button>Download markdown</Button>
+            <Button>Download html</Button>
+          </div>
+        </div>
+      </Drawer>
     </div>
   );
 };
