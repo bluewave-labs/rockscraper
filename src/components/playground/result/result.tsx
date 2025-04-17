@@ -4,9 +4,10 @@ import { cn } from '@src/lib/utils';
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePlayground } from '../context';
+import ProgressBar from '../progress';
 
 const QueryResult = () => {
-  const { result, time, start } = usePlayground();
+  const { result, time, start, end } = usePlayground();
   const [progress, setProgress] = useState(50);
 
   const renderStatus = () => {
@@ -36,6 +37,7 @@ const QueryResult = () => {
             <p className="text-xs text-gray-300 max-w-1/2 md:max-w-inherit">Data retrieved in {time} seconds</p>
           )}
         </div>
+        {start && !end ? <ProgressBar /> : null}
         {result ? (
           <Button asChild>
             <Link href="/logs-data">View logs</Link>

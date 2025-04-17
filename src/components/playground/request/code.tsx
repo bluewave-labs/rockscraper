@@ -87,13 +87,14 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
     } else {
       finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${undefined}`);
     }
-    
 
     return finalCode;
   };
 
   const buildCode = async () => {
-    const html = await codeToHtml(codeString());
+    const code = codeString();
+    if (!code) return;
+    const html = await codeToHtml(code);
     setCode(html);
   };
 

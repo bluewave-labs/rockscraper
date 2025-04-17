@@ -62,7 +62,7 @@ const PlaygroundProvider = ({ children }: { children: React.ReactNode }) => {
     setTimeout(() => {
       setResult(mockResult as Result);
       setEnd(new Date());
-    }, 15000);
+    }, 10000);
   };
 
   const value = useMemo(
