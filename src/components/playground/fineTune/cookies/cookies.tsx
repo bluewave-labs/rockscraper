@@ -1,8 +1,8 @@
 'use client';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
-import { usePlayground } from '../context';
-import mainStyle from '../playground.module.scss';
+import { usePlayground } from '../../context';
+import mainStyle from '../../playground.module.scss';
 import style from './cookies.module.scss';
 
 const Cookies = () => {

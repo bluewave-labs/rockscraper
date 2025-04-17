@@ -1,6 +1,6 @@
 import { Input } from '@bluewavelabs/prism-ui';
 import { ChangeEvent } from 'react';
-import { usePlayground } from '../context';
+import { usePlayground } from '../../context';
 
 const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; value: string }) => {
   const { requestState, setRequestState } = usePlayground();
