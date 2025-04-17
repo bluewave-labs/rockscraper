@@ -13,14 +13,6 @@ export interface HeaderFieldInterface {
   id: string;
 }
 
-export type QueryData = {
-  domain: string;
-  lastQuery: string;
-  duration: number;
-  cost: number;
-  action: string;
-};
-
 export interface Request {
   headers: HeaderFieldInterface[];
   cookies: string[];
@@ -61,4 +53,31 @@ export interface Result {
     user_id: 3876036;
   }[];
   success: true;
+}
+
+export interface ExtractedContent {
+  content: string;
+  error: boolean;
+  index: number;
+  tags: string[];
+}
+
+export type QueryData = {
+  date: string;
+  extracted_content: ExtractedContent[];
+  html: string;
+  id: number;
+  markdown: string;
+  url: string;
+  user_id: number;
+};
+
+export interface Log {
+  data: {
+    current_page: number;
+    items: QueryData[];
+    pages: number;
+    total: number;
+  };
+  success: boolean;
 }
