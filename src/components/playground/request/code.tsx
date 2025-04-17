@@ -39,29 +39,15 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
     finalCode = finalCode
       .replace('<your-auth-token>', apiKey)
       .replace('<URL>', url)
-      .replace('<Nodes>', nodes)
-      .replace('<UseAi>', `${useAi}`)
-      .replace('<ReturnMarkdown>', `${returnMarkdown}`)
-      .replace('<IS_LLM_MARKDOWN>', `${llmMarkdown}`)
-      .replace('<MAX_PAGES>', `${maxPages}`)
-      .replace('<MAX_DEPTH>', `${maxDepth}`)
+      .replace('<USE_AI>', `${useAi}`)
+      .replace('<IS_MARKDOWN>', `${returnMarkdown}`)
+      .replace('<MAX_PAGES>', `${isNaN(maxPages) ? 1 : maxPages}`)
+      .replace('<MAX_DEPTH>', `${isNaN(maxDepth) ? 1 : maxDepth}`)
       .replace('<IGNORE_IMAGES>', `${ignoreImages}`)
-      .replace('<IGNORE_LINKS>', `${ignoreLinks}`);
-    if (useAi) {
-      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${aiQuery}`);
-    } else {
-      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${undefined}`);
-    }
-    if (llmQuery) {
-      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${llmQuery}`);
-    } else {
-      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${undefined}`);
-    }
-    if (nodes !== 'random') {
-      finalCode = finalCode.replace('<Region>', region);
-    } else {
-      finalCode = finalCode.replace('<Region>', `${undefined}`);
-    }
+      .replace('<IGNORE_LINKS>', `${ignoreLinks}`)
+      .replace('<IS_LLM_MARKDOWN>', `${llmMarkdown}`)
+      .replace('<NODES>', nodes);
+
     const hasHeaders = headers.some((header) => header.key !== '' && header.value !== '');
     const hasCookies = cookies.some((cookie) => cookie !== '');
     if (hasHeaders) {
@@ -74,16 +60,34 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
           }),
           {}
         );
-      finalCode = finalCode.replace('<Headers>', JSON.stringify(formattedHeaders));
+      finalCode = finalCode.replace('<HEADERS>', JSON.stringify(formattedHeaders));
     } else {
-      finalCode = finalCode.replace('<Headers>', `${undefined}`);
+      finalCode = finalCode.replace('<HEADERS>', `${undefined}`);
     }
     if (hasCookies) {
       const formattedCookies = cookies.filter((cookie) => cookie !== '').join(',');
-      finalCode = finalCode.replace('<Cookies>', JSON.stringify(formattedCookies));
+      finalCode = finalCode.replace('<COOKIES>', formattedCookies);
     } else {
-      finalCode = finalCode.replace('<Cookies>', `${undefined}`);
+      finalCode = finalCode.replace('<COOKIES>', `${undefined}`);
     }
+
+    if (nodes !== 'random') {
+      finalCode = finalCode.replace('<REGION>', region);
+    } else {
+      finalCode = finalCode.replace('<REGION>', `${undefined}`);
+    }
+
+    if (useAi) {
+      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${aiQuery}`);
+    } else {
+      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${undefined}`);
+    }
+    if (llmQuery) {
+      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${llmQuery}`);
+    } else {
+      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${undefined}`);
+    }
+    
 
     return finalCode;
   };
