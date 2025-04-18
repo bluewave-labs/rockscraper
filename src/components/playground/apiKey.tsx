@@ -3,7 +3,6 @@ import { Input } from '@bluewavelabs/prism-ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 import { useScraper } from '../../utils/context';
-import style from './playground.module.scss';
 
 const ApiKey = () => {
   const {
@@ -14,8 +13,8 @@ const ApiKey = () => {
     toast('API key copied to clipboard');
   };
   return (
-    <div className={style.play__key}>
-      <h3 className={style.play__label}>Your API key</h3>
+    <div>
+      <h3 className="mb-4 flex items-center gap-2 w-full font-medium text-gray-10 text-md">Your API key</h3>
       <Input
         value={apiKey}
         readOnly

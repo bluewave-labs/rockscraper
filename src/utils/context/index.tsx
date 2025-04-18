@@ -30,7 +30,6 @@ const ScraperProvider = ({ children }: { children: React.ReactNode }) => {
     headers: [],
     cookies: [],
     useAi: false,
-    returnMarkdown: false,
     aiQuery: '',
     nodes: 'random',
     region: '',

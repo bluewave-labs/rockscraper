@@ -1,61 +1,29 @@
 'use client';
 import { X } from 'lucide-react';
+import { ReactNode } from 'react';
 import { toast } from 'sonner';
 import { useScraper } from '../../../../utils/context';
-import mainStyle from '../../playground.module.scss';
-import style from './cookies.module.scss';
+import PillInput from '@src/components/ui/pillInput';
 
-const Cookies = () => {
+const Cookies = ({ renderTooltip }: { renderTooltip: (content: ReactNode, className?: string) => ReactNode }) => {
   const { requestState, setRequestState } = useScraper();
   const { cookies } = requestState;
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ',' || e.key === ' ') {
-      e.preventDefault();
-      const cookieValue = e.currentTarget.value.trim();
-      if (!cookieValue) return;
-      if (!cookieValue.includes('=')) {
-        toast.error('Cookie must be in format: cookie-name=cookie-value');
-        return;
-      }
-      setRequestState((prev) => ({ ...prev, cookies: [...cookies, ...cookieValue.split(',')] }));
-      e.currentTarget.value = '';
-    }
-    if (e.key === 'Backspace') {
-      if (e.currentTarget.value === '') {
-        setRequestState((prev) => ({ ...prev, cookies: cookies.slice(0, -1) }));
-      }
-    }
-  };
-
   return (
-    <div className={style.play__cookies}>
-      <label htmlFor="cookies" className={mainStyle['play__label']}>
-        Custom cookies{' '}
-      </label>
-      <div className={'textfield flex flex-wrap gap-2'}>
-        {cookies.map((cookie, index) => (
-          <span key={index} className="flex items-center gap-1 border border-gray-0/20 rounded-sm px-2 py-1">
-            {cookie}
+      <PillInput
+        id="cookies"
+        label="Custom cookies"
+        onChange={(values) => setRequestState((prev) => ({ ...prev, cookies: values }))}
+        placeholder="cookie-name=cookie-value"
+        renderTooltip={renderTooltip}
+        initialValues={cookies}
+        tooltipContent={
+          <p>
+            Add custom cookies to the request <br /> that will be applied to all pages
+          </p>
+        }
+      />
 
-            <X
-              onClick={() => {
-                setRequestState((prev) => ({ ...prev, cookies: cookies.filter((_, i) => i !== index) }));
-              }}
-              className="cursor-pointer"
-              size={16}
-            />
-          </span>
-        ))}
-        <input
-          placeholder="cookie-name=cookie-value"
-          id={'cookies'}
-          name="key"
-          onKeyDown={handleKeyDown}
-          className={style['play__cookies--input']}
-        />
-      </div>
-    </div>
   );
 };
 

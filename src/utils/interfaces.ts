@@ -54,7 +54,6 @@ export interface Request<T extends ExtractionSchema = ExtractionSchema> {
   cookies: string[];
   url: string;
   useAi: boolean;
-  returnMarkdown: boolean;
   aiQuery: string;
   nodes: NodesType;
   region: string;

@@ -3,7 +3,7 @@ import { Card } from '@bluewavelabs/prism-ui';
 import ApiKey from './apiKey';
 import FineTune from './fineTune/fineTune';
 import Nodes from './nodes';
-import Output from './output';
+import Output from './output/output';
 import style from './playground.module.scss';
 import Request from './request/request';
 import QueryResult from './result/result';
