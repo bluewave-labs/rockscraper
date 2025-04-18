@@ -7,10 +7,12 @@ export const Drawer = ({
   open,
   onOpenChange,
   children,
+  className,
 }: {
   open: boolean;
   onOpenChange: (val: boolean) => void;
   children: React.ReactNode;
+  className?: string;
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -34,8 +36,9 @@ export const Drawer = ({
       <div
         ref={drawerRef}
         className={cn(
-          'absolute right-0 top-0 w-full max-w-md h-full bg-gray-90 text-gray-10 p-4 transition-transform duration-300',
-          open ? 'translate-x-0' : 'translate-x-full'
+          'absolute right-0 top-0 w-full max-w-1/2 h-full bg-gray-90 text-gray-10 p-4 transition-transform duration-300',
+          open ? 'translate-x-0' : 'translate-x-full',
+          className
         )}
       >
         <Button onClick={() => onOpenChange(false)} rounded="full" variant="ghost" className="absolute top-4 right-4">
