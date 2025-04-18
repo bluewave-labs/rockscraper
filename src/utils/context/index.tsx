@@ -1,6 +1,6 @@
 'use client';
 import { Request, Result } from '@src/utils/interfaces';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { mockResult } from '../../components/playground/result/mock';
 
@@ -48,12 +48,6 @@ const ScraperProvider = ({ children }: { children: React.ReactNode }) => {
   const [result, setResult] = useState<Result | null>(null);
   const [start, setStart] = useState<Date | null>(null);
   const [end, setEnd] = useState<Date | null>(null);
-
-  useEffect(() => {
-    const key =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-    setRequestState((prev) => ({ ...prev, apiKey: key }));
-  }, []);
 
   const startCrawl = async () => {
     setStart(new Date());

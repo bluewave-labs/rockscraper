@@ -1,5 +1,5 @@
 'use client';
-import { AppSidebar as Sidebar, SidebarProvider } from '@bluewavelabs/prism-ui';
+import { AppSidebar as Sidebar, SidebarProps, SidebarProvider } from '@bluewavelabs/prism-ui';
 import { BookOpen, Bot, Settings2, SquareTerminal } from 'lucide-react';
 
 const items_nav = [
@@ -25,7 +25,7 @@ const items_nav = [
   },
 ];
 
-const AppSidebar = () => {
+const AppSidebar = ({ user }: { user: SidebarProps['user'] }) => {
   return (
     <SidebarProvider>
       <Sidebar
@@ -39,6 +39,7 @@ const AppSidebar = () => {
         logOut={() => {
           console.log('logOut');
         }}
+        user={user}
       />
     </SidebarProvider>
   );
