@@ -14,7 +14,6 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
     cookies,
     url,
     useAi,
-    returnMarkdown,
     aiQuery,
     nodes,
     region,
@@ -25,6 +24,7 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
     maxDepth,
     ignoreImages,
     ignoreLinks,
+    extractionSchema,
   } = requestState;
   const isMobile = useIsMobile();
   const [code, setCode] = useState('');
@@ -40,7 +40,6 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
       .replace('<your-auth-token>', apiKey)
       .replace('<URL>', url)
       .replace('<USE_AI>', `${useAi}`)
-      .replace('<IS_MARKDOWN>', `${returnMarkdown}`)
       .replace('<MAX_PAGES>', `${isNaN(maxPages) ? 1 : maxPages}`)
       .replace('<MAX_DEPTH>', `${isNaN(maxDepth) ? 1 : maxDepth}`)
       .replace('<IGNORE_IMAGES>', `${ignoreImages}`)
@@ -62,30 +61,36 @@ const Code = ({ selectedCode }: { selectedCode: CodeByLanguage }) => {
         );
       finalCode = finalCode.replace('<HEADERS>', JSON.stringify(formattedHeaders));
     } else {
-      finalCode = finalCode.replace('<HEADERS>', `${undefined}`);
+      finalCode = finalCode.replace('"<HEADERS>"', `${undefined}`);
     }
     if (hasCookies) {
       const formattedCookies = cookies.filter((cookie) => cookie !== '').join(',');
       finalCode = finalCode.replace('<COOKIES>', formattedCookies);
     } else {
-      finalCode = finalCode.replace('<COOKIES>', `${undefined}`);
+      finalCode = finalCode.replace('"<COOKIES>"', `${undefined}`);
     }
 
     if (nodes !== 'random') {
       finalCode = finalCode.replace('<REGION>', region);
     } else {
-      finalCode = finalCode.replace('<REGION>', `${undefined}`);
+      finalCode = finalCode.replace('"<REGION>"', `${undefined}`);
     }
 
     if (useAi) {
       finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${aiQuery}`);
     } else {
-      finalCode = finalCode.replace('<EXTRACTION_PROMPT>', `${undefined}`);
+      finalCode = finalCode.replace('"<EXTRACTION_PROMPT>"', `${undefined}`);
     }
-    if (llmQuery) {
+    if (llmMarkdown) {
       finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${llmQuery}`);
     } else {
-      finalCode = finalCode.replace('<MARKDOWN_FILTER_PROMPT>', `${undefined}`);
+      finalCode = finalCode.replace('"<MARKDOWN_FILTER_PROMPT>"', `${undefined}`);
+    }
+
+    if (Object.keys(extractionSchema.properties).length > 0) {
+      finalCode = finalCode.replace('"<EXTRACTION_SCHEMA>"', `${JSON.stringify(extractionSchema, null, 2)}`);
+    } else {
+      finalCode = finalCode.replace('"<EXTRACTION_SCHEMA>"', `${undefined}`);
     }
 
     return finalCode;
