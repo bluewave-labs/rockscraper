@@ -37,13 +37,8 @@ const LogsData = () => {
   const {
     requestState: { apiKey },
   } = useScraper();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState<Log['data']>({} as Log['data']);
   const [selectedLog, setSelectedLog] = useState<QueryData | null>(null);
-
-  // useEffect(() => {
-  //   setData(transformData(mockLogsSuccess[currentIndex].data));
-  // }, [currentIndex]);
 
   useEffect(() => {
     if (!apiKey) return;
@@ -83,15 +78,17 @@ const LogsData = () => {
             currentPage={data.current_page}
             totalPages={data.pages}
             onPageChange={(page) => {
-              getLogs(apiKey, page).then((res) => {
-                if (!res) {
-                  toast.error('Error fetching logs');
-                  return;
-                }
-                setData(transformData(res.data));
-              }).catch((err) => {
-                toast.error(`Error fetching logs - ${err.message}`);
-              });
+              getLogs(apiKey, page)
+                .then((res) => {
+                  if (!res) {
+                    toast.error('Error fetching logs');
+                    return;
+                  }
+                  setData(transformData(res.data));
+                })
+                .catch((err) => {
+                  toast.error(`Error fetching logs - ${err.message}`);
+                });
             }}
             className="w-fit mx-0"
           />

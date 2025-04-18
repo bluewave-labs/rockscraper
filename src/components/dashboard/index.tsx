@@ -2,6 +2,7 @@
 import { Button } from '@bluewavelabs/prism-ui';
 import marker from '@src/assets/marker.svg';
 import rocket from '@src/assets/rocket.svg';
+import { useScraper } from '@src/utils/context';
 import { DOCUMENTATION, GET_TOKENS } from '@src/utils/links';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,11 +13,14 @@ import ScrapeChart from './scrape-chart';
 import UPTChart from './upt-chart';
 
 const Dashboard = () => {
+  const {
+    requestState: { apiKey },
+  } = useScraper();
   return (
     <div className={style.main}>
       <div className={style.main__container}>
         <InfoCard title="Your trial will expire on" description="22 February 2025" />
-        <InfoCard title="Your API key" description="sk-abcdefghijklmnopqrstuvwxy23456" />
+        <InfoCard title="Your API key" description={apiKey.slice(0, 50) + '...'} />
       </div>
 
       <div className={style.main__container}>
