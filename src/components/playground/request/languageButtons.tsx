@@ -2,7 +2,7 @@
 import { CodeByLanguage } from '@src/utils/interfaces';
 import languages from '@src/utils/requests';
 import { useEffect, useState } from 'react';
-import { Button } from '../../ui/button';
+import { Button, useIsMobile } from '@bluewavelabs/prism-ui';
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from '../../ui/carousel';
+import { cn } from '@src/lib/utils';
 
 const LanguageButtons = ({
   activeLanguage,
@@ -22,16 +23,16 @@ const LanguageButtons = ({
   setSelectedCode: (val: CodeByLanguage) => void;
 }) => {
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!api) return;
 
-    const handleSelect = () => {
+    api.on('select', () => {
       const index = api.selectedScrollSnap();
       setActiveLanguage(languages[index].language);
       setSelectedCode(languages[index]);
-    };
-    api.on('select', handleSelect);
+    });
   }, [api]);
 
   useEffect(() => {
@@ -54,10 +55,10 @@ const LanguageButtons = ({
       {api?.canScrollPrev() && <CarouselPrevious />}
       <CarouselContent className="py-2">
         {languages.map(({ language }, i) => (
-          <CarouselItem key={language} className="w-auto">
+          <CarouselItem key={language} className={cn("w-auto", i !== 0 && activeLanguage !== language ? 'pl-0' : '')}>
             <Button
               variant={activeLanguage === language ? 'outline_active' : 'outline'}
-              size="sm"
+              size={isMobile ? 'xs' : 'sm'}
               onClick={() => {
                 setActiveLanguage(language);
                 setSelectedCode(languages[i]);

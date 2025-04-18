@@ -1,4 +1,5 @@
 'use client';
+import { Input } from '@bluewavelabs/prism-ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 import { usePlayground } from './context';
@@ -13,12 +14,17 @@ const ApiKey = () => {
   return (
     <div className={style.play__key}>
       <h3 className={style.play__label}>Your API key</h3>
-      <p className={`${style.play__field} ${style.key}`}>
-        <span>{apiKey}</span>
-        <button className="cursor-pointer" onClick={handleClick} aria-label="Copy API key to clipboard">
-          <Copy size={24} />
-        </button>
-      </p>
+      <Input
+        value={apiKey}
+        readOnly
+        variant="icon"
+        disabled
+        iconRight={
+          <button className="cursor-pointer" onClick={handleClick} aria-label="Copy API key to clipboard">
+            <Copy size={24} />
+          </button>
+        }
+      />
     </div>
   );
 };

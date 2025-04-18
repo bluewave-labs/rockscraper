@@ -1,5 +1,5 @@
 .main {
-  padding: var(--page-padding);
+
 
   &__container {
     display: flex;
@@ -28,12 +28,12 @@
 
       font-size: 16px;
       font-weight: 500;
-      color: var(--color-zinc-100);
+      color: var(--color-gray-10);
     }
 
     &--desc {
       font-size: 14px;
-      color: var(--color-zinc-300);
+      color: var(--color-gray-30);
     }
   }
 
@@ -50,7 +50,7 @@
 
       font-size: 16px;
       font-weight: 500;
-      color: var(--color-zinc-100);
+      color: var(--color-gray-10);
     }
 
     &--container {

@@ -1,4 +1,10 @@
 .content {
   flex-grow: 1;
   overflow: auto;
+  padding: var(--page-padding);
+  height: calc(100vh - 70px);
+
+  @media only screen and (max-width : 768px) {
+    padding: 12px;
+  }// @media only screen and (max-width : 768px)
 }

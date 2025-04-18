@@ -32,16 +32,16 @@ const Cookies = () => {
       <label htmlFor="cookies" className={mainStyle['play__label']}>
         Custom cookies{' '}
       </label>
-      <div className={mainStyle.play__field}>
+      <div className={"textfield flex flex-wrap gap-2"}>
         {cookies.map((cookie, index) => (
-          <span key={index} className={style['play__cookies--item']}>
+          <span key={index} className="flex items-center gap-1 border border-gray-0/20 rounded-sm px-2 py-1">
             {cookie}
 
             <X
               onClick={() => {
                 setCookies(cookies.filter((_, i) => i !== index));
               }}
-              className={style['play__cookies--delete']}
+              className="cursor-pointer"
               size={16}
             />
           </span>

@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@bluewavelabs/prism-ui/theme.css';
+@import './custom.css';
+@import './theme.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --page-padding: 2rem;
+  --radius: 0.625rem;
+}
+
+.glassy-background-strong {
+  @apply bg-linear-[180deg] from-gray-0/12 to-gray-0/6;
+}
+
+.glassy-background-light {
+  @apply bg-linear-[180deg] from-gray-0/8 to-gray-0/2;
+}
+
+.textfield {
+  @apply file:text-gray-10 placeholder:text-gray-20 selection:bg-gray-20 selection:text-gray-10 bg-gray-40/12 border-gray-0/20 flex w-full min-w-0 rounded-lg border-[0.5px] px-4 py-3 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 focus-visible:border-gray-60 focus-visible:ring-gray-60/50 focus-visible:ring-[3px] aria-invalid:ring-red-800/20 dark:aria-invalid:ring-red-800/40 aria-invalid:border-red-800 min-h-[50px];
+}

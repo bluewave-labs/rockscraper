@@ -1,21 +1,46 @@
-"use client";
-import { Sidebar, SidebarTrigger, useSidebar } from "../ui/sidebar";
-import Content from "./content";
-import Footer from "./footer";
-import Header from "./header";
-import style from "./sidebar.module.scss";
+'use client';
+import { AppSidebar as Sidebar, SidebarProvider } from '@bluewavelabs/prism-ui';
+import { BookOpen, Bot, Settings2, SquareTerminal } from 'lucide-react';
+
+const items_nav = [
+  {
+    title: 'Dashboard',
+    url: '/',
+    icon: <SquareTerminal />,
+  },
+  {
+    title: 'Playground',
+    url: '/playground',
+    icon: <Bot />,
+  },
+  {
+    title: 'Logs & data',
+    url: '/logs-data',
+    icon: <BookOpen />,
+  },
+  {
+    title: 'Settings',
+    url: '/settings',
+    icon: <Settings2 />,
+  },
+];
 
 const AppSidebar = () => {
-  const { isMobile } = useSidebar();
   return (
-    <div className={style.sidebar}>
-      <Sidebar collapsible='icon'>
-        <Header />
-        <Content />
-        <Footer />
-      </Sidebar>
-      {isMobile ? <SidebarTrigger /> : null}
-    </div>
+    <SidebarProvider>
+      <Sidebar
+        product="RockScraper"
+        nav={[
+          {
+            label: 'Platform',
+            items: items_nav,
+          },
+        ]}
+        logOut={() => {
+          console.log('logOut');
+        }}
+      />
+    </SidebarProvider>
   );
 };
 

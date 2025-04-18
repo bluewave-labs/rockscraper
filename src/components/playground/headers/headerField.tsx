@@ -1,17 +1,9 @@
-import { Input } from "@src/components/ui/input";
-import { ChangeEvent } from "react";
-import { usePlayground } from "../context";
-import style from "./headers.module.scss";
+import { Input } from '@bluewavelabs/prism-ui';
+import { ChangeEvent } from 'react';
+import { usePlayground } from '../context';
+import style from './headers.module.scss';
 
-const HeaderField = ({
-  id,
-  headerKey,
-  value,
-}: {
-  id: string;
-  headerKey: string;
-  value: string;
-}) => {
+const HeaderField = ({ id, headerKey, value }: { id: string; headerKey: string; value: string }) => {
   const { headers, setHeaders } = usePlayground();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, id: string) => {
@@ -19,7 +11,7 @@ const HeaderField = ({
     let newHeader = headers.find((header) => header.id === id);
     const index = headers.findIndex((header) => header.id === id);
     if (!newHeader) return;
-    if (name === "key") {
+    if (name === 'key') {
       newHeader = {
         ...newHeader,
         key: value,
@@ -36,20 +28,22 @@ const HeaderField = ({
   };
 
   return (
-    <div key={id} className={style["play__headers--item"]}>
+    <div key={id} className="flex gap-4 mb-4 flex-col md:flex-row">
       <Input
-        placeholder='Header name'
+        placeholder="Header name"
         id={`key-${id}`}
         value={headerKey}
-        name='key'
+        name="key"
         onChange={(e) => handleChange(e, id)}
+        variant="no-label"
       />
       <Input
-        placeholder='Header value'
+        placeholder="Header value"
         id={`value-${id}`}
         value={value}
-        name='value'
+        name="value"
         onChange={(e) => handleChange(e, id)}
+        variant="no-label"
       />
     </div>
   );
