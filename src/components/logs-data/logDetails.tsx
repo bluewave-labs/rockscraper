@@ -16,14 +16,10 @@ const LogDetails = ({
 
   const getContent = async () => {
     if (!selectedLog) return;
-    const content = selectedLog?.extracted_content.map((it) =>
-      Object.entries(it)
-        .filter(([key]) => !['index', 'tags'].includes(key))
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
-    );
-    const contentString = JSON.stringify(content, null, 2);
-    const html = await codeToHtml(contentString);
-    setContent(html);
+    if (selectedLog.markdown && !selectedLog.markdown.startsWith('www')) {
+      const html = await codeToHtml(selectedLog.markdown);
+      setContent(html);
+    }
   };
 
   useEffect(() => {
