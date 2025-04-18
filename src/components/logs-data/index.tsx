@@ -1,23 +1,43 @@
 'use client';
 
-import { Button, Pagination, Table } from '@bluewavelabs/prism-ui';
+import { Pagination, Table } from '@bluewavelabs/prism-ui';
 import { columns } from './columns';
 import styles from './logs-data.module.scss';
 
-import { QueryData } from '@src/utils/interfaces';
+import { ExtractedContent, Log, QueryData } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
-import { Drawer } from '../ui/drawer';
-import { mockLogs } from './mock';
+import LogDetails from './logDetails';
+import { mockLogsSuccess } from './mock';
+
+const ensureBaseFields = (item: any): ExtractedContent => {
+  return {
+    content: item.content ?? '',
+    error: item.error ?? false,
+    index: item.index ?? 0,
+    tags: Array.isArray(item.tags) ? item.tags : [],
+    ...item, // Spread the rest of the properties
+  };
+};
+
+const transformData = (data: any): Log['data'] => {
+  return {
+    current_page: data.current_page,
+    items: data.items.map((item: any) => ({
+      ...item,
+      extracted_content: item.extracted_content.map(ensureBaseFields),
+    })),
+    pages: data.pages,
+    total: data.total,
+  };
+};
 
 const LogsData = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [data, setData] = useState(mockLogs[0].data);
+  const [data, setData] = useState<Log['data']>(() => transformData(mockLogsSuccess[0].data));
   const [selectedLog, setSelectedLog] = useState<QueryData | null>(null);
 
-  const selectedLogErrors = selectedLog?.extracted_content.filter((it) => it.error);
-
   useEffect(() => {
-    setData(mockLogs[currentIndex].data);
+    setData(transformData(mockLogsSuccess[currentIndex].data));
   }, [currentIndex]);
 
   return (
@@ -34,43 +54,22 @@ const LogsData = () => {
       />
       <div className="flex justify-between items-center w-full gap-4">
         <p className="text-xs text-gray-30">
-          {(data.current_page - 1) * 10} - {data.items.length + (data.current_page -1) * 10} of{' '}
-          {data.total}
+          {(data.current_page - 1) * 10} - {data.items.length + (data.current_page - 1) * 10} of {data.total}
         </p>
-        <Pagination
-          currentPage={data.current_page}
-          totalPages={data.pages}
-          onPageChange={(page) => {
-            setCurrentIndex(page - 1);
-          }}
-          className="w-fit mx-0"
-        />
+        {data.pages > 1 ? (
+          <Pagination
+            currentPage={data.current_page}
+            totalPages={data.pages}
+            onPageChange={(page) => {
+              setCurrentIndex(page - 1);
+            }}
+            className="w-fit mx-0"
+          />
+        ) : null}
       </div>
-      <Drawer open={!!selectedLog} onOpenChange={(val) => setSelectedLog(val ? selectedLog : null)}>
-        <div>
-          <p>
-            <strong>URL:</strong> {selectedLog?.url}
-          </p>
-          <p>
-            <strong>Date:</strong> {selectedLog?.date}
-          </p>
-          {selectedLogErrors?.map((it) => (
-            <div key={it.index}>
-              {it.error ? (
-                <>
-                  <p className="bg-red-500 text-white px-2 rounded-md w-fit my-4">Error</p>
-                  <p>{it.content}</p>
-                </>
-              ) : null}
-            </div>
-          ))}
-          <div className="flex gap-2 items-center justify-center mt-4">
-            <Button>Download markdown</Button>
-            <Button>Download html</Button>
-          </div>
-        </div>
-      </Drawer>
+      <LogDetails selectedLog={selectedLog} setSelectedLog={setSelectedLog} />
     </div>
   );
 };
+
 export default LogsData;
