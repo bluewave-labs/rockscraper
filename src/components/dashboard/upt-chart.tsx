@@ -39,7 +39,7 @@ const chartConfig = {
 
 const UPTChart = () => {
   return (
-    <Card>
+    <Card suppressHydrationWarning>
       <CardTitle>$UPT Burned</CardTitle>
       <CardContent>
         <ChartContainer config={chartConfig}>

@@ -34,7 +34,7 @@ const chartConfig = {
 
 const ScrapeChart = () => {
   return (
-    <Card>
+    <Card suppressHydrationWarning>
       <CardTitle>Scraped pages</CardTitle>
       <CardContent>
         <ChartContainer config={chartConfig}>
