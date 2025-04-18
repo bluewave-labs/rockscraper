@@ -4,10 +4,12 @@ import { Pagination, Table } from '@bluewavelabs/prism-ui';
 import { columns } from './columns';
 import styles from './logs-data.module.scss';
 
+import { getLogs } from '@src/utils/api';
+import { useScraper } from '@src/utils/context';
 import { ExtractedContent, Log, QueryData } from '@src/utils/interfaces';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import LogDetails from './logDetails';
-import { mockLogsSuccess } from './mock';
 
 const ensureBaseFields = (item: any): ExtractedContent => {
   return {
@@ -32,13 +34,33 @@ const transformData = (data: any): Log['data'] => {
 };
 
 const LogsData = () => {
+  const {
+    requestState: { apiKey },
+  } = useScraper();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [data, setData] = useState<Log['data']>(() => transformData(mockLogsSuccess[0].data));
+  const [data, setData] = useState<Log['data']>({} as Log['data']);
   const [selectedLog, setSelectedLog] = useState<QueryData | null>(null);
 
+  // useEffect(() => {
+  //   setData(transformData(mockLogsSuccess[currentIndex].data));
+  // }, [currentIndex]);
+
   useEffect(() => {
-    setData(transformData(mockLogsSuccess[currentIndex].data));
-  }, [currentIndex]);
+    if (!apiKey) return;
+    getLogs(apiKey, 1)
+      .then((res) => {
+        if (!res) {
+          toast.error('Error fetching logs');
+          return;
+        }
+        setData(transformData(res.data));
+      })
+      .catch((err) => {
+        toast.error(`Error fetching logs - ${err.message}`);
+      });
+  }, [apiKey]);
+
+  if (!Object.keys(data).length) return null;
 
   return (
     <div className={styles.container}>
@@ -61,7 +83,15 @@ const LogsData = () => {
             currentPage={data.current_page}
             totalPages={data.pages}
             onPageChange={(page) => {
-              setCurrentIndex(page - 1);
+              getLogs(apiKey, page).then((res) => {
+                if (!res) {
+                  toast.error('Error fetching logs');
+                  return;
+                }
+                setData(transformData(res.data));
+              }).catch((err) => {
+                toast.error(`Error fetching logs - ${err.message}`);
+              });
             }}
             className="w-fit mx-0"
           />
